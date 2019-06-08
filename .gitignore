@@ -1,0 +1,9 @@
+# Compiled Python files
+*.pyc
+.venv
+venv
+*.ipynb
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
