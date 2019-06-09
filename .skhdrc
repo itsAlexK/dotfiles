@@ -49,3 +49,6 @@ shift + alt + ctrl + cmd - f : chunkc tiling::window --toggle float;\
 
 # rotate tree
 shift + alt + ctrl + cmd - r : chunkc tiling::desktop --rotate 90
+
+# toggle window fullscreen
+shift + alt + ctrl + cmd - space : chunkc tiling::window --toggle fullscreen
