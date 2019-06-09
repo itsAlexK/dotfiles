@@ -10,4 +10,4 @@ alias pydebug="python3 -m pdb -c continue"
 alias scalc="soffice --calc"
 alias ls="lsd"
 alias postgres-up="docker container run --name postgres-test-db -p 54320:5432 -e POSTGRES_USER=db -d postgres:9.6"
-
+alias twm="scripts/toggle-wm.sh"
