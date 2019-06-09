@@ -1,1 +1,1 @@
-stow . --ignore=".git" --ignore=".*txt"
+stow -R -v .
