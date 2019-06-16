@@ -27,6 +27,8 @@ brew install jq
 brew install stow
 
 brew install git
+brew install diff-so-fancy
+
 brew install openssh
 brew install awscli
 brew install csvkit

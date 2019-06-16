@@ -15,15 +15,18 @@
 	local = yellow
 	remote = green
 
-[color "diff"]
-
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
-
 [color "status"]
 
 	added = yellow
 	changed = green
 	untracked = cyan
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[diff-so-fancy]
+	markEmptyLines = false
+	stripLeadingSymbols = false
