@@ -4,6 +4,7 @@ export PYTHONIOENCODING='UTF-8';
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
+alias bat='bat --paging=never'
 export MANPAGER='less -X';
 export LESS_TERMCAP_md="${yellow}";
 
