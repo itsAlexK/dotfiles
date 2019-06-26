@@ -28,3 +28,5 @@ alias postgres-up="docker container run --name postgres-test-db -p 54320:5432 -e
 
 alias twm="${HOME}/scripts/toggle-wm.sh"
 
+alias awscred=${HOME}/scripts/update-aws-credentials.sh
+

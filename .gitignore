@@ -1,6 +1,7 @@
 # Compiled Python files
 *.pyc
 .venv
+.mypy_cache
 venv
 *.ipynb
 
