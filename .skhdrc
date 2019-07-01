@@ -20,7 +20,7 @@ shift + cmd - right : chunkc tiling::window --warp east
 shift + alt + ctrl + cmd - z : chunkc tiling::window --grid-layout 1:2:0:0:1:1
 
 # make floating window fill right-half of screen
-shift + alt + ctrl + cmd - x : chunkc tiling::window --grid-layout 1:2:1:0:1:1
+shift + alt + ctrl + cmd - c : chunkc tiling::window --grid-layout 1:2:1:0:1:1
 
 # make floating window fill fullscreen
 shift + alt + ctrl + cmd - space : chunkc tiling::window --grid-layout 1:1:0:0:1:1
