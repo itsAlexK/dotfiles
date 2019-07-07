@@ -1,25 +1,25 @@
 # focus window
-alt - left : chunkc tiling::window --focus west
-alt - down : chunkc tiling::window --focus south
-alt - up : chunkc tiling::window --focus north
-alt - right : chunkc tiling::window --focus east
+alt - h : chunkc tiling::window --focus west
+alt - j : chunkc tiling::window --focus south
+alt - k : chunkc tiling::window --focus north
+alt - l : chunkc tiling::window --focus east
 
 # swap window
-shift + alt + ctrl + cmd - left : chunkc tiling::window --swap west
-shift + alt + ctrl + cmd - down : chunkc tiling::window --swap south
-shift + alt + ctrl + cmd - up : chunkc tiling::window --swap north
-shift + alt + ctrl + cmd - right : chunkc tiling::window --swap east
+shift + alt + ctrl + cmd - h : chunkc tiling::window --swap west
+shift + alt + ctrl + cmd - j : chunkc tiling::window --swap south
+shift + alt + ctrl + cmd - k : chunkc tiling::window --swap north
+shift + alt + ctrl + cmd - l : chunkc tiling::window --swap east
 
 # move window
-shift + cmd - up : chunkc tiling::window --warp west
-shift + cmd - down : chunkc tiling::window --warp south
-shift + cmd - up : chunkc tiling::window --warp north
-shift + cmd - right : chunkc tiling::window --warp east
+shift + cmd - h : chunkc tiling::window --warp west
+shift + cmd - j : chunkc tiling::window --warp south
+shift + cmd - k : chunkc tiling::window --warp north
+shift + cmd - l : chunkc tiling::window --warp east
 
-# make floating window fill left-half of screen
+# make floating window fill h-half of screen
 shift + alt + ctrl + cmd - z : chunkc tiling::window --grid-layout 1:2:0:0:1:1
 
-# make floating window fill right-half of screen
+# make floating window fill l-half of screen
 shift + alt + ctrl + cmd - c : chunkc tiling::window --grid-layout 1:2:1:0:1:1
 
 # make floating window fill fullscreen

@@ -1,9 +1,11 @@
+# Python
 export PIPENV_VENV_IN_PROJECT="enabled"
 export BETTER_EXCEPTIONS=1
 export PYTHONIOENCODING='UTF-8';
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
+# VIEWERS
 alias bat='bat --paging=never'
 export MANPAGER='less -X';
 export LESS_TERMCAP_md="${yellow}";
@@ -21,12 +23,13 @@ alias ls="lsd"
 
 alias reload="exec ${SHELL} -l"
 alias hg="history | grep"
+alias pbc="pbcopy"
+alias pbp="pbpaste"
 
 alias pydebug="python3 -m pdb -c continue"
 alias scalc="soffice --calc"
 alias postgres-up="docker container run --name postgres-test-db -p 54320:5432 -e POSTGRES_USER=db -d postgres:9.6"
 
+# FUNCTIONS
 alias twm="${HOME}/scripts/toggle-wm.sh"
-
 alias awscred=${HOME}/scripts/update-aws-credentials.sh
-
