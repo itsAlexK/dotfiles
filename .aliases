@@ -20,6 +20,7 @@ export HISTCONTROL='ignoreboth';
 alias sudo='sudo '
 alias grep='grep --color=auto'
 alias ls="lsd"
+alias csvlook="csvlook -l -I"
 
 alias reload="exec ${SHELL} -l"
 alias hg="history | grep"
