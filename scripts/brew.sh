@@ -27,6 +27,7 @@ brew install jq
 brew install stow
 brew install tldr
 brew install tree
+brew install z
 
 brew install git
 brew install diff-so-fancy

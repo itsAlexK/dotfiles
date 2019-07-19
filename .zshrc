@@ -23,7 +23,8 @@ plugins=(
     docker
     extract
     osx
-    python     
+    python
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -37,3 +38,9 @@ source $ZSH/oh-my-zsh.sh
 
 neofetch
 source ~/.aliases
+
+#z
+if command -v brew >/dev/null 2>&1; then
+	# Load rupa's z if installed
+	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+fi
