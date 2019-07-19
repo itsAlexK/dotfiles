@@ -28,6 +28,8 @@ brew install stow
 brew install tldr
 brew install tree
 brew install z
+brew install fzf
+yes | /usr/local/opt/fzf/install
 
 brew install git
 brew install diff-so-fancy

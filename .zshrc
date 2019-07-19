@@ -25,6 +25,7 @@ plugins=(
     osx
     python
     z
+    fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -44,3 +45,4 @@ if command -v brew >/dev/null 2>&1; then
 	# Load rupa's z if installed
 	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

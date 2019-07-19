@@ -6,15 +6,18 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 # VIEWERS
-alias bat='bat --paging=never'
+alias bat='bat --paging=never --color=always --style=numbers'
 export MANPAGER='less -X';
 export LESS_TERMCAP_md="${yellow}";
 
-# Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='32768';
-export HISTFILESIZE="${HISTSIZE}";
+# fzf
+alias fzd='fzf  --preview="bat {} -r 0:100 --color=always --style=numbers" -q'
+
+# Increase ZSH history size. Allow 32³ entries; the default is 500.
+export HISTSIZE=32768
+export SAVEHIST=HISTSIZE
 # Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+setopt hist_ignore_all_dups
 
 # Tools with settings
 alias sudo='sudo '
