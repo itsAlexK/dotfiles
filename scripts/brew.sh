@@ -25,6 +25,8 @@ brew install neofetch
 brew install bat
 brew install jq
 brew install stow
+brew install tldr
+brew install tree
 
 brew install git
 brew install diff-so-fancy
