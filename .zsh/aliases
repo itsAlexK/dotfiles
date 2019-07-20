@@ -14,8 +14,9 @@ setopt hist_ignore_all_dups
 # fix zsh tabbing expansion with fzf
 setopt GLOB_COMPLETE
 
-# ZSH auto suggestion colors
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#7FB6A7"
+# ZSH auto suggestion
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#506e64"
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 # Tools with settings
 alias sudo='sudo '
