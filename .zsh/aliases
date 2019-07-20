@@ -21,6 +21,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 # Tools with settings
 alias sudo='sudo '
 alias grep='grep --color=auto'
+alias rg="rg --hidden -g '!*venv/*' -g '!*Box Sync*' -g '!*.git/*' -g '!*zsh_history' --no-messages"
 alias ls="lsd"
 alias csvlook="csvlook -l -I"
 
