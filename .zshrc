@@ -51,7 +51,7 @@ if command -v brew >/dev/null 2>&1; then
 	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
 
-neofetch
+neofetch --off
 
 # Has to be at the very end
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
