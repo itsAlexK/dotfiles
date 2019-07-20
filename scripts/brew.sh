@@ -16,6 +16,7 @@ BREW_PREFIX=$(brew --prefix)
 #ZSH
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+brew install zsh-autosuggestions
 
 
 # Developer stuff
@@ -28,8 +29,8 @@ brew install stow
 brew install tldr
 brew install tree
 brew install z
+brew install rg
 brew install fzf
-yes | /usr/local/opt/fzf/install
 
 brew install git
 brew install diff-so-fancy

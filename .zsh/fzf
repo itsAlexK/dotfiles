@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+alias fzd='fzf  --preview="bat {} -r 0:100 --color=always --style=numbers"'
+
+export FZF_COMPLETION_TRIGGER='--'
+export FZF_DEFAULT_OPTS='--height 60%  --border'
+
+FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,venv}/*" 2> /dev/null'
+
+hf() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
+}

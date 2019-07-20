@@ -1,15 +1,30 @@
+#!/bin/zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-source ${HOME}/.powerlevel9kconfig
-ZSH_THEME="powerlevel9k/powerlevel9k"
+
+
+more=(
+    aliases
+    exports
+    functions
+    python
+    fzf
+    powerlevel9kconfig
+)
+
+for m in $more; do
+    source ${HOME}/.zsh/$m
+done
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -26,23 +41,18 @@ plugins=(
     python
     z
     fzf
+    ripgrep
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-neofetch
-source ~/.aliases
 
 #z
 if command -v brew >/dev/null 2>&1; then
 	# Load rupa's z if installed
 	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+neofetch
+
+# Has to be at the very end
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh

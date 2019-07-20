@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+export PIPENV_VENV_IN_PROJECT="enabled"
+export BETTER_EXCEPTIONS=1
+export PYTHONIOENCODING='UTF-8';
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
