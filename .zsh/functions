@@ -2,24 +2,24 @@
 
 function twm {
 
-    COMMAND=$1
+    local command=$1
 
-    if [[ "$COMMAND" =~ ^(start|stop|restart)$ ]]; then
-        brew services "${COMMAND}" chunkwm
-        brew services "${COMMAND}" skhd
+    if [[ "$command" =~ ^(start|stop|restart)$ ]]; then
+        brew services "${command}" chunkwm
+        brew services "${command}" skhd
     else
-        echo "${COMMAND} is not a valid option"
+        echo "${command} is not a valid option"
     fi
 
 }
 
 function awscred {
 
-    USER=S1
-    PASS=S2
+    local user=S1
+    local pass=S2
 
-    aws configure set aws_access_key_id $USER --profile cloud
-    aws configure set aws_secret_access_key $PASS --profile cloud
+    aws configure set aws_access_key_id $user --profile cloud
+    aws configure set aws_secret_access_key $pass --profile cloud
 }
 
 function wttr()
