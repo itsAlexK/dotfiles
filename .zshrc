@@ -15,7 +15,6 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 more=(
     aliases
-    exports
     functions
     python
     fzf
