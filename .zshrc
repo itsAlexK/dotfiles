@@ -6,6 +6,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
+
+# git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 # git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -43,9 +45,15 @@ plugins=(
     z
     fzf
     ripgrep
+    colored-man-pages
 )
 
-source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 #z
 if command -v brew >/dev/null 2>&1; then
@@ -53,7 +61,13 @@ if command -v brew >/dev/null 2>&1; then
 	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
 
-neofetch --off
-
 # Has to be at the very end
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
+
+source $ZSH/oh-my-zsh.sh
+
+neofetch --off

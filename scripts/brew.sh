@@ -17,6 +17,7 @@ BREW_PREFIX=$(brew --prefix)
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 brew install zsh-autosuggestions
+brew install zsh-completions
 
 
 # Developer stuff

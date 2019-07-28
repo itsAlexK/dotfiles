@@ -2,8 +2,10 @@
 
 # VIEWERS
 alias bat='bat --paging=never --color=always --style=numbers'
-export MANPAGER='less -X';
-export LESS_TERMCAP_md="${yellow}";
+export MANPAGER='less -s -M +Gg'
+
+# EDITOR
+export EDITOR=code
 
 # Increase ZSH history size. Allow 32³ entries; the default is 500.
 export HISTSIZE=32768
@@ -14,14 +16,11 @@ setopt hist_ignore_all_dups
 # fix zsh tabbing expansion with fzf
 setopt GLOB_COMPLETE
 
-# ZSH auto suggestion
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#595633"
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 # Tools with settings
 alias sudo='sudo '
 alias grep='grep --color=auto'
-alias rg="rg --hidden -g '!*venv/*' -g '!*Box Sync*' -g '!*.git/*' -g '!*zsh_history' --no-messages"
+alias rg="rg --hidden -g '!*venv/*' -g '!*Box Sync*' -g '!*.git/*' -g '!*zsh_history' --no-messages --pretty"
 alias ls="lsd"
 alias csvlook="csvlook -l -I"
 
@@ -30,10 +29,6 @@ alias hg="history | grep"
 alias pbc="pbcopy"
 alias pbp="pbpaste"
 
-alias pydebug="python3 -m pdb -c continue"
+alias pydebug="pipenv run python3 -m pdb -c continue"
 alias scalc="soffice --calc"
 alias postgres-up="docker container run --name postgres-test-db -p 54320:5432 -e POSTGRES_USER=db -d postgres:9.6"
-
-# FUNCTIONS
-# alias twm="${HOME}/scripts/toggle-wm.sh"
-alias awscred=${HOME}/scripts/update-aws-credentials.sh
