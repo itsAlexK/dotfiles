@@ -1,13 +1,37 @@
 #!/bin/zsh
 
 export FZF_COMPLETION_TRIGGER='--'
-export FZF_DEFAULT_OPTS='--height 60%  --border'
+export FZF_DEFAULT_OPTS='--reverse --height 60%  --border'
 
 FZF_DEFAULT_COMMAND='rg--no-ignore --hidden --follow -g "!{.git,node_modules,venv}/*" 2> /dev/null'
 
-alias preview='fzf  --preview="bat {} -r 0:100 --color=always --style=numbers"'
+alias preview='fzf  --preview="bat {} -r 0:500 --color=always --style=numbers"'
 
 # fh - repeat history
 hf() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s -i --exact --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
+
+_fzf_complete_git_notrigger() {
+    FZF_COMPLETION_TRIGGER='' _fzf_complete_git
+}
+
+_fzf_complete_git() {
+    ARGS="$@"
+    if [[ $ARGS == 'git checkout'* ]]; then
+        _fzf_complete "--reverse" "$@" < <(
+            git branch -vv --al
+        )
+    elif [[ $ARGS == 'git commit'* ]]; then
+        _fzf_complete "--reverse --multi" "$@" < <(
+            git status --porcelain=1
+        )
+    else
+        eval "zle ${fzf_default_completion:-expand-or-complete}"
+    fi
+}
+
+_fzf_complete_git_post() {
+    awk '{print $2}'
+
 }
