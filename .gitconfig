@@ -3,6 +3,9 @@
 	email = contactkaichen@gmail.com
 [alias]
         cleanup = "!git fetch -ap; git branch | grep -v "master" | grep -v ^* | xargs git branch -D;"
+		lg = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+		up = "!git pull --rebase --prune $@ && git submodule update --init --recursive"
+
 [credential]
 	helper = osxkeychain
 [core]
