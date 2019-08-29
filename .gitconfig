@@ -5,6 +5,8 @@
         cleanup = "!git fetch -ap; git branch | grep -v "master" | grep -v ^* | xargs git branch -D;"
 		lg = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 		up = "!git pull --rebase --prune $@ && git submodule update --init --recursive"
+		save ="!git commit -m 'SAVE'"
+		undo = "!git reset --soft HEAD~1"
 
 [credential]
 	helper = osxkeychain
