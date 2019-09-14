@@ -4,15 +4,20 @@
 [alias]
         cleanup = "!git fetch -ap; git branch | grep -v "master" | grep -v ^* | xargs git branch -D;"
 		up = "!git pull --rebase --prune $@ && git submodule update --init --recursive"
-		save ="!git commit -m 'SAVE'"
+		save ="!git add --all && git commit --all -m 'SAVE'"
 		undo = "!git reset --soft HEAD~1"
 		lg = !zsh -c 'source $HOME/.zsh/fzf && gli'
+		ignore =  "!git update-index --skip-worktree"
+		unignore= "!git update-index --no-skip-worktree"
+		showignored = "!git ls-files -v|grep '^S'"
+		untag = "!git tag -d"
 
 [credential]
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	editor = vim
 
 [color "branch"]
 
