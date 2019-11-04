@@ -19,7 +19,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 brew install zsh-autosuggestions
 brew install zsh-completions
 
-
 # Developer stuff
 brew install grep
 brew install lsd
@@ -51,6 +50,10 @@ brew tap koekeishiya/formulae
 brew install chunkwm
 brew install skhd
 
+brew tap dandavison/delta https://github.com/dandavison/delta
+brew install dandavison/delta/git-delta
+
+brew install goofys
 
 # cask
 
