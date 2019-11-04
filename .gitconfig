@@ -16,27 +16,13 @@
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta --dark --hunk-style=plain --plus-color="#004d00"
 	editor = vim
-
 [color "branch"]
-
 	current = yellow reverse
 	local = yellow
 	remote = green
-
 [color "status"]
-
 	added = yellow
 	changed = green
 	untracked = cyan
-[color]
-	ui = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[diff-so-fancy]
-	markEmptyLines = false
-	stripLeadingSymbols = false
