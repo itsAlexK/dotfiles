@@ -11,3 +11,5 @@ Desktop.ini
 
 node_modules
 .bin
+
+.ipynb_checkpoints/
