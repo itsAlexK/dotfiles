@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # VIEWERS
-alias bat='bat --paging=never --color=always --style=numbers'
-export MANPAGER='less -s -M +Gg'
+alias bat='bat --color=always --style=numbers'
+export MANPAGER='less -s -M -N -R -I -J'
 
 # EDITOR
 export EDITOR=code
@@ -23,6 +23,7 @@ alias grep='grep --color=auto'
 alias rg="rg --hidden -g '!*venv/*' -g '!*Box Sync*' -g '!*.git/*' -g '!*zsh_history' --no-messages"
 alias ls="lsd"
 alias csvlook="csvlook -l -I"
+alias less='less -s -M -N -R -I -J'
 
 alias reload="exec ${SHELL} -l"
 alias hg="history | grep"
