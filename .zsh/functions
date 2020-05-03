@@ -29,3 +29,38 @@ function wttr()
     [ "$(tput cols)" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
+
+function tabc() {
+    local NAME=$1
+
+    if [[ $NAME == 'production' ]]; then
+        printf '\x1b]11;#241200\x1b\\'
+    elif [[ $NAME == 'staging' ]]; then
+        printf '\x1b]11;#1f1626\x1b\\'
+    elif [[ $NAME == 'other' ]]; then
+        printf '\x1b]11;#323232\x1b\\'
+    else
+        kitty @ set-colors --reset
+    fi
+
+}
+
+function tab-reset() {
+    kitty @ set-colors --reset
+}
+
+function colorssh() {
+    if [[ -n "$KITTY_WINDOW_ID" ]]; then
+        trap "tab-reset" INT EXIT
+        if [[ "$*" =~ "prod" ]]; then
+            tabc production
+        elif [[ "$*" =~ "stag" ]]; then
+            tabc staging
+        else
+            tabc other
+        fi
+    fi
+    /usr/bin/ssh $*
+}
+
+compdef colorssh=ssh

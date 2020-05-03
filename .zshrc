@@ -17,18 +17,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
 
-more=(
-    aliases
-    functions
-    python
-    fzf
-    powerlevel9kconfig
-)
-
-for m in $more; do
-    source ${HOME}/.zsh/$m
-done
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -55,6 +43,7 @@ else
   compinit -C
 fi
 
+
 #z
 if command -v brew >/dev/null 2>&1; then
 	# Load rupa's z if installed
@@ -70,4 +59,36 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
 
 source $ZSH/oh-my-zsh.sh
 
+more=(
+    aliases
+    python
+    fzf
+    powerlevel9kconfig
+    functions
+)
+
+for m in $more; do
+    source ${HOME}/.zsh/$m
+done
+
+export MANPAGER='less -s -M -N -R -I -J'
+
+# EDITOR
+export EDITOR=code
+
+# Increase ZSH history size. Allow 32³ entries; the default is 500.
+export HISTSIZE=32768
+export SAVEHIST=HISTSIZE
+# Omit duplicates and commands that begin with a space from history.
+setopt hist_ignore_all_dups
+
+# fix zsh tabbing expansion with fzf
+setopt GLOB_COMPLETE
+
+# autocomplete alias for ssh
+setopt complete_aliases
+
+
 neofetch --off
+
+
