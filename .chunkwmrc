@@ -135,7 +135,7 @@ chunkc tiling::rule --owner \"Slack\" --state float &
 chunkc tiling::rule --owner \"Spotify\" --state float &
 chunkc tiling::rule --owner \"VLC media player\" --state float &
 chunkc tiling::rule --owner \"Activity Monitor\" --state float &
-chunkc tiling::rule --owner \"Boostnote\" --state float &
+chunkc tiling::rule --owner \"Obsidian\" --state float &
 chunkc tiling::rule --owner \"Skype\" --state float &
 chunkc tiling::rule --owner \"Calculator\" --state float &
 chunkc tiling::rule --owner \"Numi\" --state float &

@@ -92,3 +92,4 @@ setopt complete_aliases
 neofetch --off
 
 
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
