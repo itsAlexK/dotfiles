@@ -23,3 +23,4 @@ alias postgres-up="docker container run --name postgres-test-db -p 54320:5432 -e
 alias ssh=colorssh
 
 alias notes="cd ~/Dropbox/notes/"
+alias books="cd ~/Box\ Sync/books/"
