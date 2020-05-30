@@ -34,11 +34,11 @@ function tabc() {
     local NAME=$1
 
     if [[ $NAME == 'production' ]]; then
-        printf '\x1b]11;#241200\x1b\\'
+        kitty @ set-colors background='#241200'
     elif [[ $NAME == 'staging' ]]; then
-        printf '\x1b]11;#1f1626\x1b\\'
+        kitty @ set-colors background='#1f1626'
     elif [[ $NAME == 'other' ]]; then
-        printf '\x1b]11;#323232\x1b\\'
+        kitty @ set-colors background='#323232'
     else
         kitty @ set-colors --reset
     fi
