@@ -83,8 +83,8 @@ chunkc set mouse_follows_focus           off
 chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
-chunkc set mouse_move_window             \"cmd 1\"
-chunkc set mouse_resize_window           \"cmd 2\"
+chunkc set mouse_move_window             \"ctrl shift alt cmd 1\"
+chunkc set mouse_resize_window           \"ctrl shift alt cmd 2\"
 chunkc set mouse_motion_interval         35
 
 chunkc set preselect_border_color        0xffd75f5f
@@ -135,7 +135,7 @@ chunkc tiling::rule --owner \"Slack\" --state float &
 chunkc tiling::rule --owner \"Spotify\" --state float &
 chunkc tiling::rule --owner \"VLC media player\" --state float &
 chunkc tiling::rule --owner \"Activity Monitor\" --state float &
-chunkc tiling::rule --owner \"Obsidian\" --state float &
+# chunkc tiling::rule --owner \"Obsidian\" --state float &
 chunkc tiling::rule --owner \"Skype\" --state float &
 chunkc tiling::rule --owner \"Calculator\" --state float &
 chunkc tiling::rule --owner \"Numi\" --state float &
