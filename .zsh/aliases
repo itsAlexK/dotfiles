@@ -21,3 +21,5 @@ alias scalc="soffice --calc"
 alias postgres-up="docker container run --name postgres-test-db -p 54320:5432 -e POSTGRES_USER=db -d postgres:9.6"
 
 alias ssh=colorssh
+
+alias notes="cd ~/Dropbox/notes/"
