@@ -24,3 +24,5 @@ alias ssh=colorssh
 
 alias notes="cd ~/Dropbox/notes/"
 alias books="cd ~/Box\ Sync/books/"
+
+alias vim=nvim
