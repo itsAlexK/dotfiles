@@ -74,7 +74,7 @@ done
 export MANPAGER='less -s -M -N -R -I -J'
 
 # EDITOR
-export EDITOR=vim
+export EDITOR=nvim
 
 # Increase ZSH history size. Allow 32³ entries; the default is 500.
 export HISTSIZE=32768

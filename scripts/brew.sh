@@ -31,6 +31,7 @@ brew install tree
 brew install z
 brew install rg
 brew install fzf
+brew install nvim
 
 brew install git
 brew install diff-so-fancy
