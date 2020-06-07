@@ -12,5 +12,5 @@ set smartindent
 set incsearch
 set wildmode=longest,list,full
 
-nnoremap <leader>d "_d
-xnoremap <leader>d "_d
+nnoremap d "_d
+xnoremap d "_d
