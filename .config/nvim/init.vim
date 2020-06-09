@@ -25,6 +25,16 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'j-tom/vim-old-hope'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+
 call plug#end()
 
 colorscheme old-hope
