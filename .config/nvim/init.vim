@@ -28,6 +28,10 @@ Plug 'j-tom/vim-old-hope'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-fugitive'
 
@@ -49,6 +53,14 @@ nnoremap <Leader>W :hide<cr>
 nnoremap <Leader>\ :vsplit<cr>
 noremap <Leader>{ <C-w>h<C-w>
 noremap <Leader>} <C-w>l<C-w>
+
+let g:NERDTreeIgnore = ['^.venv$', '^venv$', '_build']
+let g:NERDTreeGitStatusWithFlags = 1
+nnoremap <Leader>b :NERDTreeToggle<CR>
+
+nnoremap <Leader>p :CtrlP<cr>
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard', '.venv/', 'venv/']
 
 
 nnoremap d "_d
