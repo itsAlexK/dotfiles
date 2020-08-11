@@ -43,6 +43,7 @@ brew install postgresql
 brew install pyenv
 brew install rg
 brew install stow
+brew install shellcheck
 brew install tree
 brew install z
 
