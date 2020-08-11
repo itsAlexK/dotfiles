@@ -49,7 +49,7 @@ brew install z
 # tiling manager
 brew tap koekeishiya/formulae
 
-brew install chunkwm
+brew install yabai
 brew install skhd
 
 # cask
