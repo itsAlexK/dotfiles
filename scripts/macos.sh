@@ -721,10 +721,6 @@ defaults write org.m0k.transmission PlayDownloadSound -bool true
 defaults write com.apple.finder AppleShowAllFiles YES
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
 
-# key speed
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
-
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
