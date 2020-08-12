@@ -5,7 +5,7 @@ function twm {
     local command=$1
 
     if [[ "$command" =~ ^(start|stop|restart)$ ]]; then
-        brew services "${command}" chunkwm
+        brew services "${command}" yabai
         brew services "${command}" skhd
     else
         echo "${command} is not a valid option"
