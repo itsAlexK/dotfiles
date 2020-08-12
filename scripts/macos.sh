@@ -177,8 +177,8 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 3
-defaults write NSGlobalDomain InitialKesyRepeat -int 20
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 75
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -719,7 +719,6 @@ defaults write org.m0k.transmission PlayDownloadSound -bool true
 
 # show hidden files in fidner by default
 defaults write com.apple.finder AppleShowAllFiles YES
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
 
 ###############################################################################
 # Kill affected applications                                                  #
