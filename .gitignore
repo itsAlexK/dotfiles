@@ -13,3 +13,5 @@ node_modules
 .bin
 
 .ipynb_checkpoints/
+
+.zsh/work

@@ -65,6 +65,7 @@ more=(
     fzf
     powerlevel9kconfig
     functions
+    work
 )
 
 for m in $more; do
