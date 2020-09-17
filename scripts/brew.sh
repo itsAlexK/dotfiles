@@ -46,6 +46,7 @@ brew install stow
 brew install shellcheck
 brew install tree
 brew install z
+brew install watch
 
 # tiling manager
 brew tap koekeishiya/formulae
