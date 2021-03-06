@@ -96,3 +96,5 @@ neofetch --off
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(direnv hook zsh)"

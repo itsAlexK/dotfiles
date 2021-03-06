@@ -29,6 +29,7 @@ brew install csvkit
 brew tap dandavison/delta https://github.com/dandavison/delta
 brew install dandavison/delta/git-delta
 brew install diff-so-fancy
+brew install direnv
 brew install fx
 brew install fzf
 brew install git
