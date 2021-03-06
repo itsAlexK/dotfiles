@@ -39,7 +39,7 @@ brew install lsd
 brew install neofetch
 brew install nvim
 brew install openssh
-brew install pipenv
+brew install poetry
 brew install postgresql
 brew install pyenv
 brew install rg
