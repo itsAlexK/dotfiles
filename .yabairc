@@ -34,7 +34,7 @@ yabai -m config window_gap                   5
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Transmission$" manage=off
-yabai -m rule --add app="^Spotifys$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^VLC media player$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^Slack$" manage=off
