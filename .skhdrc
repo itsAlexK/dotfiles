@@ -14,10 +14,10 @@ alt - k : yabai -m window --swap north
 alt - l : yabai -m window --swap east
 
 # re-insert window
-shift + cmd - h : yabai -m window --warp wests
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east
-shift + cmd - j : yabai -m window --warp south
+# shift + cmd - h : yabai -m window --warp west
+# shift + cmd - k : yabai -m window --warp north
+# shift + cmd - l : yabai -m window --warp east
+# shift + cmd - j : yabai -m window --warp south
 
 # make floating window fill h-half of screen
 shift + alt + ctrl + cmd - z : yabai -m window --grid 1:2:0:0:1:1
