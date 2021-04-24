@@ -59,27 +59,28 @@ brew install skhd
 
 brew tap caskroom/cask
 
-brew cask install alfred
-brew cask install box-sync
-brew cask install docker
-brew cask install dozer
-brew cask install dropbox
-brew cask install firefox
-brew cask install flux
-brew cask install google-chrome
-brew cask install karabiner-elements
-brew cask install kitty
-brew cask install libreoffice
-brew cask install obsidian
-brew cask install slack
-brew cask install spotify
-brew cask install spotmenu
-brew cask install tableplus
-brew cask install transmission
-brew cask install tunnelblick
-brew cask install visual-studio-code
-brew cask install vlc
-brew cask install xquartz
-brew cask install meetingbar
+brew install --cask alfred
+brew install --cask box-sync
+brew install --cask docker
+brew install --cask dozer
+brew install --cask dropbox
+brew install --cask firefox
+brew install --cask flux
+brew install --cask google-chrome
+brew install --cask karabiner-elements
+brew install --cask kitty
+brew install --cask libreoffice
+brew install --cask obsidian
+brew install --cask slack
+brew install --cask spotify
+brew install --cask spotmenu
+brew install --cask tableplus
+brew install --cask transmission
+brew install --cask tunnelblick
+brew install --cask visual-studio-code
+brew install --cask vlc
+brew install --cask xquartz
+brew install --cask meetingbar
+brew install --cask background-music
 
 # https://github.com/ekreutz/CornerCal
