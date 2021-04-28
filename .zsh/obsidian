@@ -1,0 +1,62 @@
+#!/bin/zsh
+
+function fzf_bat_exec() {
+    local file=$1
+    local line=$2
+    local lines=$LINES
+
+    # subtract 3 for the header
+    declare -i center=$(( (lines - 3) / 2 ))
+
+    if [ $line -lt $center ]; then
+        center=$line
+    fi
+    start=$(( line - center ))
+    end=$(( lines + start ))
+
+    bat --color always --highlight-line $line --line-range $start:$end --paging never "$file"
+}
+
+
+function urlencode() {
+  python -c 'import urllib, sys; print urllib.quote(sys.argv[1], sys.argv[2])' \
+    "$1" "$urlencode_safe"
+}
+
+function to_obsidian_url() {
+    local file="$1"
+    encoded_file=$(urlencode "$file")
+    obsidian_url="obsidian://open?vault=notes&file=$encoded_file"
+    echo "$obsidian_url"
+}
+
+function open_obsidian_from_file() {
+    local file="$1"
+    obsidian_open_url=$(to_obsidian_url "$file")
+
+    if ! pgrep Obsidian >/dev/null
+    then
+      open -a 'Obsidian'
+      sleep 1
+    fi
+
+    open "${obsidian_open_url}"
+}
+
+function obs() {
+  INITIAL_QUERY=""
+  RG_PREFIX="rg --column --line-number --color=always --smart-case "
+  pushd ~/Dropbox/notes/ > /dev/null && \
+  trap "popd > /dev/null" INT EXIT
+
+  file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+    fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+        --delimiter=: \
+        --with-nth=1,4 \
+        --ansi --disabled --query "$INITIAL_QUERY" \
+        --height=100% --layout=reverse \
+        --preview 'source ~/dotfiles/.zsh/fzf_bat_helper.sh && fzf_bat_exec {1} {2}' \
+    | awk -F':' '{print $1}')
+
+    open_obsidian_from_file "$file"
+}

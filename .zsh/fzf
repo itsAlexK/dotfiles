@@ -48,7 +48,7 @@ fif() {
         --with-nth=1,4 \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --height=100% --layout=reverse \
-        --preview 'source ~/dotfiles/.zsh/fzf && fzf_bat_exec {1} {2}'
+        --preview 'source ~/dotfiles/.zsh/fzf_bat_helper.sh && fzf_bat_exec {1} {2}'
 }
 
 

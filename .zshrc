@@ -63,6 +63,7 @@ more=(
     aliases
     python
     fzf
+    obsidian
     powerlevel9kconfig
     functions
     work
