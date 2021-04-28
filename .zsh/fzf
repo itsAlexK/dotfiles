@@ -3,9 +3,6 @@
 export FZF_COMPLETION_TRIGGER='--'
 export FZF_DEFAULT_OPTS='--reverse --height 60%  --border'
 
-FZF_DEFAULT_COMMAND='rg--no-ignore --hidden --follow -g "!{.git,node_modules,venv}/*" 2> /dev/null'
-
-alias preview='fzf  --preview="bat {} -r 0:500 --color=always --style=numbers"'
 
 # fh - repeat history
 hf() {
@@ -69,7 +66,7 @@ gli() {
                 xargs -I % sh -c 'git show --color=always % $filter | less -R') << 'FZF-EOF'
                 {}
                 FZF-EOF"
-   --preview-window=right:50%
+   --height=90%
   )
 
   # piping them
