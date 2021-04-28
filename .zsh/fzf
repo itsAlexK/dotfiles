@@ -4,10 +4,26 @@ export FZF_COMPLETION_TRIGGER='--'
 export FZF_DEFAULT_OPTS='--reverse --height 60%  --border'
 
 
-# fh - repeat history
+# search history
 hf() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s -i --exact --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
+
+# search file contents
+
+# using ripgrep combined with preview
+# find-in-file - usage: fif <searchTerm>
+fif() {
+  INITIAL_QUERY=""
+  RG_PREFIX="rg -l --color=always --smart-case "
+  FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+    fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+        --ansi --disabled --query "$INITIAL_QUERY" \
+        --height=100% --layout=reverse \
+        --preview 'bat --color=always {}'
+}
+
+# git
 
 _fzf_complete_git_notrigger() {
     FZF_COMPLETION_TRIGGER='' _fzf_complete_git
