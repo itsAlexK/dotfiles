@@ -4,7 +4,12 @@ export FZF_COMPLETION_TRIGGER='--'
 export FZF_DEFAULT_OPTS='--reverse --height 60%  --border'
 
 # uses rg to search by default
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,.venv}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore -g "!{.git,node_modules,.venv}/*" 2> /dev/null'
+
+# uses rg to autocomplete directories when using `--
+_fzf_compgen_path() {
+    rg --files --hidden --ignore -g "!{.git,node_modules,.venv}/*" 2> /dev/null
+}
 
 
 # search history
