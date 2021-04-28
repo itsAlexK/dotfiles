@@ -58,5 +58,7 @@ function obs() {
         --preview 'source ~/dotfiles/.zsh/fzf_bat_helper.sh && fzf_bat_exec {1} {2}' \
     | awk -F':' '{print $1}')
 
-    open_obsidian_from_file "$file"
+    if [ ! -z "$file" ]; then
+        open_obsidian_from_file "$file"
+    fi
 }
