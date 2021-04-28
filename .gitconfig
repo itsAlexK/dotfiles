@@ -3,7 +3,6 @@
 	email = contactkaichen@gmail.com
 [alias]
         cleanup = "!git fetch -ap; git branch | grep -v "master" | grep -v ^* | xargs git branch -D;"
-		up = "!git pull --rebase --prune $@ && git submodule update --init --recursive"
 		save ="!git add --all && git commit --all -m 'SAVE' --no-verify"
 		undo = "!git reset --soft HEAD~1"
 		lg = !zsh -c 'source $HOME/.zsh/fzf && gli'
