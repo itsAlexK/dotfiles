@@ -3,6 +3,9 @@
 export FZF_COMPLETION_TRIGGER='--'
 export FZF_DEFAULT_OPTS='--reverse --height 60%  --border'
 
+# uses rg to search by default
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,.venv}/*" 2> /dev/null'
+
 
 # search history
 hf() {
