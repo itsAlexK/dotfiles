@@ -46,31 +46,6 @@ fif() {
         --preview 'source ~/dotfiles/.zsh/fzf && fzf_bat_exec {1} {2}'
 }
 
-# git
-
-_fzf_complete_git_notrigger() {
-    FZF_COMPLETION_TRIGGER='' _fzf_complete_git
-}
-
-_fzf_complete_git() {
-    ARGS="$@"
-    if [[ $ARGS == 'git checkout'* ]]; then
-        _fzf_complete "--reverse" "$@" < <(
-            git branch -vv --al
-        )
-    elif [[ $ARGS == 'git commit'* ]]; then
-        _fzf_complete "--reverse --multi" "$@" < <(
-            git status --porcelain=1
-        )
-    else
-        eval "zle ${fzf_default_completion:-expand-or-complete}"
-    fi
-}
-
-_fzf_complete_git_post() {
-    awk '{print $2}'
-
-}
 
 # git log show with fzf
 gli() {
