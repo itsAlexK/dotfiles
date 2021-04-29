@@ -51,6 +51,7 @@ function obs() {
 
   file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
     fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+        --bind "ctrl-e:execute:(nvim +{2} {1}) < /dev/tty > /dev/tty 2>&1" \
         --delimiter=: \
         --with-nth=1,4 \
         --ansi --disabled --query "$INITIAL_QUERY" \

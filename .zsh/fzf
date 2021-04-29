@@ -43,12 +43,13 @@ fif() {
   RG_PREFIX="rg --column --line-number --color=always --smart-case "
   FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
     fzf --bind "change:reload:$RG_PREFIX {q} || true" \
-        --bind "enter:execute:(bat --color=always --highlight-line={2} {1} | less +{2})" \
+        --bind "ctrl-e:execute:(nvim +{2} {1}) < /dev/tty > /dev/tty 2>&1" \
         --delimiter=: \
         --with-nth=1,4 \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --height=100% --layout=reverse \
-        --preview 'source ~/dotfiles/.zsh/fzf_bat_helper.sh && fzf_bat_exec {1} {2}'
+        --preview 'source ~/dotfiles/.zsh/fzf_bat_helper.sh && fzf_bat_exec {1} {2}' \
+  | awk -F: '{print $1}'
 }
 
 
