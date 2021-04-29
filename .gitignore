@@ -3,7 +3,6 @@
 .venv
 .mypy_cache
 venv
-*.ipynb
 
 # Folder view configuration files
 .DS_Store
