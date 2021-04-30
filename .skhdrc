@@ -36,8 +36,8 @@ shift + alt + ctrl + cmd - 4 : yabai -m window --display 4; yabai -m display --f
 
 # focus displays
 # '[' and ']'sq respectively
-shift + alt + ctrl + cmd - 0x21 : yabai -m display --focus prev
-shift + alt + ctrl + cmd - 0x1E : yabai -m display --focus next
+shift + alt + ctrl + cmd - 0x21 : yabai -m window --focus prev || yabai -m window --focus "$((yabai -m query --spaces --display prev || yabai -m query --spaces --display last) | jq -re '.[] | select(.visible == 1)."last-window"')" || yabai -m display --focus prev || yabai -m display --focus last
+shift + alt + ctrl + cmd - 0x1E : yabai -m window --focus next || yabai -m window --focus "$((yabai -m query --spaces --display next || yabai -m query --spaces --display first) | jq -re '.[] | select(.visible == 1)."first-window"')" || yabai -m display --focus next || yabai -m display --focus first
 
 # increase region size
 shift + alt + ctrl + cmd - a : yabai -m window west --resize right:-60:0 2> /dev/null || yabai -m window --resize right:-60:0
