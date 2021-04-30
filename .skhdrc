@@ -2,10 +2,10 @@
 cmd - h : :
 
 # focus window
-shift + alt + ctrl + cmd - h : yabai -m window --focus west
+shift + alt + ctrl + cmd - h : yabai -m window --focus west || yabai -m window --focus "$((yabai -m query --spaces --display prev || yabai -m query --spaces --display last) | jq -re '.[] | select(.visible == 1)."last-window"')"
 shift + alt + ctrl + cmd - j : yabai -m window --focus south
 shift + alt + ctrl + cmd - k : yabai -m window --focus north
-shift + alt + ctrl + cmd - l : yabai -m window --focus east
+shift + alt + ctrl + cmd - l : yabai -m window --focus east ||  yabai -m window --focus "$((yabai -m query --spaces --display next || yabai -m query --spaces --display first) | jq -re '.[] | select(.visible == 1)."first-window"')"
 
 # swap window
 alt - h : yabai -m window --swap west
