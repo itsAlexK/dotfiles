@@ -32,12 +32,16 @@ yabai -m config window_gap                   5
 
 # RULES
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Firefox$" display=2
+yabai -m rule --add app="^Obsidian$" display=2
+yabai -m rule --add app="^Kitty$" display=2
+yabai -m rule --add app="^Code$" display=2
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Transmission$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^VLC media player$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
-yabai -m rule --add app="^Slack$" manage=off
+yabai -m rule --add app="^Slack$" display=1
 yabai -m rule --add app="^Numis$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="Discord" manage=off
+yabai -m rule --add app="^Discord$" display=1
