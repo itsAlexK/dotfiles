@@ -40,5 +40,4 @@ yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^Slack$" manage=off
 yabai -m rule --add app="^Numis$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="Obsidian" manage=off
 yabai -m rule --add app="Discord" manage=off
