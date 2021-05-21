@@ -14,3 +14,5 @@ node_modules
 .ipynb_checkpoints/
 
 .zsh/work
+.obsidian/workspace
+.obsidian-git-data
