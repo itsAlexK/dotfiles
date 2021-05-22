@@ -34,7 +34,7 @@ yabai -m config window_gap                   5
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Firefox$" display=2
 yabai -m rule --add app="^Obsidian$" display=2
-yabai -m rule --add app="^Kitty$" display=2
+yabai -m rule --add app="^Kitty$" display=3
 yabai -m rule --add app="^Code$" display=2
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Transmission$" manage=off
