@@ -16,3 +16,4 @@ node_modules
 .zsh/work
 .obsidian/workspace
 .obsidian-git-data
+.obsidian/app.json
