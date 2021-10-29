@@ -17,3 +17,6 @@ node_modules
 .obsidian/workspace
 .obsidian-git-data
 .obsidian/app.json
+
+.config/karabiner/automatic_backups
+.config/coc
