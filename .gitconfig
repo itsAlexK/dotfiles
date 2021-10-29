@@ -17,7 +17,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = delta --dark --hunk-style=plain --plus-color="#004d00"
-	editor = vim
+	editor = nvim
 [color "branch"]
 	current = yellow reverse
 	local = yellow
