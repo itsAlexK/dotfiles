@@ -32,6 +32,7 @@ plugins=(
     python
     z
     fzf
+    fzf-tab
     ripgrep
     colored-man-pages
 )
@@ -99,3 +100,4 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+enable-fzf-tab # enables the fzf tab command for git plugin
