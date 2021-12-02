@@ -28,7 +28,7 @@ plugins=(
     brew
     docker
     extract
-    osx
+    macos
     python
     z
     fzf
