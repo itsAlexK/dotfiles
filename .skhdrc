@@ -62,3 +62,8 @@ shift + alt + ctrl + cmd - r : yabai -m space --rotate 90
 
 # balance
 shift + alt + ctrl + cmd - b : yabai -m space --balance
+
+f2: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="kitty" and .visible==1)'.id | head -n 1)
+f3: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="Obsidian" and .visible==1)'.id | head -n 1)
+f4: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="Google Chrome" and .visible==1)'.id | head -n 1)
+f5: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="Code" and .visible==1)'.id | head -n 1)
