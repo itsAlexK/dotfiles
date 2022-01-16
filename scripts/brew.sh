@@ -86,5 +86,6 @@ brew install --cask vlc
 brew install --cask xquartz
 brew install --cask meetingbar
 brew install --cask background-music
+brew install --cask hammerspoon
 
 # https://github.com/ekreutz/CornerCal
