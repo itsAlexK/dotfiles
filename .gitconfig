@@ -16,7 +16,7 @@
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore
-	pager = delta --dark --hunk-style=plain --plus-color="#004d00"
+	pager = delta --dark
 	editor = nvim
 [color "branch"]
 	current = yellow reverse
