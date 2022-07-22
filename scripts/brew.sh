@@ -2,7 +2,7 @@
 
 # install
 
-sudo -v
+# sudo -v
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -87,5 +87,6 @@ brew install --cask xquartz
 brew install --cask meetingbar
 brew install --cask background-music
 brew install --cask hammerspoon
+brew install --cask vivaldi
 
 # https://github.com/ekreutz/CornerCal
