@@ -10,8 +10,47 @@ function twm {
     else
         echo "${command} is not a valid option"
     fi
+}
+
+function km {
+    # https://rakhesh.com/mac/using-hidutil-to-map-macos-keyboard-keys/
+    local command=$1
+
+    if [[ "$command" = 'start' ]]; then
+        hidutil property --set '{"UserKeyMapping":[
+
+                    {
+                    "HIDKeyboardModifierMappingSrc": 0x70000002A,
+                    "HIDKeyboardModifierMappingDst": 0x7000000E3
+                    },
+
+                    {
+                    "HIDKeyboardModifierMappingSrc": 0x70000004C,
+                    "HIDKeyboardModifierMappingDst": 0x70000002C
+                    },
+
+                    {
+                    "HIDKeyboardModifierMappingSrc": 0x70000004D,
+                    "HIDKeyboardModifierMappingDst": 0x700000029
+                    },
+
+                    {
+                    "HIDKeyboardModifierMappingSrc": 0x70000004A,
+                    "HIDKeyboardModifierMappingDst": 0x7000000E2
+                    },
+
+                    {
+                    "HIDKeyboardModifierMappingSrc": 0x70000002C,
+                    "HIDKeyboardModifierMappingDst": 0x70000002A
+                    }
+
+                ]}'
+    else
+        hidutil property --set '{"UserKeyMapping":[]}'
+    fi
 
 }
+
 
 function awscred {
 
