@@ -68,3 +68,5 @@ xnoremap d "_d
 
 nnoremap x "_x
 xnoremap x "_x
+
+let g:coc_node_path = '/opt/homebrew/bin/node'
