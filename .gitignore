@@ -20,5 +20,8 @@ node_modules
 
 .config/karabiner/automatic_backups
 .config/coc
+.config/brazil/
+.config/cr/
+.config/ninja-dev-sync.json
 
 .envrc
