@@ -23,7 +23,6 @@ brew install zsh-completions
 
 # Developer stuff
 
-brew install awscli
 brew install bat
 brew install csvkit
 brew tap dandavison/delta https://github.com/dandavison/delta
@@ -64,9 +63,7 @@ brew install skhd
 brew tap caskroom/cask
 
 brew install --cask alfred
-brew install --cask box-sync
 brew install --cask docker
-brew install --cask dozer
 brew install --cask dropbox
 brew install --cask firefox
 brew install --cask flux
@@ -77,16 +74,11 @@ brew install --cask libreoffice
 brew install --cask obsidian
 brew install --cask slack
 brew install --cask spotify
-brew install --cask spotmenu
 brew install --cask tableplus
-brew install --cask transmission
-brew install --cask tunnelblick
 brew install --cask visual-studio-code
 brew install --cask vlc
 brew install --cask xquartz
 brew install --cask meetingbar
-brew install --cask background-music
-brew install --cask hammerspoon
 brew install --cask vivaldi
 
 # https://github.com/ekreutz/CornerCal
