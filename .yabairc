@@ -10,8 +10,6 @@ yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                off
 yabai -m config window_border                on
 yabai -m config window_border_width          3
-yabai -m config active_window_border_color   0xff006699
-yabai -m config normal_window_border_color   0xff505050
 yabai -m config window_border                on
 yabai -m config insert_feedback_color        0xff006699
 yabai -m config active_window_opacity        1.0
@@ -45,3 +43,5 @@ yabai -m rule --add app="^Slack$" display=1
 yabai -m rule --add app="^Numis$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Discord$" display=1
+
+borders active_color=0xff006699 inactive_color=0xff505050 width=8.0 &

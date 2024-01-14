@@ -23,6 +23,9 @@ brew install zsh-completions
 
 # Developer stuff
 
+brew tap FelixKratz/formulae
+brew install borders
+
 brew install bat
 brew install csvkit
 brew tap dandavison/delta https://github.com/dandavison/delta
@@ -80,5 +83,6 @@ brew install --cask vlc
 brew install --cask xquartz
 brew install --cask meetingbar
 brew install --cask vivaldi
+brew install --cask todoist
 
 # https://github.com/ekreutz/CornerCal

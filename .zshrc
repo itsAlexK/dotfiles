@@ -35,6 +35,7 @@ plugins=(
     fzf-tab
     ripgrep
     colored-man-pages
+    zsh-autosuggestions
 )
 
 autoload -Uz compinit
@@ -52,7 +53,8 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 # Has to be at the very end
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Adding ito plugins work for some reason now?
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -101,3 +103,6 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 eval "$(direnv hook zsh)"
 enable-fzf-tab # enables the fzf tab command for git plugin
+
+# Created by `pipx` on 2023-02-07 03:35:59
+export PATH="$PATH:/Users/kingkai/.local/bin"

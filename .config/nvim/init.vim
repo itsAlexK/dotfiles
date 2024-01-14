@@ -43,7 +43,7 @@ call plug#end()
 
 colorscheme old-hope
 
-let mapleader=" "
+# let mapleader=" "
 
 nnoremap t :tabnew
 nnoremap <Leader>[ :tabp<cr>
