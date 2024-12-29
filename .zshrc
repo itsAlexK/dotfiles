@@ -95,9 +95,6 @@ setopt GLOB_COMPLETE
 setopt complete_aliases
 
 
-neofetch --off
-
-
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
