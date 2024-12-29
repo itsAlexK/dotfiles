@@ -67,3 +67,5 @@ f2: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=
 f3: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="Obsidian" and .visible==1)'.id | head -n 1)
 f4: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="Vivaldi" and .visible==1)'.id | head -n 1)
 f5: yabai -m window --focus  $(yabai -m query --windows | jq '.[] | select(.app=="Code" and .visible==1)'.id | head -n 1)
+
+cmd - 0x32 : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
