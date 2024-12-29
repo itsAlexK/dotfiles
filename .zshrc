@@ -65,7 +65,6 @@ source $ZSH/oh-my-zsh.sh
 more=(
     aliases
     python
-    fzf_bat_helper
     fzf
     obsidian
     powerlevel9kconfig
