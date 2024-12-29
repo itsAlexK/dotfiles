@@ -1,0 +1,14 @@
+font-size = 11
+background-blur-radius = 20
+mouse-hide-while-typing = false
+window-decoration = true
+macos-option-as-alt = true
+background = 141414
+foreground = feffd3
+selection-foreground = 303030
+cursor-color = 303030
+keybind = cmd+backslash=new_split:down
+keybind = cmd+x=clear_screen
+keybind = cmd+w=close_surface
+keybind = cmd+q=close_window
+keybind = global:cmd+grave_accent=toggle_quick_terminal
