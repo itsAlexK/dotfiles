@@ -2,7 +2,7 @@
 start-at-login = false
 
 after-startup-command = [
-  'exec-and-forget borders active_color=0xec4dcc inactive_color=0xff494d64 width=20.0'
+  'exec-and-forget borders active_color=0xff188bc2 inactive_color=0xff494d64 width=10.0'
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
