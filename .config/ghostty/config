@@ -4,11 +4,16 @@ font-thicken = true
 background-blur-radius = 20
 mouse-hide-while-typing = false
 window-decoration = true
+unfocused-split-opacity = 0.8
+unfocused-split-fill =  #424949
 macos-option-as-alt = true
+window-padding-x = 15
+window-padding-y = 15
 background = 141414
 foreground = feffd3
 window-inherit-working-directory = true
 selection-foreground = 303030
+quick-terminal-screen = main
 
 keybind = cmd+enter=new_split:down
 keybind = cmd+x=clear_screen
