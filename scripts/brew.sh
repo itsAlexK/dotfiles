@@ -55,12 +55,13 @@ brew install helm
 # tiling manager
 brew tap koekeishiya/formulae
 
-brew install yabai
-brew install skhd
+# brew install yabai
+# brew install skhd
 
 brew tap FelixKratz/formulae
 brew install borders
 
+brew install --cask nikitabobko/tap/aerospace
 # cask
 
 brew tap caskroom/cask
@@ -72,7 +73,7 @@ brew install --cask firefox
 brew install --cask flux
 brew install --cask google-chrome
 brew install --cask karabiner-elements
-brew install --cask kitty
+# brew install --cask kitty
 brew install --cask obsidian
 brew install --cask slack
 brew install --cask spotify
