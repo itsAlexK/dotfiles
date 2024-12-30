@@ -2,7 +2,7 @@
 start-at-login = false
 
 after-startup-command = [
-  'exec-and-forget borders active_color=0xec4dcc inactive_color=0xff494d64 width=5.0'
+  'exec-and-forget borders active_color=0xec4dcc inactive_color=0xff494d64 width=20.0'
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
@@ -12,7 +12,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 300
+accordion-padding = 30
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -70,6 +70,9 @@ outer.right =      5
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -95,8 +98,8 @@ outer.right =      5
 # '''
 
 # alt-ctrl-shift-f = 'fullscreen'
-alt-ctrl-shift-cmd-f = 'layout floating tiling'
-alt-ctrl-shift-cmd-g = 'fullscreen'
+alt-ctrl-shift-cmd-f = 'layout h_accordion h_tiles'
+alt-ctrl-shift-cmd-b = 'balance-sizes'
 
 
 cmd-shift-h = 'join-with left'
@@ -109,22 +112,22 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-ctrl-shift-cmd-a = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-alt-ctrl-shift-cmd-s = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-alt-ctrl-shift-cmd-w = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-alt-ctrl-shift-cmd-d = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-ctrl-shift-cmd-a = 'focus left --boundaries workspace --boundaries-action wrap-around-the-workspace'
+alt-ctrl-shift-cmd-s = 'focus down --boundaries workspace --boundaries-action wrap-around-the-workspace'
+alt-ctrl-shift-cmd-w = 'focus up --boundaries workspace --boundaries-action wrap-around-the-workspace'
+alt-ctrl-shift-cmd-d = 'focus right --boundaries workspace --boundaries-action wrap-around-the-workspace'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-h = 'move left'
-alt-j = 'move down'
-alt-k = 'move up'
-alt-l = 'move right'
+alt-ctrl-shift-cmd-h = 'move left'
+alt-ctrl-shift-cmd-j = 'move down'
+alt-ctrl-shift-cmd-k = 'move up'
+alt-ctrl-shift-cmd-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-ctrl-shift-cmd-minus = 'resize smart -50'
 alt-ctrl-shift-cmd-equal = 'resize smart +50'
-alt-ctrl-shift-cmd-q = 'resize smart -50'
-alt-ctrl-shift-cmd-e = 'resize smart +50'
+alt-ctrl-shift-cmd-q = 'resize smart +50'
+alt-ctrl-shift-cmd-e = 'resize smart -50'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
@@ -132,12 +135,20 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-ctrl-shift-cmd-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-ctrl-shift-cmd-2 = 'move-node-to-workspace 2 --focus-follows-window'
 alt-ctrl-shift-cmd-3 = 'move-node-to-workspace 3 --focus-follows-window'
 alt-ctrl-shift-cmd-4 = 'move-node-to-workspace 4 --focus-follows-window'
+alt-ctrl-shift-cmd-5 = 'move-node-to-workspace 5 --focus-follows-window'
+alt-ctrl-shift-cmd-6 = 'move-node-to-workspace 6 --focus-follows-window'
+alt-ctrl-shift-cmd-7 = 'move-node-to-workspace 7 --focus-follows-window'
+alt-ctrl-shift-cmd-8 = 'move-node-to-workspace 8 --focus-follows-window'
 
 # alt-tab = 'workspace-back-and-forth'
 alt-tab = 'workspace --wrap-around next'
@@ -159,3 +170,33 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [mode.apps.binding]
 alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.todoist.mac.Todoist'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace 1"
+
+
+[workspace-to-monitor-force-assignment]
+1 = ['Built-in Retina Display']
+2 = ['DELL U3421WE']
+3 = ['V3L6W']
