@@ -86,7 +86,7 @@ end tell'
 '''
 alt-ctrl-shift-period = '''exec-and-forget osascript -e '
 tell application "Firefox"
-    open location "https://ballard.amazon.com/owa/#path=/mail[]"
+    open location "https://ballard.amazon.com/owa/#path=/mail"
 end tell'
 '''
 
