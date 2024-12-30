@@ -96,7 +96,7 @@ outer.right =      5
 
 # alt-ctrl-shift-f = 'fullscreen'
 alt-ctrl-shift-cmd-f = 'layout floating tiling'
-# alt-ctrl-shift-cmd-g = 'layout h_accordion'
+alt-ctrl-shift-cmd-g = 'fullscreen'
 
 
 cmd-shift-h = 'join-with left'
