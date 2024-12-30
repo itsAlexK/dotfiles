@@ -12,7 +12,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 80
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -32,17 +32,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
-
-# [[on-window-detected]]
-# if.app-id = 'com.apple.systempreferences'
-# if.app-name-regex-substring = 'settings'
-# if.window-title-regex-substring = 'substring'
-# if.workspace = 'workspace-name'
-# if.during-aerospace-startup = true
-# check-further-callbacks = true
-# run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
-
+automatically-unhide-macos-hidden-apps = true
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -101,9 +91,6 @@ cmd-alt-h = [] # Disable "hide others"
 alt-ctrl-shift-f = 'layout h_accordion h_tiles'
 alt-ctrl-shift-b = 'balance-sizes'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-ctrl-shift-a = 'focus left --boundaries workspace --boundaries-action wrap-around-the-workspace'
@@ -149,9 +136,8 @@ alt-ctrl-shift-cmd-6 = 'move-node-to-workspace 6'
 alt-ctrl-shift-cmd-7 = 'move-node-to-workspace 7'
 alt-ctrl-shift-cmd-8 = 'move-node-to-workspace 8'
 
-# alt-tab = 'workspace-back-and-forth'
+alt-ctrl-shift-enter = 'move-workspace-to-monitor --wrap-around next'
 alt-tab = 'workspace --wrap-around next'
-# alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 # alt-shift-semicolon = 'mode service'
@@ -167,7 +153,7 @@ alt-tab = 'workspace --wrap-around next'
 # f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 # backspace = ['close-all-windows-but-current', 'mode main']
 
-[mode.apps.binding]å
+[mode.apps.binding]
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'

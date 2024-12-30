@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zmodload zsh/zprof
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -10,6 +15,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 # git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 # git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ZSH_THEME="powerlevel10k/powerlevel10k"
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -33,18 +39,9 @@ plugins=(
     z
     fzf
     fzf-tab
-    ripgrep
     colored-man-pages
     zsh-autosuggestions
 )
-
-autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
-
 
 #z
 if command -v brew >/dev/null 2>&1; then
@@ -76,6 +73,15 @@ for m in $more; do
     source ${HOME}/.zsh/$m
 done
 
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
+
+
+
 export MANPAGER='less -s -M -N -R -I -J'
 
 # EDITOR
@@ -103,3 +109,8 @@ enable-fzf-tab # enables the fzf tab command for git plugin
 
 # Created by `pipx` on 2023-02-07 03:35:59
 export PATH="$PATH:/Users/kingkai/.local/bin"
+
+# https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
+fi

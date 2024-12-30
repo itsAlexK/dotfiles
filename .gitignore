@@ -23,5 +23,10 @@ node_modules
 .config/brazil/
 .config/cr/
 .config/ninja-dev-sync.json
+.config/cdd2
+.config/eda
+.config/rde
+.config/ada
+.config/configstore
 
 .envrc
