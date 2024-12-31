@@ -187,6 +187,10 @@ run = "move-node-to-workspace 3"
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace 1"
 
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = "move-node-to-workspace 1"
+
 
 [workspace-to-monitor-force-assignment]
 1 = ['Built-in Retina Display']
