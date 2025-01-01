@@ -89,7 +89,102 @@ tell application "Firefox"
     open location "https://ballard.amazon.com/owa/#path=/mail"
 end tell'
 '''
+alt-ctrl-shift-semicolon = '''exec-and-forget
+CURRENT_WS_WINDOWS="$(aerospace list-windows --workspace focused)"
+CURRENT_WS="$(aerospace list-workspaces --focused)"
 
+# if window found in current space then focus
+if echo "$CURRENT_WS_WINDOWS" | grep -q Firefox; then
+  WINDOW_ID="$(echo "$CURRENT_WS_WINDOWS" | grep "Firefox" | cut -d "|" -f 1 | head -n 1)"
+  aerospace focus --window-id "${WINDOW_ID//[[:blank:]]/}"
+
+else
+    open -a /Applications/Firefox.app --new
+fi
+'''
+
+alt-ctrl-shift-quote = '''exec-and-forget
+
+#!/usr/bin/env bash
+
+CURRENT_WS_WINDOWS="$(aerospace list-windows --workspace focused)"
+CURRENT_WS="$(aerospace list-workspaces --focused)"
+
+# if window found in current space then focus
+if echo "$CURRENT_WS_WINDOWS" | grep -q Ghostty; then
+  WINDOW_ID="$(echo "$CURRENT_WS_WINDOWS" | grep "Ghostty" | cut -d "|" -f 1 | head -n 1)"
+  aerospace focus --window-id "${WINDOW_ID//[[:blank:]]/}"
+
+# if window found in other workspace
+else
+  ALL_WINDOWS="$(aerospace list-windows --all)"
+  if echo "$ALL_WINDOWS" | grep -q Ghostty; then
+    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Ghostty" | cut -d "|" -f 1 | head -n 1)"
+    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
+  else
+    open -a /Applications/Ghostty.app --background
+    sleep 3
+    ALL_WINDOWS="$(aerospace list-windows --all)"
+    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Ghostty" | cut -d "|" -f 1 | head -n 1)"
+    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
+  fi
+fi
+'''
+
+# https://github.com/ghostty-org/ghostty/discussions/3563
+alt-ctrl-shift-rightSquareBracket = '''exec-and-forget
+#!/usr/bin/env bash
+
+CURRENT_WS_WINDOWS="$(aerospace list-windows --workspace focused)"
+CURRENT_WS="$(aerospace list-workspaces --focused)"
+
+# if window found in current space then focus
+if echo "$CURRENT_WS_WINDOWS" | grep -q Obsidian; then
+  WINDOW_ID="$(echo "$CURRENT_WS_WINDOWS" | grep "Obsidian" | cut -d "|" -f 1 | head -n 1)"
+  aerospace focus --window-id "${WINDOW_ID//[[:blank:]]/}"
+
+# if window found in other workspace
+else
+  ALL_WINDOWS="$(aerospace list-windows --all)"
+  if echo "$ALL_WINDOWS" | grep -q Obsidian; then
+    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Obsidian" | cut -d "|" -f 1 | head -n 1)"
+    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
+  else
+    open -a /Applications/Obsidian.app --background
+    sleep 3
+    ALL_WINDOWS="$(aerospace list-windows --all)"
+    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Obsidian" | cut -d "|" -f 1 | head -n 1)"
+    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
+  fi
+fi
+'''
+
+alt-ctrl-shift-leftSquareBracket = '''exec-and-forget
+#!/usr/bin/env bash
+
+CURRENT_WS_WINDOWS="$(aerospace list-windows --workspace focused)"
+CURRENT_WS="$(aerospace list-workspaces --focused)"
+
+# if window found in current space then focus
+if echo "$CURRENT_WS_WINDOWS" | grep -q Todoist; then
+  WINDOW_ID="$(echo "$CURRENT_WS_WINDOWS" | grep "Todoist" | cut -d "|" -f 1 | head -n 1)"
+  aerospace focus --window-id "${WINDOW_ID//[[:blank:]]/}"
+
+# if window found in other workspace
+else
+  ALL_WINDOWS="$(aerospace list-windows --all)"
+  if echo "$ALL_WINDOWS" | grep -q Todoist; then
+    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Todoist" | cut -d "|" -f 1 | head -n 1)"
+    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
+  else
+    open -a /Applications/Todoist.app --background
+    sleep 3
+    ALL_WINDOWS="$(aerospace list-windows --all)"
+    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Todoist" | cut -d "|" -f 1 | head -n 1)"
+    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
+  fi
+fi
+'''
 alt-ctrl-shift-cmd-f = 'fullscreen'
 alt-ctrl-shift-f = 'layout h_accordion h_tiles'
 alt-ctrl-shift-b = 'balance-sizes'
@@ -120,20 +215,20 @@ alt-ctrl-shift-e = 'resize smart -50'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-ctrl-shift-1 = 'workspace chat'
-alt-ctrl-shift-2 = 'workspace dev'
-alt-ctrl-shift-3 = 'workspace knowledge'
-alt-ctrl-shift-4 = 'workspace casual'
+alt-ctrl-shift-1 = 'workspace 1-chat'
+alt-ctrl-shift-2 = 'workspace 2-dev'
+alt-ctrl-shift-3 = 'workspace 3-knowledge'
+alt-ctrl-shift-4 = 'workspace 4-casual'
 alt-ctrl-shift-5 = 'workspace 5'
 alt-ctrl-shift-6 = 'workspace 6'
 alt-ctrl-shift-7 = 'workspace 7'
 alt-ctrl-shift-8 = 'workspace 8'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-ctrl-shift-cmd-1 = 'move-node-to-workspace chat'
-alt-ctrl-shift-cmd-2 = 'move-node-to-workspace dev'
-alt-ctrl-shift-cmd-3 = 'move-node-to-workspace knowledge'
-alt-ctrl-shift-cmd-4 = 'move-node-to-workspace casual'
+alt-ctrl-shift-cmd-1 = 'move-node-to-workspace 1-chat'
+alt-ctrl-shift-cmd-2 = 'move-node-to-workspace 2-dev'
+alt-ctrl-shift-cmd-3 = 'move-node-to-workspace 3-knowledge'
+alt-ctrl-shift-cmd-4 = 'move-node-to-workspace 4-casual'
 alt-ctrl-shift-cmd-5 = 'move-node-to-workspace 5'
 alt-ctrl-shift-cmd-6 = 'move-node-to-workspace 6'
 alt-ctrl-shift-cmd-7 = 'move-node-to-workspace 7'
@@ -162,41 +257,43 @@ alt-tab = 'workspace --wrap-around next'
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 if.during-aerospace-startup = true
-run = "move-node-to-workspace dev"
+run = "move-node-to-workspace 2-dev"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
-run = "move-node-to-workspace dev"
+if.during-aerospace-startup = true
+run = "move-node-to-workspace 2-dev"
 
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist'
+if.during-aerospace-startup = true
 if.window-title-regex-substring = '^(?!.*\bTodoist\b).*'
-run = "move-node-to-workspace knowledge"
+run = "move-node-to-workspace 3-knowledge"
 
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 if.during-aerospace-startup = true
 run= [
-  "move-node-to-workspace knowledge"
+  "move-node-to-workspace 3-knowledge"
 ]
 
 
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace knowledge"
+run = "move-node-to-workspace 3-knowledge"
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace chat"
+run = "move-node-to-workspace 1-chat"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = "move-node-to-workspace chat"
+run = "move-node-to-workspace 1-chat"
 
 
 [workspace-to-monitor-force-assignment]
-chat = ['Built-in Retina Display']
-dev = ['DELL U3421WE', 'Built-in Retina Display']
-knowledge = ['V3L6W', 'Built-in Retina Display']
+1-chat = ['Built-in Retina Display']
+2-dev = ['DELL U3421WE', 'Built-in Retina Display']
+3-knowledge = ['V3L6W', 'Built-in Retina Display']
