@@ -90,7 +90,7 @@ tell application "Firefox"
 end tell'
 '''
 
-# alt-ctrl-shift-f = 'fullscreen'
+alt-ctrl-shift-cmd-f = 'fullscreen'
 alt-ctrl-shift-f = 'layout h_accordion h_tiles'
 alt-ctrl-shift-b = 'balance-sizes'
 
