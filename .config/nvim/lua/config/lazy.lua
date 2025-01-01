@@ -111,10 +111,40 @@ end
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
+    { "nvim-lualine/lualine.nvim", dependencies = { 'nvim-tree/nvim-web-devicons' }},
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "lewis6991/gitsigns.nvim" },
+    {
+      "nvim-telescope/telescope.nvim",
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      keys = {
+        {
+          "<leader>ff",
+          function() require("telescope.builtin").find_files() end,
+          desc="Telescope Find Files",
+        },
+        {
+          "<leader>fg",
+          function() require("telescope.builtin").live_grep() end,
+          desc="Telescope Live Grep",
+        },
+        {
+          "<leader>hf",
+          function() require("telescope.builtin").command_history() end,
+          desc="Telescope Command History",
+        },
+        {
+          "<leader>fk",
+          function() require("telescope.builtin").keymaps() end,
+          desc="Telescope Command Key Maps",
+        }
+      }
+    },
+    'nvim-telescope/telescope-symbols.nvim',
+    -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
     snacksnvim(),
     -- import/override with your plugins
-    { import = "plugins" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -125,7 +155,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "tokyonight", "habamax"} },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
