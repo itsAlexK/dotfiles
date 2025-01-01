@@ -120,20 +120,20 @@ alt-ctrl-shift-e = 'resize smart -50'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-ctrl-shift-1 = 'workspace 1'
-alt-ctrl-shift-2 = 'workspace 2'
-alt-ctrl-shift-3 = 'workspace 3'
-alt-ctrl-shift-4 = 'workspace 4'
+alt-ctrl-shift-1 = 'workspace chat'
+alt-ctrl-shift-2 = 'workspace dev'
+alt-ctrl-shift-3 = 'workspace knowledge'
+alt-ctrl-shift-4 = 'workspace casual'
 alt-ctrl-shift-5 = 'workspace 5'
 alt-ctrl-shift-6 = 'workspace 6'
 alt-ctrl-shift-7 = 'workspace 7'
 alt-ctrl-shift-8 = 'workspace 8'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-ctrl-shift-cmd-1 = 'move-node-to-workspace 1'
-alt-ctrl-shift-cmd-2 = 'move-node-to-workspace 2'
-alt-ctrl-shift-cmd-3 = 'move-node-to-workspace 3'
-alt-ctrl-shift-cmd-4 = 'move-node-to-workspace 4'
+alt-ctrl-shift-cmd-1 = 'move-node-to-workspace chat'
+alt-ctrl-shift-cmd-2 = 'move-node-to-workspace dev'
+alt-ctrl-shift-cmd-3 = 'move-node-to-workspace knowledge'
+alt-ctrl-shift-cmd-4 = 'move-node-to-workspace casual'
 alt-ctrl-shift-cmd-5 = 'move-node-to-workspace 5'
 alt-ctrl-shift-cmd-6 = 'move-node-to-workspace 6'
 alt-ctrl-shift-cmd-7 = 'move-node-to-workspace 7'
@@ -162,41 +162,41 @@ alt-tab = 'workspace --wrap-around next'
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 if.during-aerospace-startup = true
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace dev"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace dev"
 
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist'
 if.window-title-regex-substring = '^(?!.*\bTodoist\b).*'
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace knowledge"
 
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-if.window-title-regex-substring = '^(?!.*\b~\b).*'
+if.during-aerospace-startup = true
 run= [
-  "move-node-to-workspace 3"
+  "move-node-to-workspace knowledge"
 ]
 
 
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace knowledge"
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace 1"
+run = "move-node-to-workspace chat"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = "move-node-to-workspace 1"
+run = "move-node-to-workspace chat"
 
 
 [workspace-to-monitor-force-assignment]
-1 = ['Built-in Retina Display']
-2 = ['DELL U3421WE', 'Built-in Retina Display']
-3 = ['V3L6W', 'Built-in Retina Display']
+chat = ['Built-in Retina Display']
+dev = ['DELL U3421WE', 'Built-in Retina Display']
+knowledge = ['V3L6W', 'Built-in Retina Display']
