@@ -196,12 +196,20 @@ alt-ctrl-shift-s = 'focus down --boundaries workspace --boundaries-action wrap-a
 alt-ctrl-shift-w = 'focus up --boundaries workspace --boundaries-action wrap-around-the-workspace'
 alt-ctrl-shift-d = 'focus right --boundaries workspace --boundaries-action wrap-around-the-workspace'
 
+alt-ctrl-shift-h = 'focus left --boundaries workspace --boundaries-action wrap-around-the-workspace'
+alt-ctrl-shift-j = 'focus down --boundaries workspace --boundaries-action wrap-around-the-workspace'
+alt-ctrl-shift-k = 'focus up --boundaries workspace --boundaries-action wrap-around-the-workspace'
+alt-ctrl-shift-l = 'focus right --boundaries workspace --boundaries-action wrap-around-the-workspace'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-ctrl-shift-cmd-a = 'move left'
 alt-ctrl-shift-cmd-s = 'move down'
 alt-ctrl-shift-cmd-w = 'move up'
 alt-ctrl-shift-cmd-d = 'move right'
 
+alt-ctrl-shift-cmd-h = 'move left'
+alt-ctrl-shift-cmd-j = 'move down'
+alt-ctrl-shift-cmd-k = 'move up'
+alt-ctrl-shift-cmd-l = 'move right'
 # alt-ctrl-shift-cmd-a = 'join-with left'
 # alt-ctrl-shift-cmd-s = 'join-with down'
 # alt-ctrl-shift-cmd-w = 'join-with up'
