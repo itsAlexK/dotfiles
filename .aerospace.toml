@@ -292,8 +292,12 @@ run = "move-node-to-workspace 1-chat"
 if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 1-chat"
 
+[[on-window-detected]]
+if.app-id = 'com.amazon.Amazon-Chime'
+run = "move-node-to-workspace 1-chat"
+
 
 [workspace-to-monitor-force-assignment]
 1-chat = ['Built-in Retina Display']
-2-dev = ['DELL U3421WE', 'Built-in Retina Display']
-3-knowledge = ['V3L6W', 'Built-in Retina Display']
+2-dev = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
+3-knowledge = ['LEN P32p-20', 'V3L6W', 'Built-in Retina Display']
