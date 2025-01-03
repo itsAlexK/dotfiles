@@ -1,19 +1,24 @@
-font-size = 12
-font-family = "JetBrains Mono"
-font-thicken = true
+background = 141414
 background-blur-radius = 20
-mouse-hide-while-typing = false
-window-decoration = true
-unfocused-split-opacity = 0.8
-unfocused-split-fill =  #424949
+font-family = "JetBrains Mono"
+font-size = 12
+font-thicken = true
+foreground = feffd3
 macos-option-as-alt = true
+mouse-hide-while-typing = false
+quick-terminal-screen = main
+selection-foreground = 303030
+unfocused-split-fill =  #424949
+unfocused-split-opacity = 0.8
+window-decoration = true
+window-inherit-working-directory = true
 window-padding-x = 15
 window-padding-y = 15
-background = 141414
-foreground = feffd3
-window-inherit-working-directory = true
-selection-foreground = 303030
-quick-terminal-screen = main
+quick-terminal-autohide = true
+quick-terminal-animation-duration = 0
+confirm-close-surface = true
+clipboard-trim-trailing-spaces = true
+
 
 keybind = cmd+enter=new_split:down
 keybind = cmd+x=clear_screen
