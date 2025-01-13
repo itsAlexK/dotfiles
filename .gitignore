@@ -28,5 +28,6 @@ node_modules
 .config/rde
 .config/ada
 .config/configstore
+.config/raycast
 
 .envrc
