@@ -131,60 +131,6 @@ else
 fi
 '''
 
-# https://github.com/ghostty-org/ghostty/discussions/3563
-alt-ctrl-shift-rightSquareBracket = '''exec-and-forget
-#!/usr/bin/env bash
-
-CURRENT_WS_WINDOWS="$(aerospace list-windows --workspace focused)"
-CURRENT_WS="$(aerospace list-workspaces --focused)"
-
-# if window found in current space then focus
-if echo "$CURRENT_WS_WINDOWS" | grep -q Obsidian; then
-  WINDOW_ID="$(echo "$CURRENT_WS_WINDOWS" | grep "Obsidian" | cut -d "|" -f 1 | head -n 1)"
-  aerospace focus --window-id "${WINDOW_ID//[[:blank:]]/}"
-
-# if window found in other workspace
-else
-  ALL_WINDOWS="$(aerospace list-windows --all)"
-  if echo "$ALL_WINDOWS" | grep -q Obsidian; then
-    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Obsidian" | cut -d "|" -f 1 | head -n 1)"
-    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
-  else
-    open -a /Applications/Obsidian.app --background
-    sleep 3
-    ALL_WINDOWS="$(aerospace list-windows --all)"
-    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Obsidian" | cut -d "|" -f 1 | head -n 1)"
-    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
-  fi
-fi
-'''
-
-alt-ctrl-shift-leftSquareBracket = '''exec-and-forget
-#!/usr/bin/env bash
-
-CURRENT_WS_WINDOWS="$(aerospace list-windows --workspace focused)"
-CURRENT_WS="$(aerospace list-workspaces --focused)"
-
-# if window found in current space then focus
-if echo "$CURRENT_WS_WINDOWS" | grep -q Todoist; then
-  WINDOW_ID="$(echo "$CURRENT_WS_WINDOWS" | grep "Todoist" | cut -d "|" -f 1 | head -n 1)"
-  aerospace focus --window-id "${WINDOW_ID//[[:blank:]]/}"
-
-# if window found in other workspace
-else
-  ALL_WINDOWS="$(aerospace list-windows --all)"
-  if echo "$ALL_WINDOWS" | grep -q Todoist; then
-    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Todoist" | cut -d "|" -f 1 | head -n 1)"
-    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
-  else
-    open -a /Applications/Todoist.app --background
-    sleep 3
-    ALL_WINDOWS="$(aerospace list-windows --all)"
-    WINDOW_ID="$(echo "$ALL_WINDOWS" | grep "Todoist" | cut -d "|" -f 1 | head -n 1)"
-    aerospace move-node-to-workspace --window-id "${WINDOW_ID//[[:blank:]]/}" "$CURRENT_WS" --focus-follows-window
-  fi
-fi
-'''
 alt-ctrl-shift-cmd-f = 'fullscreen'
 alt-ctrl-shift-f = 'layout h_accordion h_tiles'
 alt-ctrl-shift-b = 'balance-sizes'
