@@ -14,8 +14,8 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_control", "left_option"]
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_option"]
                                     }
                                 ],
                                 "type": "basic"
