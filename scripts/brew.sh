@@ -66,7 +66,8 @@ brew install --cask nikitabobko/tap/aerospace
 
 brew tap caskroom/cask
 
-brew install --cask alfred
+# brew install --cask alfred
+brew install --cask raycast
 brew install --cask docker
 brew install --cask dropbox
 brew install --cask firefox
