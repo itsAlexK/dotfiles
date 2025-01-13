@@ -233,6 +233,9 @@ run= [
 ]
 
 
+[[on-window-detected]]
+if.app-id = 'com.omnigroup.OmniFocus4'
+run = "move-node-to-workspace 3-knowledge"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
