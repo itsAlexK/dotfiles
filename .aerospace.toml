@@ -211,15 +211,15 @@ alt-ctrl-cmd-j = 'move down'
 alt-ctrl-cmd-k = 'move up'
 alt-ctrl-cmd-l = 'move right'
 
-shift-ctl-a = 'join-with left'
-shift-ctl-s = 'join-with down'
-shift-ctl-w = 'join-with up'
-shift-ctl-d = 'join-with right'
+shift-ctrl-a = 'join-with left'
+shift-ctrl-s = 'join-with down'
+shift-ctrl-w = 'join-with up'
+shift-ctrl-d = 'join-with right'
 
-shift-ctl-h = 'join-with left'
-shift-ctl-j = 'join-with down'
-shift-ctl-k = 'join-with up'
-shift-ctl-l = 'join-with right'
+shift-ctrl-h = 'join-with left'
+shift-ctrl-j = 'join-with down'
+shift-ctrl-k = 'join-with up'
+shift-ctrl-l = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-ctrl-minus = 'resize smart -50'
