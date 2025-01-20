@@ -12,7 +12,6 @@ vim.o.undofile = true
 vim.o.laststatus = 2
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.nowrap = true
 vim.o.wildmenu = true
 vim.o.expandtab = true
 vim.o.nu = true
