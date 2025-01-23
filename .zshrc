@@ -58,6 +58,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
 
 source $ZSH/oh-my-zsh.sh
+export NOTES_DIR="$HOME/notes/notes/"
 
 more=(
     aliases
@@ -114,3 +115,5 @@ export PATH="$PATH:/Users/kingkai/.local/bin"
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
+
+

@@ -45,7 +45,6 @@ function open_obsidian_from_file() {
 function obs() {
   INITIAL_QUERY=""
   RG_PREFIX="rg --column --line-number --color=always --smart-case "
-  NOTES_DIR="$HOME/notes/notes/"
 
   if [ ! -d "$NOTES_DIR" ]; then
     echo "Notes directory not found: $NOTES_DIR"
