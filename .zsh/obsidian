@@ -19,8 +19,7 @@ function fzf_bat_exec() {
 
 
 function urlencode() {
-  python -c 'import urllib, sys; print urllib.quote(sys.argv[1], sys.argv[2])' \
-    "$1" "$urlencode_safe"
+  python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$1"
 }
 
 function to_obsidian_url() {
@@ -46,7 +45,17 @@ function open_obsidian_from_file() {
 function obs() {
   INITIAL_QUERY=""
   RG_PREFIX="rg --column --line-number --color=always --smart-case "
-  pushd ~/Box\ Sync/notes/ > /dev/null && \
+  NOTES_DIR="$HOME/notes/notes/"
+
+  if [ ! -d "$NOTES_DIR" ]; then
+    echo "Notes directory not found: $NOTES_DIR"
+    return 1
+  fi
+
+  pushd "$NOTES_DIR" > /dev/null || {
+    echo "Failed to change to notes directory"
+    return 1
+  }
   trap "popd > /dev/null" INT EXIT
 
   file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
@@ -56,10 +65,17 @@ function obs() {
         --with-nth=1,4 \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --height=100% --layout=reverse \
-        --preview 'fzf_bat_exec {1} {2}' \
+        --preview "bat --color always --highlight-line {2} --line-range {2}: {1}" \
     | awk -F':' '{print $1}')
 
-    if [ ! -z "$file" ]; then
-        open_obsidian_from_file "$file"
-    fi
+  if [ -n "$file" ] && [ -f "$file" ]; then
+    # Get the relative path by removing the NOTES_DIR prefix
+    relative_file=${file#"$NOTES_DIR"}
+    # Remove leading slash if present
+    relative_file=${relative_file#/}
+    open_obsidian_from_file "$relative_file"
+  elif [ -n "$file" ]; then
+    echo "Selected file not found: $file"
+    return 1
+  fi
 }
