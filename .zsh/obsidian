@@ -65,7 +65,7 @@ function obs() {
         --with-nth=1,4 \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --height=100% --layout=reverse \
-        --preview "bat --color always --highlight-line {2} --line-range {2}: {1}" \
+        --preview "bat --color always --highlight-line {2} --line-range {2}: --language markdown {1}" \
     | awk -F':' '{print $1}')
 
   if [ -n "$file" ] && [ -f "$file" ]; then
