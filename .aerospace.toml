@@ -233,8 +233,8 @@ alt-ctrl-1 = 'workspace 1-chat'
 alt-ctrl-2 = 'workspace 2-dev'
 alt-ctrl-3 = 'workspace 3-knowledge'
 alt-ctrl-4 = 'workspace 4-casual'
-alt-ctrl-5 = 'workspace 5'
-alt-ctrl-6 = 'workspace 6'
+alt-ctrl-5 = 'workspace 5-alt-workspace'
+alt-ctrl-6 = 'workspace 6-video'
 alt-ctrl-7 = 'workspace 7'
 alt-ctrl-8 = 'workspace 8'
 
@@ -243,8 +243,8 @@ alt-ctrl-cmd-1 = 'move-node-to-workspace 1-chat'
 alt-ctrl-cmd-2 = 'move-node-to-workspace 2-dev'
 alt-ctrl-cmd-3 = 'move-node-to-workspace 3-knowledge'
 alt-ctrl-cmd-4 = 'move-node-to-workspace 4-casual'
-alt-ctrl-cmd-5 = 'move-node-to-workspace 5'
-alt-ctrl-cmd-6 = 'move-node-to-workspace 6'
+alt-ctrl-cmd-5 = 'move-node-to-workspace 5-alt-workspace'
+alt-ctrl-cmd-6 = 'move-node-to-workspace 6-video'
 alt-ctrl-cmd-7 = 'move-node-to-workspace 7'
 alt-ctrl-cmd-8 = 'move-node-to-workspace 8'
 
@@ -274,7 +274,13 @@ if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
+if.app-id = 'com.microsoft.vscode'
+if.during-aerospace-startup = true
+run = "move-node-to-workspace 2-dev"
+
+
+[[on-window-detected]]
+if.app-id = 'com.trae.app'
 if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
 
@@ -291,7 +297,6 @@ if.during-aerospace-startup = true
 run= [
   "move-node-to-workspace 3-knowledge"
 ]
-
 
 [[on-window-detected]]
 if.app-id = 'com.omnigroup.OmniFocus4'
@@ -313,8 +318,26 @@ run = "move-node-to-workspace 1-chat"
 if.app-id = 'com.amazon.Amazon-Chime'
 run = "move-node-to-workspace 1-chat"
 
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+run = "move-node-to-workspace 1-chat"
+
+[[on-window-detected]]
+if.app-id = 'org.qbittorrent.qBittorrent'
+run = "move-node-to-workspace 6-video"
+
+[[on-window-detected]]
+if.app-id = 'org.videolan.vlc'
+run = "move-node-to-workspace 6-video"
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace 6-video"
 
 [workspace-to-monitor-force-assignment]
 1-chat = ['Built-in Retina Display']
 2-dev = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 3-knowledge = ['LEN P32p-20', 'V3L6W', 'Built-in Retina Display']
+4-casual = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
+5-alt-workspace = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
+6-video = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
