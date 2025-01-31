@@ -51,7 +51,6 @@ brew install k9s
 brew install kubectl
 brew install helm
 
-
 # tiling manager
 brew tap koekeishiya/formulae
 
@@ -71,6 +70,7 @@ brew install --cask raycast
 brew install --cask docker
 brew install --cask dropbox
 brew install --cask firefox
+brew install --cask zen-browser
 brew install --cask flux
 brew install --cask google-chrome
 brew install --cask karabiner-elements
