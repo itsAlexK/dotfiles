@@ -51,6 +51,7 @@ brew install k9s
 brew install kubectl
 brew install helm
 brew install sketchybar
+curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.30/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
 
 # tiling manager
 brew tap koekeishiya/formulae

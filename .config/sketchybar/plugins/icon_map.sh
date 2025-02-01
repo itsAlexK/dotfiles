@@ -201,8 +201,11 @@ function __icon_map() {
    "GitHub Desktop")
         icon_result=":git_hub:"
         ;;
-   "Godot")
+   "godot")
         icon_result=":godot:"
+        ;;
+   "Ghostty")
+        icon_result=":ghostty:"
         ;;
    "GoLand")
         icon_result=":goland:"
@@ -618,6 +621,9 @@ function __icon_map() {
    "Zeplin")
         icon_result=":zeplin:"
         ;;
+   "Zen Browser")
+        icon_result=":zen_browser:"
+        ;;
    "zoom.us")
         icon_result=":zoom:"
         ;;
@@ -626,6 +632,9 @@ function __icon_map() {
         ;;
    "Zulip")
         icon_result=":zulip:"
+        ;;
+   "qBittorrent")
+        icon_result="Q"
         ;;
     *)
         icon_result=":default:"
