@@ -2,8 +2,17 @@
 start-at-login = false
 
 after-startup-command = [
+  'exec-and-forget sketchybar',
   'exec-and-forget borders active_color=0xff188bc2 inactive_color=0xff494d64 width=10.0'
 ]
+
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
+    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+]
+
+
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -51,7 +60,7 @@ inner.horizontal = 10
 inner.vertical =   10
 outer.left =       5
 outer.bottom =     5
-outer.top =        5
+outer.top =        0
 outer.right =      5
 
 # 'main' binding mode declaration

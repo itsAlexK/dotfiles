@@ -50,6 +50,7 @@ brew install watch
 brew install k9s
 brew install kubectl
 brew install helm
+brew install sketchybar
 
 # tiling manager
 brew tap koekeishiya/formulae
