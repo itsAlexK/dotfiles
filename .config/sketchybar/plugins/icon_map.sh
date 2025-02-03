@@ -117,6 +117,9 @@ function __icon_map() {
   "Color Picker" | "数码测色计")
     icon_result=":color_picker:"
     ;;
+  "Cisco AnyConnect Secure Mobility Client")
+    icon_result=":openvpn_connect:"
+    ;;
   "CotEditor")
     icon_result=":coteditor:"
     ;;
