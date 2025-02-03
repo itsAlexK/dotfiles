@@ -240,9 +240,9 @@ alt-ctrl-e = 'resize smart -50'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-ctrl-1 = 'workspace 1-chat'
 alt-ctrl-2 = 'workspace 2-dev'
-alt-ctrl-3 = 'workspace 3-knowledge'
-alt-ctrl-4 = 'workspace 4-casual'
-alt-ctrl-5 = 'workspace 5-alt-workspace'
+alt-ctrl-3 = 'workspace 3-notes'
+alt-ctrl-4 = 'workspace 4-reading'
+alt-ctrl-5 = 'workspace 5-alt'
 alt-ctrl-6 = 'workspace 6-video'
 alt-ctrl-7 = 'workspace 7'
 alt-ctrl-8 = 'workspace 8'
@@ -250,16 +250,17 @@ alt-ctrl-8 = 'workspace 8'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-ctrl-cmd-1 = 'move-node-to-workspace 1-chat'
 alt-ctrl-cmd-2 = 'move-node-to-workspace 2-dev'
-alt-ctrl-cmd-3 = 'move-node-to-workspace 3-knowledge'
-alt-ctrl-cmd-4 = 'move-node-to-workspace 4-casual'
-alt-ctrl-cmd-5 = 'move-node-to-workspace 5-alt-workspace'
+alt-ctrl-cmd-3 = 'move-node-to-workspace 3-notes'
+alt-ctrl-cmd-4 = 'move-node-to-workspace 4-reading'
+alt-ctrl-cmd-5 = 'move-node-to-workspace 5-alt'
 alt-ctrl-cmd-6 = 'move-node-to-workspace 6-video'
 alt-ctrl-cmd-7 = 'move-node-to-workspace 7'
 alt-ctrl-cmd-8 = 'move-node-to-workspace 8'
 
 alt-ctrl-enter = 'flatten-workspace-tree'
-alt-ctrl-space = 'move-workspace-to-monitor --wrap-around next'
-alt-tab = 'workspace --wrap-around next'
+# alt-ctrl-space = 'move-workspace-to-monitor --wrap-around next'
+alt-ctrl-space = 'workspace --wrap-around next'
+# alt-tab = 'workspace --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 # alt-shift-semicolon = 'mode service'
@@ -302,23 +303,23 @@ run = "move-node-to-workspace 2-dev"
 if.app-id = 'com.todoist.mac.Todoist'
 if.during-aerospace-startup = true
 if.window-title-regex-substring = '^(?!.*\bTodoist\b).*'
-run = "move-node-to-workspace 3-knowledge"
+run = "move-node-to-workspace 3-notes"
 
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 if.during-aerospace-startup = true
 run= [
-  "move-node-to-workspace 3-knowledge"
+  "move-node-to-workspace 3-notes"
 ]
 
 [[on-window-detected]]
 if.app-id = 'com.omnigroup.OmniFocus4'
-run = "move-node-to-workspace 3-knowledge"
+run = "move-node-to-workspace 3-notes"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace 3-knowledge"
+run = "move-node-to-workspace 3-notes"
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
@@ -351,7 +352,7 @@ run = "move-node-to-workspace 6-video"
 [workspace-to-monitor-force-assignment]
 1-chat = ['Built-in Retina Display']
 2-dev = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
-3-knowledge = ['LEN P32p-20', 'V3L6W', 'Built-in Retina Display']
-4-casual = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
-5-alt-workspace = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
+3-notes = ['LEN P32p-20', 'V3L6W', 'Built-in Retina Display']
+4-reading = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
+5-alt = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 6-video = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
