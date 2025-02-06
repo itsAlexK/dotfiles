@@ -88,17 +88,7 @@ cmd-alt-h = [] # Disable "hide others"
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-alt-ctrl-comma = '''exec-and-forget osascript -e '
-tell application "Firefox"
-    open location "https://ballard.amazon.com/owa/#path=/calendar/view/WorkWeek"
-end tell'
-'''
-alt-ctrl-period = '''exec-and-forget osascript -e '
-tell application "Firefox"
-    open location "https://ballard.amazon.com/owa/#path=/mail"
-end tell'
-'''
-
+#
 alt-ctrl-cmd-f = 'fullscreen'
 alt-ctrl-f = 'layout h_accordion h_tiles'
 alt-ctrl-space = 'balance-sizes'
