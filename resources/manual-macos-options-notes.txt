@@ -1,0 +1,3 @@
+Disable Screen Edges
+
+System Settings, Desktop & Dock, in the category "Desktop & Stage Manager", on the setting "Click wallpaper to reveal desktop" - try setting it to "Only in Stage Manager"
