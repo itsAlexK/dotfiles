@@ -99,30 +99,16 @@ alt-ctrl-s = 'focus down --boundaries workspace --boundaries-action wrap-around-
 alt-ctrl-w = 'focus up --boundaries workspace --boundaries-action wrap-around-the-workspace'
 alt-ctrl-d = 'focus right --boundaries workspace --boundaries-action wrap-around-the-workspace'
 
-alt-ctrl-h = 'focus left --boundaries workspace --boundaries-action wrap-around-the-workspace'
-alt-ctrl-j = 'focus down --boundaries workspace --boundaries-action wrap-around-the-workspace'
-alt-ctrl-k = 'focus up --boundaries workspace --boundaries-action wrap-around-the-workspace'
-alt-ctrl-l = 'focus right --boundaries workspace --boundaries-action wrap-around-the-workspace'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-ctrl-cmd-a = 'move left'
 alt-ctrl-cmd-s = 'move down'
 alt-ctrl-cmd-w = 'move up'
 alt-ctrl-cmd-d = 'move right'
 
-alt-ctrl-cmd-h = 'move left'
-alt-ctrl-cmd-j = 'move down'
-alt-ctrl-cmd-k = 'move up'
-alt-ctrl-cmd-l = 'move right'
-
-shift-ctrl-a = 'join-with left'
-shift-ctrl-s = 'join-with down'
-shift-ctrl-w = 'join-with up'
-shift-ctrl-d = 'join-with right'
-
-shift-ctrl-h = 'join-with left'
-shift-ctrl-j = 'join-with down'
-shift-ctrl-k = 'join-with up'
-shift-ctrl-l = 'join-with right'
+alt-ctrl-h = 'join-with left'
+alt-ctrl-j = 'join-with down'
+alt-ctrl-k = 'join-with up'
+alt-ctrl-l = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-ctrl-minus = 'resize smart -50'
