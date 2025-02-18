@@ -211,7 +211,13 @@ run = "move-node-to-workspace 1-chat"
 
 [[on-window-detected]]
 if.app-id = 'com.amazon.Amazon-Chime'
-run = "move-node-to-workspace 1-chat"
+if.during-aerospace-startup = true
+run = ["layout floating", "move-node-to-workspace 1-chat"]
+
+[[on-window-detected]]
+if.app-id = 'com.cisco.anyconnect.gui'
+if.during-aerospace-startup = true
+run = ["layout floating", "move-node-to-workspace 1-chat"]
 
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
