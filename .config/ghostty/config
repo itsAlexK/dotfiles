@@ -25,3 +25,4 @@ keybind = cmd+x=clear_screen
 keybind = cmd+w=close_surface
 keybind = cmd+q=close_window
 keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = cmd+b=equalize_splits
