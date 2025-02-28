@@ -127,8 +127,6 @@ alt-ctrl-5 = 'workspace 5-alt'
 alt-ctrl-6 = 'workspace 6-video'
 alt-ctrl-7 = 'workspace 7'
 alt-ctrl-8 = 'workspace 8'
-alt-ctrl-9 = 'workspace 9'
-alt-ctrl-0 = 'workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-ctrl-cmd-1 = 'move-node-to-workspace 1-chat'
@@ -139,8 +137,6 @@ alt-ctrl-cmd-5 = 'move-node-to-workspace 5-alt'
 alt-ctrl-cmd-6 = 'move-node-to-workspace 6-video'
 alt-ctrl-cmd-7 = 'move-node-to-workspace 7'
 alt-ctrl-cmd-8 = 'move-node-to-workspace 8'
-alt-ctrl-cmd-9 = 'move-node-to-workspace 9'
-alt-ctrl-cmd-0 = 'move-node-to-workspace 0'
 
 # alt-ctrl-space = 'workspace --wrap-around next'
 # alt-tab = 'workspace --wrap-around next'
@@ -219,11 +215,11 @@ run = ["layout floating", "move-node-to-workspace 1-chat"]
 
 [[on-window-detected]]
 if.app-id = 'com.cisco.anyconnect.gui'
-run = ["layout floating", "move-node-to-workspace 9"]
+run = ["layout floating", "move-node-to-workspace 8"]
 
 [[on-window-detected]]
 if.app-id = 'com.electron.amazonconnections'
-run = ["layout floating", "move-node-to-workspace 9"]
+run = ["layout floating", "move-node-to-workspace 8"]
 
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
