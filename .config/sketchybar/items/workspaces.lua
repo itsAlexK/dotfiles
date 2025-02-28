@@ -2,18 +2,19 @@ local colors = require("colors")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
-local query_workspaces =
-"aerospace list-workspaces --all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}' --json"
+local query_workspaces = "aerospace list-workspaces --all --format '%{workspace}%{monitor-id}' --json"
 
 -- Root is used to handle event subscriptions
-local root = sbar.add("item", { drawing = false, })
+local root = sbar.add("item", {
+    drawing = false
+})
 local workspaces = {}
 
 local function withWindows(f)
     local open_windows = {}
     local get_windows = "aerospace list-windows --monitor all --format '%{workspace}%{app-name}' --json"
     local query_visible_workspaces =
-    "aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}' --json"
+        "aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-id}' --json"
     local get_focus_workspaces = "aerospace list-workspaces --focused"
     sbar.exec(get_windows, function(workspace_and_windows)
         for _, entry in ipairs(workspace_and_windows) do
@@ -29,8 +30,7 @@ local function withWindows(f)
                 local args = {
                     open_windows = open_windows,
                     focused_workspaces = focused_workspaces,
-                    visible_workspaces =
-                        visible_workspaces
+                    visible_workspaces = visible_workspaces
                 }
                 f(args)
             end)
@@ -60,19 +60,21 @@ local function updateWindow(workspace_index, args)
     sbar.animate("tanh", 10, function()
         for i, visible_workspace in ipairs(visible_workspaces) do
             if no_app and workspace_index == visible_workspace["workspace"] then
-                local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
+                local monitor_id = visible_workspace["monitor-id"]
                 icon_line = " —"
                 workspaces[workspace_index]:set({
                     drawing = true,
-                    label = { string = icon_line },
-                    display = monitor_id,
+                    label = {
+                        string = icon_line
+                    },
+                    display = monitor_id
                 })
                 return
             end
         end
         if no_app and workspace_index ~= focused_workspaces then
             workspaces[workspace_index]:set({
-                drawing = false,
+                drawing = false
             })
             return
         end
@@ -80,13 +82,17 @@ local function updateWindow(workspace_index, args)
             icon_line = " —"
             workspaces[workspace_index]:set({
                 drawing = true,
-                label = { string = icon_line },
+                label = {
+                    string = icon_line
+                }
             })
         end
 
         workspaces[workspace_index]:set({
             drawing = true,
-            label = { string = icon_line },
+            label = {
+                string = icon_line
+            }
         })
     end)
 end
@@ -104,12 +110,12 @@ local function updateWorkspaceMonitor()
     sbar.exec(query_workspaces, function(workspaces_and_monitors)
         for _, entry in ipairs(workspaces_and_monitors) do
             local space_index = entry.workspace
-            local monitor_id = math.floor(entry["monitor-appkit-nsscreen-screens-id"])
+            local monitor_id = math.floor(entry["monitor-id"])
             workspace_monitor[space_index] = monitor_id
         end
         for workspace_index, _ in pairs(workspaces) do
             workspaces[workspace_index]:set({
-                display = workspace_monitor[workspace_index],
+                display = workspace_monitor[workspace_index]
             })
         end
     end)
@@ -122,14 +128,16 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
         local workspace = sbar.add("item", {
             background = {
                 color = colors.bg1,
-                drawing = true,
+                drawing = true
             },
             click_script = "aerospace workspace " .. workspace_index,
             drawing = false, -- Hide all items at first
             icon = {
                 color = colors.with_alpha(colors.white, 0.3),
                 drawing = true,
-                font = { family = settings.font.numbers },
+                font = {
+                    family = settings.font.numbers
+                },
                 highlight_color = colors.white,
                 padding_left = 5,
                 padding_right = 4,
@@ -142,8 +150,8 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
                 highlight_color = colors.white,
                 padding_left = 2,
                 padding_right = 12,
-                y_offset = -1,
-            },
+                y_offset = -1
+            }
         })
 
         workspaces[workspace_index] = workspace
@@ -154,9 +162,13 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 
             sbar.animate("tanh", 10, function()
                 workspace:set({
-                    icon = { highlight = is_focused },
-                    label = { highlight = is_focused },
-                    blur_radius = 30,
+                    icon = {
+                        highlight = is_focused
+                    },
+                    label = {
+                        highlight = is_focused
+                    },
+                    blur_radius = 30
                 })
             end)
         end)
@@ -184,8 +196,12 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
     sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
         local focused_workspace = focused_workspace:match("^%s*(.-)%s*$")
         workspaces[focused_workspace]:set({
-            icon = { highlight = true },
-            label = { highlight = true },
+            icon = {
+                highlight = true
+            },
+            label = {
+                highlight = true
+            }
         })
     end)
 end)
