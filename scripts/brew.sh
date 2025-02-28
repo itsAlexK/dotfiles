@@ -51,6 +51,10 @@ brew install k9s
 brew install kubectl
 brew install helm
 brew install sketchybar
+# for sketchybar
+brew install lua
+
+(git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)
 curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.30/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
 brew install --cask font-sf-pro
 
