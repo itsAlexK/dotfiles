@@ -32,10 +32,12 @@ local weather = sbar.add('item', 'weather', {
         font = {
             size = 13.0
         },
-        padding_right = 4
+        padding_right = 4,
+        padding_left = 2
     },
     icon = {
-        padding_left = 2
+        padding_left = settings.padding.icon_label_item.icon.padding_left,
+        padding_right = settings.padding.icon_item.icon.padding_right - 10
     }
 })
 
