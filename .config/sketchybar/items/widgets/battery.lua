@@ -66,17 +66,12 @@ battery:subscribe({ "routine", "power_source_change", "system_woke" }, function(
             end
         end
 
-        local lead = ""
-        if found and charge < 10 then
-            lead = "0"
-        end
-
         battery:set({
             icon = {
                 string = icon,
                 color = color
             },
-            label = { string = lead .. label },
+            label = { string = label },
         })
     end)
 end)
