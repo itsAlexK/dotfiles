@@ -12,9 +12,7 @@ local cal = sbar.add("item", {
     label = {
         align = "right",
         font = {
-            family = settings.font.text,
-            style = settings.font.style_map["Regular"],
-            size = settings.font.size,
+            size = 13,
         },
         padding_right = 10,
     },
