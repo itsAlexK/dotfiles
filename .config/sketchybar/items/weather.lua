@@ -1,6 +1,8 @@
 local settings = require("settings")
 local icons = require("icons")
 
+local current_location = "JerseyCity" -- hard code due to vpn
+
 local function map_condition_to_icon(cond)
     local condition = cond:lower():match("^%s*(.-)%s*$")
     if condition == "sunny" then
@@ -32,12 +34,30 @@ local weather = sbar.add('item', 'weather', {
         font = {
             size = 13.0
         },
-        padding_right = 4,
+        padding_right = 8,
         padding_left = 2
     },
     icon = {
         padding_left = settings.padding.icon_label_item.icon.padding_left,
         padding_right = settings.padding.icon_item.icon.padding_right - 10
+    }
+})
+
+local weather_desc = sbar.add("item", {
+    position = "popup." .. weather.name,
+    icon = {
+        align = "left",
+        font = {
+            family = settings.font.text,
+            style = settings.font.style_map["Regular"],
+            size = settings.font.size
+        },
+        padding_left = 2
+    },
+    label = {
+        align = "right",
+        string = "",
+        padding_right = 4
     }
 })
 
@@ -58,8 +78,31 @@ weather:subscribe({"forced", "routine", "system_woke"}, function(env)
                 icon = {
                     string = weather_icon
                 },
-                label = string.format("%s, %s", label, desc)
+                label = label
+            })
+
+            weather_desc:set({
+                label = string.format("%s: %s", current_location, desc)
             })
         end
     end)
 end)
+
+weather:subscribe("mouse.entered", function(env)
+    local drawing = weather:query().popup.drawing
+    weather:set({
+        popup = {
+            drawing = "on"
+        }
+    })
+end)
+
+weather:subscribe("mouse.exited", function(env)
+    local drawing = weather:query().popup.drawing
+    weather:set({
+        popup = {
+            drawing = "off"
+        }
+    })
+end)
+
