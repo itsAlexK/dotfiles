@@ -4,10 +4,11 @@ local settings = require("settings")
 local whitelist = {
     ["Google Chrome"] = true,
     ["Firefox"] = true,
+    ["Zen Browser"] = true,
     ["Music"] = true,
     ["Plexamp"] = true,
     ["Safari"] = true,
-    ["Spotify"] = true,
+    ["Spotify"] = true
 }
 
 -- Function to get the appropriate background color based on media app
@@ -18,7 +19,7 @@ local function get_media_app_color(app_name)
         return colors.yellow
     elseif app_name == "Spotify" then
         return colors.spotify_green
-    elseif app_name == "Safari" or app_name == "Firefox" or app_name == "Google Chrome" then
+    elseif app_name == "Safari" or app_name == "Firefox" or app_name == "Google Chrome" or app_name == "Zen Browser" then
         return colors.blue_bright
     else
         return colors.default
@@ -29,19 +30,21 @@ local now_playing = sbar.add("item", {
     position = "right",
     drawing = false,
     background = {
-        color = colors.spotify_green,
+        color = colors.spotify_green
     },
     icon = {
         padding_left = settings.padding.icon_label_item.icon.padding_left,
         padding_right = settings.padding.icon_label_item.icon.padding_right,
-        string = '󰐌',
+        string = '󰐌'
     },
     label = {
         highlight = false,
         padding_left = settings.padding.icon_label_item.label.padding_left,
-        padding_right = settings.padding.icon_label_item.label.padding_right,
+        padding_right = settings.padding.icon_label_item.label.padding_right
     },
-    popup = { align = "center" }
+    popup = {
+        align = "center"
+    }
 })
 
 -- Previous state tracking to detect when media starts playing
@@ -56,9 +59,13 @@ now_playing:subscribe("media_change", function(env)
         local started_playing = (not was_playing and is_playing)
 
         now_playing:set({
-            background = { color = app_color },
+            background = {
+                color = app_color
+            },
             drawing = is_playing,
-            label = { string = env.INFO.title .. " - " .. env.INFO.artist },
+            label = {
+                string = env.INFO.title .. " - " .. env.INFO.artist
+            }
         })
 
         -- Add animation when media starts playing
@@ -66,11 +73,15 @@ now_playing:subscribe("media_change", function(env)
             -- Animate the item with a subtle fade-in
             now_playing:animate("sin", 10, function()
                 now_playing:set({
-                    background = { color = app_color .. "aa" }, -- Add transparency
+                    background = {
+                        color = app_color .. "aa"
+                    } -- Add transparency
                 })
             end, function()
                 now_playing:set({
-                    background = { color = app_color }, -- Back to normal
+                    background = {
+                        color = app_color
+                    } -- Back to normal
                 })
             end)
         end
