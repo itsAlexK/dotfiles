@@ -1,29 +1,89 @@
 local settings = require("settings")
 local icons = require("icons")
 
-local current_location = "JerseyCity" -- hard code due to vpn
-
-local function map_condition_to_icon(cond)
-    local condition = cond:lower():match("^%s*(.-)%s*$")
-    if condition == "sunny" then
-        return icons.weather.sunny
-    elseif condition == "cloudy" or condition == "overcast" then
-        return icons.weather.cloudy
-    elseif condition == "clear" then
+local function map_code_to_icon(code)
+    if code == 0 then
         return icons.weather.clear
-    elseif string.find(condition, "storm") or string.find(condition, "thunder") then
-        return icons.weather.stormy
-    elseif string.find(condition, "partly") then
+    elseif code == 1 or code == 2 then
         return icons.weather.partly
-    elseif string.find(condition, "rain") or string.find(condition, "drizzle") then
-        return icons.weather.rainy
-    elseif string.find(condition, "snow") then
-        return icons.weather.snowy
-    elseif string.find(condition, "mist") or string.find(condition, "fog") then
+    elseif code == 3 then
+        return icons.weather.cloudy
+    elseif code == 45 or code == 48 then
         return icons.weather.foggy
+    elseif code >= 51 and code <= 67 or code >= 80 and code <= 82 then
+        return icons.weather.rainy
+    elseif code >= 71 and code <= 77 or code == 85 or code == 86 then
+        return icons.weather.snowy
+    elseif code == 95 or code == 96 or code == 99 then
+        return icons.weather.stormy
+    else
+        return "?"
     end
-    return "?"
 end
+
+local function map_code_weather_desc(code)
+    -- WMO Weather Code descriptions from Open-Meteo
+    if code == 0 then
+        return "Clear sky"
+    elseif code == 1 then
+        return "Mainly clear"
+    elseif code == 2 then
+        return "Partly cloudy"
+    elseif code == 3 then
+        return "Overcast"
+    elseif code == 45 then
+        return "Fog"
+    elseif code == 48 then
+        return "Depositing rime fog"
+    elseif code == 51 then
+        return "Light drizzle"
+    elseif code == 53 then
+        return "Moderate drizzle"
+    elseif code == 55 then
+        return "Dense drizzle"
+    elseif code == 56 then
+        return "Light freezing drizzle"
+    elseif code == 57 then
+        return "Dense freezing drizzle"
+    elseif code == 61 then
+        return "Slight rain"
+    elseif code == 63 then
+        return "Moderate rain"
+    elseif code == 65 then
+        return "Heavy rain"
+    elseif code == 66 then
+        return "Light freezing rain"
+    elseif code == 67 then
+        return "Heavy freezing rain"
+    elseif code == 71 then
+        return "Slight snow fall"
+    elseif code == 73 then
+        return "Moderate snow fall"
+    elseif code == 75 then
+        return "Heavy snow fall"
+    elseif code == 77 then
+        return "Snow grains"
+    elseif code == 80 then
+        return "Slight rain showers"
+    elseif code == 81 then
+        return "Moderate rain showers"
+    elseif code == 82 then
+        return "Violent rain showers"
+    elseif code == 85 then
+        return "Slight snow showers"
+    elseif code == 86 then
+        return "Heavy snow showers"
+    elseif code == 95 then
+        return "Thunderstorm"
+    elseif code == 96 then
+        return "Thunderstorm with slight hail"
+    elseif code == 99 then
+        return "Thunderstorm with heavy hail"
+    else
+        return "Unknown weather code"
+    end
+end
+
 
 local weather = sbar.add('item', 'weather', {
     position = "right",
@@ -34,8 +94,8 @@ local weather = sbar.add('item', 'weather', {
         font = {
             size = 13.0
         },
-        padding_right = 8,
-        padding_left = 2
+        padding_left = 2,
+        padding_right = 8
     },
     icon = {
         padding_left = settings.padding.icon_label_item.icon.padding_left,
@@ -62,17 +122,19 @@ local weather_desc = sbar.add("item", {
 })
 
 weather:subscribe({"forced", "routine", "system_woke"}, function(env)
-    local FormatString<const> = "j2"
-
-    local current_location = "JerseyCity" -- hard code due to vpn
-    local cmd = string.format("curl -s 'https://wttr.in/%s?m&format=%s'", current_location, FormatString)
+    -- https://open-meteo.com/en/docs#latitude=40.7282&longitude=-74.0776&current=temperature_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code&minutely_15=&hourly=&daily=&timezone=America%2FNew_York&models=
+    local cmd =
+        ("curl -s curl -s 'https://api.open-meteo.com/v1/forecast?latitude=40.7282&longitude=-74.0776&current=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weather_code&timezone=America%2FNew_York'")
 
     sbar.exec(cmd, function(wttr_json)
         if wttr_json ~= nil then
-            local current_condition = wttr_json.current_condition[1]
-            local desc = current_condition.weatherDesc[1].value
-            local label = current_condition.temp_C .. "°C"
-            local weather_icon = map_condition_to_icon(desc)
+
+            local weather_code = wttr_json.current.weather_code
+            local apparent_temperature = wttr_json.current.apparent_temperature
+
+            local label = string.format("%.0f", apparent_temperature) .. "°C"
+            local weather_icon = map_code_to_icon(weather_code)
+            local weather_description = map_code_weather_desc(weather_code)
 
             weather:set({
                 icon = {
@@ -82,7 +144,7 @@ weather:subscribe({"forced", "routine", "system_woke"}, function(env)
             })
 
             weather_desc:set({
-                label = string.format("%s: %s", current_location, desc)
+                label = string.format("Weather: %s", weather_description)
             })
         end
     end)
