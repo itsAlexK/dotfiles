@@ -214,6 +214,16 @@ if.during-aerospace-startup = true
 run = ["layout floating", "move-node-to-workspace 1-chat"]
 
 [[on-window-detected]]
+if.app-id = 'com.amazon.Amazon-Chime'
+if.window-title-regex-substring = '^Amazon Chime: Meeting Controls$'
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = 'com.amazon.Amazon-Chime'
+if.window-title-regex-substring = '^Amazon Chime: Screen Share Border$'
+run = ["layout floating"]
+
+[[on-window-detected]]
 if.app-id = 'com.cisco.anyconnect.gui'
 run = ["layout floating", "move-node-to-workspace 8"]
 
