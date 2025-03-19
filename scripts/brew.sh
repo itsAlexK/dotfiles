@@ -45,7 +45,8 @@ brew install rg
 brew install stow
 brew install shellcheck
 brew install tree
-brew install z
+# brew install z
+brew install zoxide
 brew install watch
 brew install k9s
 brew install kubectl
