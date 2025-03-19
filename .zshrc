@@ -36,7 +36,6 @@ plugins=(
     extract
     macos
     python
-    z
     fzf
     fzf-tab
     colored-man-pages
@@ -106,6 +105,7 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
 enable-fzf-tab # enables the fzf tab command for git plugin
 
 # Created by `pipx` on 2023-02-07 03:35:59
