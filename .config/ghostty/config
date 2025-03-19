@@ -1,4 +1,4 @@
-background = 141414
+background = #141414
 background-blur-radius = 20
 font-family = "JetBrains Mono"
 font-size = 12
@@ -7,9 +7,10 @@ foreground = feffd3
 macos-option-as-alt = true
 mouse-hide-while-typing = false
 quick-terminal-screen = main
-selection-foreground = 303030
-unfocused-split-fill =  #424949
-unfocused-split-opacity = 0.8
+selection-foreground = #303030
+unfocused-split-fill =  #000033
+split-divider-color = #CCFFFF
+unfocused-split-opacity = 0.7
 window-decoration = true
 window-inherit-working-directory = true
 window-padding-x = 15
@@ -21,6 +22,7 @@ clipboard-trim-trailing-spaces = true
 
 
 keybind = cmd+enter=new_split:down
+keybind = cmd+backslash=new_split:right
 keybind = cmd+x=clear_screen
 keybind = cmd+w=close_surface
 keybind = cmd+q=close_window
