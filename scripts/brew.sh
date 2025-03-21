@@ -47,11 +47,13 @@ brew install shellcheck
 brew install tree
 # brew install z
 brew install zoxide
+brew install atuin
 brew install watch
 brew install k9s
 brew install kubectl
 brew install helm
 brew install sketchybar
+
 # for sketchybar
 brew install lua
 

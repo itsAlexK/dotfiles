@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zmodload zsh/zprof
 fi
@@ -11,7 +10,6 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
-
 # git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 # git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -21,7 +19,6 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -44,14 +41,13 @@ plugins=(
 
 #z
 if command -v brew >/dev/null 2>&1; then
-	# Load rupa's z if installed
-	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+    # Load rupa's z if installed
+    [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
 
 # Has to be at the very end
 # Adding ito plugins work for some reason now?
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
@@ -75,19 +71,17 @@ done
 
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
+    compinit
 else
-  compinit -C
+    compinit -C
 fi
-
-
 
 export MANPAGER='less -s -M -N -R -I -J'
 
 # EDITOR
 export EDITOR=nvim
 
-# Increase ZSH history size. Allow 32³ entries; the default is 500.
+# Increase ZSH history size. Allow 32Â³ entries; the default is 500.
 export HISTSIZE=32768
 export SAVEHIST=HISTSIZE
 # Omit duplicates and commands that begin with a space from history.
@@ -98,7 +92,6 @@ setopt GLOB_COMPLETE
 
 # autocomplete alias for ssh
 setopt complete_aliases
-
 
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
@@ -116,4 +109,4 @@ if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
 
-
+eval "$(atuin init zsh --disable-up-arrow)"
