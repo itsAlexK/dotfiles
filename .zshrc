@@ -39,12 +39,6 @@ plugins=(
     zsh-autosuggestions
 )
 
-#z
-if command -v brew >/dev/null 2>&1; then
-    # Load rupa's z if installed
-    [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
-fi
-
 # Has to be at the very end
 # Adding ito plugins work for some reason now?
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
