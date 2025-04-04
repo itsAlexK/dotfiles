@@ -8,6 +8,7 @@
 # Optional parameters:
 # @raycast.icon 🤖
 
-aerospace  reload-config
-sketchybar --reload
+osascript -e 'quit app "AeroSpace"'
+pkill sketchybar
 
+open /Applications/AeroSpace.app
