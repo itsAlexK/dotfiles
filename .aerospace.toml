@@ -214,11 +214,12 @@ run = "move-node-to-workspace 1-chat"
 if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 1-chat"
 
+
+# this is the default chime screen
 [[on-window-detected]]
 if.app-id = 'com.amazon.Amazon-Chime'
 if.window-title-regex-substring = '^Amazon Chime$'
-if.during-aerospace-startup = true
-run = ["layout floating", "move-node-to-workspace 1-chat"]
+run = ["move-node-to-workspace 1-chat"]
 
 [[on-window-detected]]
 if.app-id = 'com.amazon.Amazon-Chime'
@@ -231,7 +232,7 @@ if.window-title-regex-substring = '^Amazon Chime: Screen Share Border$'
 run = ["layout floating"]
 
 [[on-window-detected]]
-if.app-id = 'com.cisco.anyconnect.gui'
+if.app-id = 'com.cisco.secureclient.gui'
 run = ["layout floating", "move-node-to-workspace 8"]
 
 [[on-window-detected]]
@@ -256,9 +257,9 @@ run = "move-node-to-workspace 6-video"
 
 [workspace-to-monitor-force-assignment]
 1-chat = ['Built-in Retina Display']
-2-dev = ['LEN P32p-20', 'DELL U3421WE', 3, 'Built-in Retina Display']
+2-dev = ['LEN P32p-20', 'DELL U3421WE', 2, 'Built-in Retina Display']
 3-notes = ['LEN P32p-20', 'V3L6W', 1, 'Built-in Retina Display']
 4-reading = ['LEN P32p-20', 'DELL U3421WE', 1, 'Built-in Retina Display']
-5-alt = ['LEN P32p-20', 'DELL U3421WE', 3, 'Built-in Retina Display']
+5-alt = ['LEN P32p-20', 'DELL U3421WE', 2, 'Built-in Retina Display']
 6-video = ['LEN P32p-20', 'DELL U3421WE', 1, 'Built-in Retina Display']
 9 = ['LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
