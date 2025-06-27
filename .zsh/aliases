@@ -24,3 +24,4 @@ alias notes="cd ~/Dropbox/notes/"
 alias books="cd ~/Box\ Sync/books/"
 
 alias vim=nvim
+alias g=gemini
