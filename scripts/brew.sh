@@ -97,3 +97,6 @@ brew install --cask ghostty
 brew install --cask font-hack-nerd-font
 
 # https://github.com/ekreutz/CornerCal
+
+
+brew install gemini-cli
