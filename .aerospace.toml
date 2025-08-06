@@ -101,10 +101,10 @@ alt-ctrl-w = 'focus up --boundaries workspace --boundaries-action stop'
 alt-ctrl-d = 'focus right --boundaries workspace --boundaries-action stop'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-ctrl-cmd-a = 'move left'
-alt-ctrl-cmd-s = 'move down'
-alt-ctrl-cmd-w = 'move up'
-alt-ctrl-cmd-d = 'move right'
+alt-ctrl-cmd-a = 'swap left'
+alt-ctrl-cmd-s = 'swap down'
+alt-ctrl-cmd-w = 'swap up'
+alt-ctrl-cmd-d = 'swap right'
 
 alt-ctrl-h = 'join-with left'
 alt-ctrl-j = 'join-with down'
@@ -243,6 +243,10 @@ run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-id = 'com.cisco.secureclient.gui'
+run = ["layout floating", "move-node-to-workspace 8"]
+
+[[on-window-detected]]
+if.app-id = 'app.hiddify.com'
 run = ["layout floating", "move-node-to-workspace 8"]
 
 [[on-window-detected]]
