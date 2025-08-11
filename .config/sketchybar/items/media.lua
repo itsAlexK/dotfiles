@@ -8,12 +8,14 @@ local whitelist = {
     ["Music"] = true,
     ["Plexamp"] = true,
     ["Safari"] = true,
-    ["Spotify"] = true
+    ["Spotify"] = true,
+    ["Slack"] = true,
+    ["Amazon Chime"] = true
 }
 
 -- Function to get the appropriate background color based on media app
 local function get_media_app_color(app_name)
-    if app_name == "Music" then
+    if app_name == "Music" or app_name == "Amazon Chime" or app_name == "Slack" then
         return colors.red_bright
     elseif app_name == "Plexamp" then
         return colors.yellow
