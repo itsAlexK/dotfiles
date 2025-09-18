@@ -224,6 +224,9 @@ run = "move-node-to-workspace 1-chat"
 if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 1-chat"
 
+[[on-window-detected]]
+if.app-id = 'org.mozilla.thunderbird'
+run = "move-node-to-workspace 1-chat"
 
 # this is the default chime screen
 [[on-window-detected]]
