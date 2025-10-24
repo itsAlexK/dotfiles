@@ -221,6 +221,14 @@ require("lazy").setup({
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
     snacksnvim(),
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      opts = {},
+      dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
+    },
+    {
+      "dhruvasagar/vim-table-mode",
+    },
     -- import/override with your plugins
   },
   defaults = {
