@@ -2,11 +2,12 @@
 
 set -euxo pipefail
 
-## Follow 
-# https://github.com/jtroo/kanata/discussions/1537 
+## Follow
+# https://github.com/jtroo/kanata/discussions/1537
 
 # Variables
-KANATA_PATH="$HOME/tools/kanata_macos"
+# Remeber to set +x on the executable
+KANATA_PATH="/Users/$(whoami)/repos/dotfiles/resources/kanata_macos_cmd_allowed_arm64"
 KANATA_CFG_PATH="/Users/$(whoami)/repos/dotfiles/.config/kanata/macos.kbd"
 SUDOERS_FILE="/etc/sudoers.d/kanata"
 PLIST_FILE="/Library/LaunchDaemons/com.jtroo.kanata.plist"
