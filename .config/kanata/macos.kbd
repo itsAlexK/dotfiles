@@ -5,7 +5,7 @@
 (defcfg
   process-unmapped-keys yes
   ;; Optional: enable for Hammerspoon integration
-  ;; danger-enable-cmd yes
+  danger-enable-cmd yes
 )
 
 ;; Standard Apple keyboard layout (US ANSI)
@@ -25,28 +25,67 @@
 
 (defalias
   ;; Hyper = all four modifiers (left side)
-  hyper (multi lctl lalt)
+  hyper (multi lctl lalt (layer-while-held mods))
   
-  ;; Caps Lock is just Hyper
-  cap-hyper @hyper
+cap-hyper @hyper
+
+  ;; Obsidian binding
+  obsidian (cmd open -a Obsidian)
+  obsidian-o (tap-hold 200 200 o @obsidian)
+
+  ;; Other App Bindings
+  todoist (cmd open -a Todoist)
+  todoist-t (tap-hold 200 200 t @todoist)
+
+  vscode (cmd open -a "Visual Studio Code")
+  vscode-v (tap-hold 200 200 v @vscode)
+
+  comet (cmd open -a Comet)
+  comet-b (tap-hold 200 200 b @comet)
+
+  discord (cmd open -a Discord)
+  discord-c (tap-hold 200 200 c @discord)
+
+  ghostty (cmd open -a Ghostty)
+  ghostty-g (tap-hold 200 200 g @ghostty)
+
+  ;; Modifiers that also activate the 'mods' layer
+  ;; This ensures 'o' acts as 'o' when any modifier is held
+  lctl (multi lctl (layer-while-held mods))
+  lalt (multi lalt (layer-while-held mods))
+  lmet (multi lmet (layer-while-held mods))
+  lsft (multi lsft (layer-while-held mods))
+  rctl (multi rctl (layer-while-held mods))
+  ralt (multi ralt (layer-while-held mods))
+  rmet (multi rmet (layer-while-held mods))
+  rsft (multi rsft (layer-while-held mods))
 
   ;; Home row mods: tap = letter, hold = modifier
   ;; Use tap-hold-release for more responsive holds [attached_file:1]
-  hra (tap-hold-release $th-tap $th-hold a lctl)
-  hrs (tap-hold-release $th-tap $th-hold s lalt)
-  hrd (tap-hold-release $th-tap $th-hold d lmet)
-  hrf (tap-hold-release $th-tap $th-hold f lsft)
+  ;; Added (layer-while-held mods) to each modifier action
+  hra (tap-hold-release $th-tap $th-hold a @lctl)
+  hrs (tap-hold-release $th-tap $th-hold s @lalt)
+  hrd (tap-hold-release $th-tap $th-hold d @lmet)
+  hrf (tap-hold-release $th-tap $th-hold f @lsft)
 
-  hrj (tap-hold-release $th-tap $th-hold j rsft)
-  hrk (tap-hold-release $th-tap $th-hold k rmet)
-  hrl (tap-hold-release $th-tap $th-hold l ralt)
-  hrsc (tap-hold-release $th-tap $th-hold ; rctl)  ;; ; key
+  hrj (tap-hold-release $th-tap $th-hold j @rsft)
+  hrk (tap-hold-release $th-tap $th-hold k @rmet)
+  hrl (tap-hold-release $th-tap $th-hold l @ralt)
+  hrsc (tap-hold-release $th-tap $th-hold ; @rctl)  ;; ; key
 )
 
 (deflayer base
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    @todoist-t    y    u    i    @obsidian-o    p    [    ]    \
+  @cap-hyper @hra @hrs @hrd @hrf @ghostty-g    h    @hrj @hrk @hrl @hrsc '    ret
+  @lsft z    x    @discord-c    @vscode-v    @comet-b    n    m    ,    .    /    @rsft
+  @lctl @lalt @lmet           spc            @rmet @ralt @rctl
+)
+
+(deflayer mods
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @cap-hyper @hra @hrs @hrd @hrf g    h    @hrj @hrk @hrl @hrsc '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lalt lmet           spc            rmet ralt rctl
+  @lsft z    x    c    v    b    n    m    ,    .    /    @rsft
+  @lctl @lalt @lmet           spc            @rmet @ralt @rctl
 )
