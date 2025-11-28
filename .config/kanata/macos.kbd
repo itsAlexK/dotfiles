@@ -25,10 +25,10 @@
 
 (defalias
   ;; Hyper = all four modifiers (left side)
-  hyper (multi lctl lalt lmet)
+  hyper (multi lctl lalt)
   
-  ;; Tap-hold: tap for Escape, hold for Hyper  
-  cap-hyper (tap-hold 150 150 esc @hyper)
+  ;; Caps Lock is just Hyper
+  cap-hyper @hyper
 
   ;; Home row mods: tap = letter, hold = modifier
   ;; Use tap-hold-release for more responsive holds [attached_file:1]
