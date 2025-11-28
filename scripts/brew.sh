@@ -66,6 +66,7 @@ brew tap koekeishiya/formulae
 
 # brew install yabai
 # brew install skhd
+brew install kanata
 
 brew tap FelixKratz/formulae
 brew install borders

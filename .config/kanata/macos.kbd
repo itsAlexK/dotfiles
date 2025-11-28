@@ -1,0 +1,52 @@
+;; macOS Kanata Hyper Key + Home Row Mods Configuration
+;; Maps Caps Lock to Hyper (Ctrl+Option+Command+Shift)
+;; Home row keys (a s d f / j k l ;) act as letters on tap, modifiers on hold
+
+(defcfg
+  process-unmapped-keys yes
+  ;; Optional: enable for Hammerspoon integration
+  ;; danger-enable-cmd yes
+)
+
+;; Standard Apple keyboard layout (US ANSI)
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet           spc            rmet ralt rctl
+)
+
+(defvar
+  ;; Adjust timeouts (ms) to your preference - tap timeout, hold timeout
+  th-tap 180
+  th-hold 160
+)
+
+(defalias
+  ;; Hyper = all four modifiers (left side)
+  hyper (multi lctl lalt lmet)
+  
+  ;; Tap-hold: tap for Escape, hold for Hyper  
+  cap-hyper (tap-hold 150 150 esc @hyper)
+
+  ;; Home row mods: tap = letter, hold = modifier
+  ;; Use tap-hold-release for more responsive holds [attached_file:1]
+  hra (tap-hold-release $th-tap $th-hold a lctl)
+  hrs (tap-hold-release $th-tap $th-hold s lalt)
+  hrd (tap-hold-release $th-tap $th-hold d lmet)
+  hrf (tap-hold-release $th-tap $th-hold f lsft)
+
+  hrj (tap-hold-release $th-tap $th-hold j rsft)
+  hrk (tap-hold-release $th-tap $th-hold k rmet)
+  hrl (tap-hold-release $th-tap $th-hold l ralt)
+  hrsc (tap-hold-release $th-tap $th-hold ; rctl)  ;; ; key
+)
+
+(deflayer base
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap-hyper @hra @hrs @hrd @hrf g    h    @hrj @hrk @hrl @hrsc '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet           spc            rmet ralt rctl
+)
