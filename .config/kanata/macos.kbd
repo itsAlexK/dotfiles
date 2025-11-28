@@ -19,8 +19,22 @@
 
 (defvar
   ;; Adjust timeouts (ms) to your preference - tap timeout, hold timeout
-  th-tap 180
-  th-hold 160
+  tap-time 200
+  hold-time-index 150   ;; Fast keys (F, J)
+  hold-time-middle 180  ;; Middle keys (D, K)
+  hold-time-ring 200    ;; Ring keys (S, L)
+  hold-time-pinky 250   ;; Slow keys (A, ;)
+
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
 )
 
 (defalias
@@ -31,23 +45,23 @@ cap-hyper @hyper
 
   ;; Obsidian binding
   obsidian (cmd open -a Obsidian)
-  obsidian-o (tap-hold 200 200 o @obsidian)
+  obsidian-o (tap-hold-release 200 200 o @obsidian)
 
   ;; Other App Bindings
   todoist (cmd open -a Todoist)
-  todoist-t (tap-hold 200 200 t @todoist)
+  todoist-t (tap-hold-release 200 200 t @todoist)
 
   vscode (cmd open -a "Visual Studio Code")
-  vscode-v (tap-hold 200 200 v @vscode)
+  vscode-v (tap-hold-release 200 200 v @vscode)
 
   comet (cmd open -a Comet)
-  comet-b (tap-hold 200 200 b @comet)
+  comet-b (tap-hold-release 200 200 b @comet)
 
   discord (cmd open -a Discord)
-  discord-c (tap-hold 200 200 c @discord)
+  discord-c (tap-hold-release 200 200 c @discord)
 
   ghostty (cmd open -a Ghostty)
-  ghostty-g (tap-hold 200 200 g @ghostty)
+  ghostty-g (tap-hold-release 200 200 g @ghostty)
 
   ;; Modifiers that also activate the 'mods' layer
   ;; This ensures 'o' acts as 'o' when any modifier is held
@@ -63,15 +77,15 @@ cap-hyper @hyper
   ;; Home row mods: tap = letter, hold = modifier
   ;; Use tap-hold-release for more responsive holds [attached_file:1]
   ;; Added (layer-while-held mods) to each modifier action
-  hra (tap-hold-release $th-tap $th-hold a @lctl)
-  hrs (tap-hold-release $th-tap $th-hold s @lalt)
-  hrd (tap-hold-release $th-tap $th-hold d @lmet)
-  hrf (tap-hold-release $th-tap $th-hold f @lsft)
+  hra (tap-hold-release-keys $tap-time $hold-time-pinky a @lctl $left-hand-keys)
+  hrs (tap-hold-release-keys $tap-time $hold-time-ring s @lalt $left-hand-keys)
+  hrd (tap-hold-release-keys $tap-time $hold-time-middle d @lmet $left-hand-keys)
+  hrf (tap-hold-release-keys $tap-time $hold-time-index f @lsft $left-hand-keys)
 
-  hrj (tap-hold-release $th-tap $th-hold j @rsft)
-  hrk (tap-hold-release $th-tap $th-hold k @rmet)
-  hrl (tap-hold-release $th-tap $th-hold l @ralt)
-  hrsc (tap-hold-release $th-tap $th-hold ; @rctl)  ;; ; key
+  hrj (tap-hold-release-keys $tap-time $hold-time-index j @rsft $right-hand-keys)
+  hrk (tap-hold-release-keys $tap-time $hold-time-middle k @rmet $right-hand-keys)
+  hrl (tap-hold-release-keys $tap-time $hold-time-ring l @ralt $right-hand-keys)
+  hrsc (tap-hold-release-keys $tap-time $hold-time-pinky ; @rctl $right-hand-keys)
 )
 
 (deflayer base
