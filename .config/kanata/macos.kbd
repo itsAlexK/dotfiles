@@ -52,7 +52,7 @@ cap-hyper @hyper
   todoist (cmd open -a Todoist)
   todoist-t (tap-hold-release 200 300 t @todoist)
 
-  vscode (cmd open -a "Visual Studio Code")
+  vscode (cmd open -a "Antigravity")
   vscode-v (tap-hold-release 200 300 v @vscode)
 
   comet (cmd open -a Comet)

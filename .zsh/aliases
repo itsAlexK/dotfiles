@@ -25,3 +25,4 @@ alias books="cd ~/Box\ Sync/books/"
 
 alias vim=nvim
 alias g=gemini
+alias ag=antigravity

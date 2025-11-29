@@ -104,3 +104,6 @@ if [ -n "${ZSH_DEBUGRC+1}" ]; then
 fi
 
 eval "$(atuin init zsh --disable-up-arrow)"
+
+# Added by Antigravity
+export PATH="/Users/kingkai/.antigravity/antigravity/bin:$PATH"

@@ -90,6 +90,7 @@ brew install --cask obsidian
 brew install --cask slack
 brew install --cask spotify
 brew install --cask visual-studio-code
+brew install --cask antigravity
 brew install --cask vlc
 brew install --cask xquartz
 brew install --cask vivaldi

@@ -187,6 +187,12 @@ if.app-id = 'com.microsoft.vscode'
 if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
 
+[[on-window-detected]]
+if.app-id = 'com.google.antigravity'
+if.during-aerospace-startup = true
+run = "move-node-to-workspace 2-dev"
+
+
 # not sure why on my mac its VSCode instead of vscode
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
