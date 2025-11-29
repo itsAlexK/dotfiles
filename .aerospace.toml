@@ -183,6 +183,12 @@ if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
 
 [[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+if.during-aerospace-startup = true
+run = "move-node-to-workspace 2-dev"
+
+
+[[on-window-detected]]
 if.app-id = 'com.microsoft.vscode'
 if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
