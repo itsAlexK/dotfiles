@@ -46,23 +46,23 @@ cap-hyper @hyper
 
   ;; Obsidian binding
   obsidian (cmd open -a Obsidian)
-  obsidian-o (tap-hold-release 200 200 o @obsidian)
+  obsidian-o (tap-hold-release 200 300 o @obsidian)
 
   ;; Other App Bindings
   todoist (cmd open -a Todoist)
-  todoist-t (tap-hold-release 200 200 t @todoist)
+  todoist-t (tap-hold-release 200 300 t @todoist)
 
   vscode (cmd open -a "Visual Studio Code")
-  vscode-v (tap-hold-release 200 200 v @vscode)
+  vscode-v (tap-hold-release 200 300 v @vscode)
 
   comet (cmd open -a Comet)
-  comet-b (tap-hold-release 200 200 b @comet)
+  comet-b (tap-hold-release 200 300 b @comet)
 
   discord (cmd open -a Discord)
-  discord-c (tap-hold-release 200 200 c @discord)
+  discord-c (tap-hold-release 200 300 c @discord)
 
   kitty (cmd open -a Kitty)
-  kitty-g (tap-hold-release 200 200 g @kitty)
+  kitty-g (tap-hold-release 200 300 g @kitty)
 
   ;; H key with hyper activation on hold
   ;; Using tap-hold-release-keys with left-hand-keys to allow combining with right-hand home row mods
