@@ -61,8 +61,8 @@ cap-hyper @hyper
   discord (cmd open -a Discord)
   discord-c (tap-hold-release 200 200 c @discord)
 
-  ghostty (cmd open -a Ghostty)
-  ghostty-g (tap-hold-release 200 200 g @ghostty)
+  kitty (cmd open -a Kitty)
+  kitty-g (tap-hold-release 200 200 g @kitty)
 
   ;; H key with hyper activation on hold
   ;; Using tap-hold-release-keys with left-hand-keys to allow combining with right-hand home row mods
@@ -97,7 +97,7 @@ cap-hyper @hyper
   brdn brup f3   f4   bldn blup prev pp   next mute vold volu
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    @todoist-t    y    u    i    @obsidian-o    p    [    ]    \
-  @cap-hyper @hra @hrs @hrd @hrf @ghostty-g    @hyper-h    @hrj @hrk @hrl @hrsc '    ret
+  @cap-hyper @hra @hrs @hrd @hrf @kitty-g    @hyper-h    @hrj @hrk @hrl @hrsc '    ret
   @lsft z    x    @discord-c    @vscode-v    @comet-b    n    m    ,    .    /    @rsft
   @lctl @lalt @lmet           spc            ret @ralt @rctl
 )

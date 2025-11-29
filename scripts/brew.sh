@@ -85,7 +85,7 @@ brew install --cask zen-browser
 brew install --cask flux
 brew install --cask google-chrome
 brew install --cask karabiner-elements
-# brew install --cask kitty
+brew install --cask kitty
 brew install --cask obsidian
 brew install --cask slack
 brew install --cask spotify
@@ -94,7 +94,7 @@ brew install --cask vlc
 brew install --cask xquartz
 brew install --cask vivaldi
 brew install --cask todoist
-brew install --cask ghostty
+# brew install --cask ghostty
 brew install --cask font-hack-nerd-font
 
 # https://github.com/ekreutz/CornerCal

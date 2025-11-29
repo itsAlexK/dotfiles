@@ -12,7 +12,6 @@ exec-on-workspace-change = [
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
-
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -146,6 +145,7 @@ alt-ctrl-cmd-8 = 'move-node-to-workspace 8'
 # alt-shift-enter = 'mode apps'
 
 # alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
+cmd-backtick = 'exec-and-forget /opt/homebrew/bin/kitten quick-access-terminal'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -212,6 +212,14 @@ if.during-aerospace-startup = true
 run= [
   "move-node-to-workspace 3-notes"
 ]
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+if.during-aerospace-startup = true
+run= [
+  "move-node-to-workspace 3-notes"
+]
+
 
 [[on-window-detected]]
 if.app-id = 'com.omnigroup.OmniFocus4'
