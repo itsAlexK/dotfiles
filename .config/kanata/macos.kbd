@@ -8,7 +8,7 @@
   danger-enable-cmd yes
   
   ;; Debounce settings to prevent double presses
-  rapid-event-delay 5
+  rapid-event-delay 20
   concurrent-tap-hold yes
 )
 
@@ -27,8 +27,8 @@
   tap-time 300
   hold-time-index 300   ;; Fast keys (F, J)
   hold-time-middle 300  ;; Middle keys (D, K)
-  hold-time-ring 300    ;; Ring keys (S, L)
-  hold-time-pinky 300   ;; Slow keys (A, ;)
+  hold-time-ring 500    ;; Ring keys (S, L)
+  hold-time-pinky 500   ;; Slow keys (A, ;)
 
   left-hand-keys (
     q w e r t
@@ -50,23 +50,23 @@ cap-hyper @hyper
 
   ;; Obsidian binding
   obsidian (cmd open -a Obsidian)
-  obsidian-o (tap-hold-release 300 300 o @obsidian)
+  obsidian-o (tap-hold-release 200 500 o @obsidian)
 
   ;; Other App Bindings
   todoist (cmd open -a Todoist)
-  todoist-t (tap-hold-release 300 300 t @todoist)
+  todoist-t (tap-hold-release 200 500 t @todoist)
 
   vscode (cmd open -a "Antigravity")
-  vscode-v (tap-hold-release 300 300 v @vscode)
+  vscode-v (tap-hold-release 200 500 v @vscode)
 
   comet (cmd open -a Comet)
-  comet-b (tap-hold-release 300 300 b @comet)
+  comet-b (tap-hold-release 200 500 b @comet)
 
   discord (cmd open -a Discord)
-  discord-c (tap-hold-release 300 300 c @discord)
+  discord-c (tap-hold-release 200 500 c @discord)
 
   kitty (cmd open -a Kitty)
-  kitty-g (tap-hold-release 300 300 g @kitty)
+  kitty-g (tap-hold-release 200 500 g @kitty)
 
   ;; H key with hyper activation on hold
   ;; Using tap-hold-release-keys with left-hand-keys to allow combining with right-hand home row mods
