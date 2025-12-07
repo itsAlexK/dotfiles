@@ -7,10 +7,10 @@ set -euxo pipefail
 
 # Variables
 # Remeber to set +x on the executable
-KANATA_PATH="/Users/$(whoami)/repos/dotfiles/resources/kanata_macos_cmd_allowed_arm64"
-KANATA_CFG_PATH="/Users/$(whoami)/repos/dotfiles/.config/kanata/macos.kbd"
+KANATA_PATH="/Users/$(whoami)/dotfiles/resources/kanata_macos_cmd_allowed_arm64"
+KANATA_CFG_PATH="/Users/$(whoami)/dotfiles/.config/kanata/macos.kbd"
 SUDOERS_FILE="/etc/sudoers.d/kanata"
-PLIST_FILE="/Library/LaunchDaemons/com.jtroo.kanata.plist"
+PLIST_FILE="/Library/LaunchDaemons/com.example.kanata.plist"
 
 # Create a sudoers file entry for kanata
 echo "$(whoami) ALL=(ALL) NOPASSWD: $KANATA_PATH" | sudo tee "$SUDOERS_FILE" >/dev/null

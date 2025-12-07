@@ -144,7 +144,7 @@ alt-ctrl-cmd-8 = 'move-node-to-workspace 8'
 # alt-shift-enter = 'mode apps'
 
 # alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
-cmd-backtick = 'exec-and-forget /opt/homebrew/bin/kitten quick-access-terminal'
+cmd-backtick = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitten quick-access-terminal'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

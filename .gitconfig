@@ -1,6 +1,6 @@
 [user]
-	name = itsAlexK
-	email = contactkaichen@gmail.com
+	name = itsalexk
+	email = itsalexk@amazon.co.jp
 [alias]
         cleanup = "!git fetch -ap; git branch | grep -v "master" | grep -v ^* | xargs git branch -D;"
 		save ="!git add --all && git commit --all -m 'SAVE' --no-verify"
