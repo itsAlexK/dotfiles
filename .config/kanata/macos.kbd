@@ -50,23 +50,23 @@ cap-hyper @hyper
 
   ;; Obsidian binding
   obsidian (cmd open -a Obsidian)
-  obsidian-o (tap-hold-release 200 500 o @obsidian)
+  obsidian-o (tap-hold-release-keys 200 500 o @obsidian ())
 
   ;; Other App Bindings
   todoist (cmd open -a TickTick)
-  todoist-t (tap-hold-release 200 500 t @todoist)
+  todoist-t (tap-hold-release-keys 200 500 t @todoist ())
 
   vscode (cmd open -a "Antigravity")
-  vscode-v (tap-hold-release 200 500 v @vscode)
+  vscode-v (tap-hold-release-keys 200 500 v @vscode ())
 
   comet (cmd open -a Comet)
-  comet-b (tap-hold-release 200 500 b @comet)
+  comet-b (tap-hold-release-keys 200 500 b @comet ())
 
   discord (cmd open -a Discord)
-  discord-c (tap-hold-release 200 500 c @discord)
+  discord-c (tap-hold-release-keys 200 500 c @discord ())
 
   kitty (cmd open -a Kitty)
-  kitty-g (tap-hold-release 200 500 g @kitty)
+  kitty-g (tap-hold-release-keys 200 500 g @kitty ())
 
   ;; H key with hyper activation on hold
   ;; Using tap-hold-release-keys with left-hand-keys to allow combining with right-hand home row mods
@@ -86,15 +86,16 @@ cap-hyper @hyper
   ;; Home row mods: tap = letter, hold = modifier
   ;; Use tap-hold-release for more responsive holds [attached_file:1]
   ;; Added (layer-while-held mods) to each modifier action
-  hra (tap-hold-release-keys $tap-time $hold-time-pinky a @lctl $left-hand-keys)
-  hrs (tap-hold-release-keys $tap-time $hold-time-ring s @lalt $left-hand-keys)
-  hrd (tap-hold-release-keys $tap-time $hold-time-middle d @lmet $left-hand-keys)
-  hrf (tap-hold-release-keys $tap-time $hold-time-index f @lsft $left-hand-keys)
+  ;; Bilateral combinations: Left hand mods activate with Right hand keys, and vice versa
+  hra (tap-hold-release-keys $tap-time $hold-time-pinky a @lctl $right-hand-keys)
+  hrs (tap-hold-release-keys $tap-time $hold-time-ring s @lalt $right-hand-keys)
+  hrd (tap-hold-release-keys $tap-time $hold-time-middle d @lmet $right-hand-keys)
+  hrf (tap-hold-release-keys $tap-time $hold-time-index f @lsft $right-hand-keys)
 
-  hrj (tap-hold-release-keys $tap-time $hold-time-index j @rsft $right-hand-keys)
-  hrk (tap-hold-release-keys $tap-time $hold-time-middle k @rmet $right-hand-keys)
-  hrl (tap-hold-release-keys $tap-time $hold-time-ring l @ralt $right-hand-keys)
-  hrsc (tap-hold-release-keys $tap-time $hold-time-pinky ; @rctl $right-hand-keys)
+  hrj (tap-hold-release-keys $tap-time $hold-time-index j @rsft $left-hand-keys)
+  hrk (tap-hold-release-keys $tap-time $hold-time-middle k @rmet $left-hand-keys)
+  hrl (tap-hold-release-keys $tap-time $hold-time-ring l @ralt $left-hand-keys)
+  hrsc (tap-hold-release-keys $tap-time $hold-time-pinky ; @rctl $left-hand-keys)
 )
 
 (deflayer base
