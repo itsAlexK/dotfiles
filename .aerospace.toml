@@ -217,6 +217,11 @@ if.during-aerospace-startup = true
 if.window-title-regex-substring = '^(?!.*\bTodoist\b).*'
 run = "move-node-to-workspace 3-notes"
 
+[[on-window-detected]]
+if.app-id = 'com.TickTick.task.mac'
+if.during-aerospace-startup = true
+# if.window-title-regex-substring = '^(?!.*\bTodoist\b).*'
+run = "move-node-to-workspace 3-notes"
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'

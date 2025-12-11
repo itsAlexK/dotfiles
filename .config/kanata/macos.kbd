@@ -53,7 +53,7 @@ cap-hyper @hyper
   obsidian-o (tap-hold-release 200 500 o @obsidian)
 
   ;; Other App Bindings
-  todoist (cmd open -a Todoist)
+  todoist (cmd open -a TickTick)
   todoist-t (tap-hold-release 200 500 t @todoist)
 
   vscode (cmd open -a "Antigravity")
