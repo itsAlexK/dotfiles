@@ -12,6 +12,10 @@
   concurrent-tap-hold yes
 )
 
+(defvirtualkeys
+  to-base (layer-switch base)
+)
+
 ;; Standard Apple keyboard layout (US ANSI)
 (defsrc
   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
@@ -40,37 +44,88 @@
     j k l ;
     n m , . /
   )
+  all-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+    y u i o p
+    j k l ;
+    n m , . /
+  )
 )
 
 (defalias
+  ;; Typing Layer Logic
+  .tp (switch
+    () (multi (layer-switch typing) (on-idle 100 tap-vkey to-base)) break
+  )
+  .spc-typing (multi spc (layer-switch base))
+
+  ;; Standard keys with typing layer trigger
+  q (multi q @.tp)
+  w (multi w @.tp)
+  e (multi e @.tp)
+  r (multi r @.tp)
+  t (multi t @.tp)
+  y (multi y @.tp)
+  u (multi u @.tp)
+  i (multi i @.tp)
+  o (multi o @.tp)
+  p (multi p @.tp)
+  a (multi a @.tp)
+  s (multi s @.tp)
+  d (multi d @.tp)
+  f (multi f @.tp)
+  j (multi j @.tp)
+  k (multi k @.tp)
+  l (multi l @.tp)
+  ; (multi ; @.tp)
+  n (multi n @.tp)
+  m (multi m @.tp)
+  , (multi , @.tp)
+  . (multi . @.tp)
+  / (multi / @.tp)
+  z (multi z @.tp)
+  x (multi x @.tp)
+  c (multi c @.tp)
+  v (multi v @.tp)
+  b (multi b @.tp)
+  g (multi g @.tp)
+  h (multi h @.tp)
+  ' (multi ' @.tp)
+  [ (multi [ @.tp)
+  ] (multi ] @.tp)
+  \ (multi \ @.tp)
+
+
   ;; Hyper = all four modifiers (left side)
   hyper (multi lctl lalt (layer-while-held mods))
   
-cap-hyper @hyper
+  cap-hyper @hyper
 
   ;; Obsidian binding
   obsidian (cmd open -a Obsidian)
-  obsidian-o (tap-hold-release-keys 200 500 o @obsidian ())
+  obsidian-o (tap-hold-release-keys 200 500 (multi o @.tp) @obsidian $all-keys)
 
   ;; Other App Bindings
   todoist (cmd open -a TickTick)
-  todoist-t (tap-hold-release-keys 200 500 t @todoist ())
+  todoist-t (tap-hold-release-keys 200 500 (multi t @.tp) @todoist $all-keys)
 
   vscode (cmd open -a "Antigravity")
-  vscode-v (tap-hold-release-keys 200 500 v @vscode ())
+  vscode-v (tap-hold-release-keys 200 500 (multi v @.tp) @vscode $all-keys)
 
   comet (cmd open -a Comet)
-  comet-b (tap-hold-release-keys 200 500 b @comet ())
+  comet-b (tap-hold-release-keys 200 500 (multi b @.tp) @comet $all-keys)
 
   discord (cmd open -a Discord)
-  discord-c (tap-hold-release-keys 200 500 c @discord ())
+  discord-c (tap-hold-release-keys 200 500 (multi c @.tp) @discord $all-keys)
 
   kitty (cmd open -a Kitty)
-  kitty-g (tap-hold-release-keys 200 500 g @kitty ())
+  kitty-g (tap-hold-release-keys 200 500 (multi g @.tp) @kitty $all-keys)
 
   ;; H key with hyper activation on hold
   ;; Using tap-hold-release-keys with left-hand-keys to allow combining with right-hand home row mods
-  hyper-h (tap-hold-release-keys $tap-time $hold-time-index h @hyper $left-hand-keys)
+  hyper-h (tap-hold-release-keys $tap-time $hold-time-index (multi h @.tp) @hyper $left-hand-keys)
 
   ;; Modifiers that also activate the 'mods' layer
   ;; This ensures 'o' acts as 'o' when any modifier is held
@@ -87,23 +142,23 @@ cap-hyper @hyper
   ;; Use tap-hold-release for more responsive holds [attached_file:1]
   ;; Added (layer-while-held mods) to each modifier action
   ;; Bilateral combinations: Left hand mods activate with Right hand keys, and vice versa
-  hra (tap-hold-release-keys $tap-time $hold-time-pinky a @lctl $right-hand-keys)
-  hrs (tap-hold-release-keys $tap-time $hold-time-ring s @lalt $right-hand-keys)
-  hrd (tap-hold-release-keys $tap-time $hold-time-middle d @lmet $right-hand-keys)
-  hrf (tap-hold-release-keys $tap-time $hold-time-index f @lsft $right-hand-keys)
+   hra (tap-hold-release-keys $tap-time $hold-time-pinky (multi a @.tp) @lctl $right-hand-keys)
+  hrs (tap-hold-release-keys $tap-time $hold-time-ring (multi s @.tp) @lalt $right-hand-keys)
+  hrd (tap-hold-release-keys $tap-time $hold-time-middle (multi d @.tp) @lmet $right-hand-keys)
+  hrf (tap-hold-release-keys $tap-time $hold-time-index (multi f @.tp) @lsft $right-hand-keys)
 
-  hrj (tap-hold-release-keys $tap-time $hold-time-index j @rsft $left-hand-keys)
-  hrk (tap-hold-release-keys $tap-time $hold-time-middle k @rmet $left-hand-keys)
-  hrl (tap-hold-release-keys $tap-time $hold-time-ring l @ralt $left-hand-keys)
-  hrsc (tap-hold-release-keys $tap-time $hold-time-pinky ; @rctl $left-hand-keys)
+  hrj (tap-hold-release-keys $tap-time $hold-time-index (multi j @.tp) @rsft $left-hand-keys)
+  hrk (tap-hold-release-keys $tap-time $hold-time-middle (multi k @.tp) @rmet $left-hand-keys)
+  hrl (tap-hold-release-keys $tap-time $hold-time-ring (multi l @.tp) @ralt $left-hand-keys)
+  hrsc (tap-hold-release-keys $tap-time $hold-time-pinky (multi ; @.tp) @rctl $left-hand-keys)
 )
 
 (deflayer base
   brdn brup f3   f4   bldn blup prev pp   next mute vold volu
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    @todoist-t    y    u    i    @obsidian-o    p    [    ]    \
-  @cap-hyper @hra @hrs @hrd @hrf @kitty-g    @hyper-h    @hrj @hrk @hrl @hrsc '    ret
-  @lsft z    x    @discord-c    @vscode-v    @comet-b    n    m    ,    .    /    @rsft
+  tab  @q    @w    @e    @r    @todoist-t    @y    @u    @i    @obsidian-o    @p    @[    @]    @\
+  @cap-hyper @hra @hrs @hrd @hrf @kitty-g    @hyper-h    @hrj @hrk @hrl @hrsc @'    ret
+  @lsft @z    @x    @discord-c    @vscode-v    @comet-b    @n    @m    @,    @.    @/    @rsft
   @lctl @lalt @lmet           spc            @lmet @ralt @rctl
 )
 
@@ -114,4 +169,13 @@ cap-hyper @hyper
   @cap-hyper @hra @hrs @hrd @hrf g    h    @hrj @hrk @hrl @hrsc '    ret
   @lsft z    x    c    v    b    n    m    ,    .    /    @rsft
   @lctl @lalt @lmet           spc            @lmet @ralt @rctl
+)
+
+(deflayer typing
+  brdn brup f3   f4   bldn blup prev pp   next mute vold volu
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  @q    @w    @e    @r    @t    @y    @u    @i    @o    @p    @[    @]    @\
+  @cap-hyper @a    @s    @d    @f    @g    @h      @j    @k    @l    @;    @'    ret
+  @lsft @z    @x    @c    @v    @b    @n    @m    @,    @.    @/    @rsft
+  @lctl @lalt @lmet           @.spc-typing   @lmet @ralt @rctl
 )
