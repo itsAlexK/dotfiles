@@ -111,11 +111,10 @@ alt-ctrl-k = 'join-with up'
 alt-ctrl-l = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-ctrl-minus = 'resize smart -100'
-alt-ctrl-equal = 'resize smart +100'
-alt-ctrl-q = 'resize smart +100'
-alt-ctrl-e = 'resize smart -100'
-
+alt-ctrl-q = 'resize width +100'
+alt-ctrl-e = 'resize width -100'
+alt-ctrl-cmd-q = 'resize height +100'
+alt-ctrl-cmd-e = 'resize height -100'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-ctrl-1 = 'workspace 1-chat'
