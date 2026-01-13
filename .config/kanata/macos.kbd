@@ -12,7 +12,8 @@
   concurrent-tap-hold yes
 	macos-dev-names-exclude (
     "er DriverKit VirtualHIDKeyboard 1.8.0"
-    "1.8.0"
+    "1.8.0",
+    "Go60 Left"
 	)
 )
 
