@@ -10,6 +10,10 @@
   ;; Debounce settings to prevent double presses
   rapid-event-delay 20
   concurrent-tap-hold yes
+	macos-dev-names-exclude (
+    "er DriverKit VirtualHIDKeyboard 1.8.0"
+    "1.8.0"
+	)
 )
 
 (defvirtualkeys
