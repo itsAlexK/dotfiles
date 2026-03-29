@@ -242,6 +242,10 @@ if.app-id = 'com.omnigroup.OmniFocus4'
 run = "move-node-to-workspace 3-notes"
 
 [[on-window-detected]]
+if.app-id = 'net.ankiweb.dtop'
+run = "move-node-to-workspace 3-notes"
+
+[[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace 3-notes"
 
