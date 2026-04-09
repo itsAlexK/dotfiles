@@ -29,5 +29,8 @@ node_modules
 .config/ada
 .config/configstore
 .config/raycast
-
+.config/smithy-mcp
+.config/ohayo-raycast
+*.bak
 .envrc
+.claude
