@@ -99,6 +99,7 @@ brew install --cask vivaldi
 brew install --cask ticktick
 # brew install --cask ghostty
 brew install --cask font-hack-nerd-font
+brew install --cask cmux
 
 # https://github.com/ekreutz/CornerCal
 

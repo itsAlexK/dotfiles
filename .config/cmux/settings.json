@@ -1,0 +1,62 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux-settings.schema.json",
+  "schemaVersion": 1,
+
+  "shortcuts": {
+    "bindings": {
+      // === Window Management ===
+      // Ghostty: Cmd+N = new window, Cmd+Shift+W = close window
+      // cmux default: Cmd+N = new workspace, Cmd+Shift+N = new window
+      // Keep cmux's Cmd+N for new workspace (closest to Ghostty new window)
+      "newWindow": "cmd+shift+n",
+      "closeWindow": "cmd+shift+w",
+      "toggleFullScreen": "cmd+ctrl+f",
+      "quit": "cmd+q",
+      "openSettings": "cmd+,",
+      "reloadConfiguration": "cmd+shift+,",
+
+      // === Tab/Surface Management ===
+      // Ghostty: Cmd+T = new tab, Cmd+W = close tab
+      // Ghostty: Cmd+Shift+[ / ] = prev/next tab
+      // Ghostty: Cmd+1-8 = go to tab N
+      "newSurface": "cmd+t",
+      "closeTab": "cmd+w",
+      "prevSurface": "cmd+shift+[",
+      "nextSurface": "cmd+shift+]",
+      "selectSurfaceByNumber": "cmd+1",
+
+      // === Split Management ===
+      // Your Ghostty config: Cmd+\ = split right, Cmd+Enter = split down
+      // Ghostty defaults: Cmd+D = split right, Cmd+Shift+D = split down
+      // Using YOUR custom Ghostty keybinds:
+      "splitRight": "cmd+\\",
+      "splitDown": "cmd+shift+|",
+      // Ghostty: Cmd+Option+Arrow = focus split direction (same as cmux default)
+      "focusLeft": "cmd+opt+\u2190",
+      "focusRight": "cmd+opt+\u2192",
+      "focusUp": "cmd+opt+\u2191",
+      "focusDown": "cmd+opt+\u2193",
+      // Ghostty: Cmd+Shift+Enter = toggle split zoom
+      "toggleSplitZoom": "cmd+shift+\r",
+
+      // === Your custom Ghostty keybinds ===
+      // Cmd+B = equalize splits in your Ghostty config
+      // cmux uses Cmd+B for sidebar toggle — conflict!
+      // Moving sidebar to Cmd+E (not used by Ghostty)
+      "toggleSidebar": "cmd+e",
+
+      // === Browser (Ghostty-like navigation) ===
+      // Ghostty: Cmd+[ / ] = focus prev/next split
+      // cmux uses these for browser back/forward — reassign
+      "browserBack": "cmd+opt+[",
+      "browserForward": "cmd+opt+]",
+
+      // === Workspace navigation ===
+      // Ghostty: Cmd+1-8 = tab switching → mapped to surfaces above
+      // Use Ctrl+1-9 for workspace switching instead
+      "selectWorkspaceByNumber": "ctrl+1",
+      "prevSidebarTab": "ctrl+shift+[",
+      "nextSidebarTab": "ctrl+shift+]"
+    }
+  }
+}

@@ -167,11 +167,6 @@ if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
 
 [[on-window-detected]]
-if.app-id = 'ai.perplexity.comet'
-if.during-aerospace-startup = true
-run = "move-node-to-workspace 2-dev"
-
-[[on-window-detected]]
 if.app-id = 'company.thebrowser.dia'
 if.during-aerospace-startup = true
 run = "move-node-to-workspace 2-dev"
@@ -230,6 +225,14 @@ run= [
 ]
 
 [[on-window-detected]]
+if.app-id = 'com.cmuxterm.app'
+if.during-aerospace-startup = true
+run= [
+  "move-node-to-workspace 3-notes"
+]
+
+
+[[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
 if.during-aerospace-startup = true
 run= [
@@ -258,8 +261,17 @@ if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 1-chat"
 
 [[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace 1-chat"
+
+[[on-window-detected]]
 if.app-id = 'org.mozilla.thunderbird'
 run = "move-node-to-workspace 1-chat"
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+if.during-aerospace-startup = true
+run = ["move-node-to-workspace 1-chat"]
 
 # this is the default chime screen
 [[on-window-detected]]
