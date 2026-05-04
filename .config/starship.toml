@@ -1,0 +1,135 @@
+add_newline = true
+
+# Right format for status and time
+right_format = """$status$time"""
+
+[aws]
+disabled = true
+
+[battery]
+disabled = true
+
+[character]
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vicmd_symbol = "[](bold green)"
+
+[cmd_duration]
+
+[conda]
+
+[directory]
+truncation_length = 3
+format = "[](fg:cyan) [$path]($style) "
+
+[dotnet]
+disabled = true
+
+[env_var]
+disabled = true
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+# Updated Git Branch from meowrch theme
+[git_branch]
+symbol = " "
+style = "bold #f17f29"
+format = "on [$symbol$branch]($style) "
+
+[git_commit]
+disabled = false
+commit_hash_length = 4
+
+[git_state]
+disabled = true
+
+[git_status]
+conflicted = "=${count}"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "\\$${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[gcloud]
+disabled = true
+
+[golang]
+symbol = " "
+
+[hostname]
+
+[jobs]
+
+[kubernetes]
+symbol = " "
+disabled = false
+
+[line_break]
+disabled = false
+
+[lua]
+symbol = " "
+lua_binary = "luajit"
+
+[nix_shell]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[java]
+symbol = " "
+
+[julia]
+
+[nim]
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[terraform]
+symbol = " "
+format = "via [$symbol$version]($style)"
+
+[time]
+disabled = false
+time_format = "%R"
+style = "dimmed white"
+format = "[$time]($style)"
+
+[status]
+disabled = false
+format = '[$symbol]($style) '
+style = "bold red"
+symbol = "✘"
+success_symbol = ""
+
+[username]
+disabled = false

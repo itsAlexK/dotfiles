@@ -1,8 +1,8 @@
 background = #141414
 background-blur-radius = 20
-font-family = "JetBrains Mono"
+font-family = "SauceCodePro Nerd Font"
 font-size = 12
-font-thicken = true
+font-thicken = false
 foreground = feffd3
 macos-option-as-alt = true
 mouse-hide-while-typing = false

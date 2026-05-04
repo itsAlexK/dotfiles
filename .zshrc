@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zmodload zsh/zprof
@@ -19,8 +13,8 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 # git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 # git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# theme removed
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -61,7 +55,7 @@ more=(
     python
     fzf
     obsidian
-    powerlevel9kconfig
+    # powerlevel9kconfig
     functions
     work
 )
@@ -114,3 +108,4 @@ eval "$(atuin init zsh --disable-up-arrow)"
 
 # Added by Antigravity
 export PATH="/Users/kingkai/.antigravity/antigravity/bin:$PATH"
+eval "$(starship init zsh)"
