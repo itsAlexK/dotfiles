@@ -15,7 +15,7 @@ Ignore patterns are in `.stow-local-ignore` (`.git`, `.DS_Store`, `karabiner.jso
 
 ```
 dotfiles/
-├── .zshrc                  # Main shell config (oh-my-zsh + p10k)
+├── .zshrc                  # Main shell config (starship + fzf)
 ├── .zsh/                   # Sourced shell modules
 ├── .config/                # XDG config dir — all app configs
 ├── .gitconfig              # Git settings + aliases
@@ -31,17 +31,16 @@ dotfiles/
 | File | Purpose |
 |------|---------|
 | `aliases` | Aliases: `bat`, `rg` (with sane ignores), `ls` → lsd, `vim` → nvim, `g` → gemini, `ag` → antigravity, `ssh` → colorssh |
-| `functions` | `twm` (yabai/skhd control), `km` (hidutil key remapping), `colorssh` (kitty bg color by env), `tabc`/`tab-reset`, `wttr`, `awscred` |
-| `work` | Amazon-specific: AWS profiles, ada credentials, kinit/mwinit/Yubikey auth, brazil build tools |
+| `functions` | `twm` (yabai/skhd control), `km` (hidutil key remapping), `colorssh` (kitty bg color by env), `tabc`/`tab-reset`, `wttr` |
 | `fzf` | FZF helpers: `hf` (history search), `gli` (git log browser), `fif` (find-in-file), `fzfjson` |
 | `python` | pyenv init, pipenv venv-in-project, UTF-8 I/O |
 | `obsidian` | `obs` command — open Obsidian vaults from CLI with fzf |
-| `powerlevel9kconfig` | Powerlevel10k prompt theme settings |
 
 ## Key configs — .config/
 
 | Directory | Tool | Notes |
 |-----------|------|-------|
+| `starship.toml` | Starship | Cross-shell prompt theme |
 | `nvim/` | Neovim (LazyVim) | `lua/config/`, `lua/plugins/` — LSP, treesitter, lualine, gitsigns |
 | `kitty/` | Kitty terminal | Primary terminal; bg color changes via `colorssh` |
 | `kanata/` | Kanata keyboard remapper | Home row mods + Hyper key. Uses `resources/kanata_macos_cmd_allowed_arm64` binary |
@@ -51,8 +50,7 @@ dotfiles/
 | `mise/` | mise runtime manager | Python 3.8–3.12, Node 24 |
 | `atuin/` | Atuin shell history | Arrow key binding disabled in favour of fzf |
 | `helix/` | Helix editor | Secondary editor |
-| `raycast/` | Raycast | Extensions + Amazon Raycast integrations |
-| `smithy-mcp/` | Smithy MCP | Amazon MCP server bundles (andes, builder, diag, datanet) |
+| `raycast/` | Raycast | Extensions + configuration |
 
 ## Scripts
 
