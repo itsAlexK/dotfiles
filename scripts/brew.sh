@@ -55,6 +55,7 @@ brew install kubectl
 brew install helm
 brew install sketchybar
 brew install skills
+brew install defuddle
 
 # for sketchybar
 brew install lua
