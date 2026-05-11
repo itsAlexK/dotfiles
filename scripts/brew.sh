@@ -43,6 +43,7 @@ brew install postgresql
 brew install pyenv
 brew install rg
 brew install stow
+brew install starship
 brew install shellcheck
 brew install tree
 # brew install z
@@ -54,6 +55,7 @@ brew install kubectl
 brew install helm
 brew install sketchybar
 brew install skills
+brew install defuddle
 
 # for sketchybar
 brew install lua

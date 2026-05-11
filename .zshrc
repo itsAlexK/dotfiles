@@ -16,8 +16,8 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 # git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 # git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# theme removed
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -58,7 +58,7 @@ more=(
     python
     fzf
     obsidian
-    powerlevel9kconfig
+    # powerlevel9kconfig
     functions
     work
 )
@@ -115,3 +115,4 @@ export PATH="/Users/kingkai/.antigravity/antigravity/bin:$PATH"
 
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+eval "$(starship init zsh)"
