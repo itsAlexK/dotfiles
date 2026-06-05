@@ -40,15 +40,39 @@ local function withWindows(f)
 	end)
 end
 
+-- AppKit NSScreen IDs: 1=MacBook, 2=T27h-30(1) left, 3=T27h-30(2) middle
+-- Map to sketchybar display order (left=1, middle=2, MacBook=3)
 local function swapMonitorId(monitor_id)
-	if monitor_id == 1 then
-		return 1
-	elseif monitor_id == 2 then
-		return 2
+	if monitor_id == 2 then
+		return 1 -- left external
 	elseif monitor_id == 3 then
-		return 3
+		return 2 -- middle external
+	elseif monitor_id == 1 then
+		return 3 -- built-in MacBook
 	end
 end
+
+-- Static display assignments mirroring AeroSpace workspace-to-monitor-force-assignment.
+-- AeroSpace reports MacBook for all empty workspaces regardless of force assignment,
+-- so we use this table as the authoritative source for sketchybar display placement.
+-- Sketchybar displays: 1=MacBook (main), 2=left (T27h-30(1)), 3=middle (T27h-30(2))
+local WORKSPACE_DISPLAY = {
+	["1"] = 1,
+	["1-chat"] = 1,
+	["2"] = 3,
+	["2-dev"] = 3,
+	["3"] = 2,
+	["3-notes"] = 2,
+	["4"] = 3,
+	["4-reading"] = 3,
+	["5"] = 3,
+	["5-alt"] = 3,
+	["6"] = 3,
+	["6-video"] = 3,
+	["7"] = 3,
+	["8"] = 3,
+	["9"] = 3,
+}
 
 local function updateWindow(workspace_index, args)
 	local open_windows = args.open_windows[workspace_index]
@@ -72,14 +96,11 @@ local function updateWindow(workspace_index, args)
 	sbar.animate("tanh", 10, function()
 		for i, visible_workspace in ipairs(visible_workspaces) do
 			if no_app and workspace_index == visible_workspace["workspace"] then
-				local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
 				icon_line = " —"
 				workspaces[workspace_index]:set({
 					drawing = true,
-					label = {
-						string = icon_line,
-					},
-					display = swapMonitorId(monitor_id),
+					label = { string = icon_line },
+					display = WORKSPACE_DISPLAY[workspace_index],
 				})
 				return
 			end
@@ -118,19 +139,12 @@ local function updateWindows()
 end
 
 local function updateWorkspaceMonitor()
-	local workspace_monitor = {}
-	sbar.exec(query_workspaces, function(workspaces_and_monitors)
-		for _, entry in ipairs(workspaces_and_monitors) do
-			local space_index = entry.workspace
-			local monitor_id = math.floor(entry["monitor-appkit-nsscreen-screens-id"])
-			workspace_monitor[space_index] = monitor_id
+	for workspace_index, _ in pairs(workspaces) do
+		local display = WORKSPACE_DISPLAY[workspace_index]
+		if display then
+			workspaces[workspace_index]:set({ display = display })
 		end
-		for workspace_index, _ in pairs(workspaces) do
-			workspaces[workspace_index]:set({
-				display = swapMonitorId(workspace_monitor[workspace_index]),
-			})
-		end
-	end)
+	end
 end
 
 sbar.exec(query_workspaces, function(workspaces_and_monitors)

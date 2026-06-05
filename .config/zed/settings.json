@@ -1,0 +1,93 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "cli_default_open_behavior": "existing_window",
+  "ssh_connections": [
+    {
+      "host": "clouddesktop",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/itsalexk/workspace"
+          ]
+        },
+        {
+          "paths": [
+            "/home/itsalexk/workspace/JSTRISEAgentService"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "clouddesktopjp",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/itsalexk/metricsProject"
+          ]
+        }
+      ]
+    }
+  ],
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+  "terminal": {
+    "env": {
+      "Q_NEW_SESSION": "\"1\"",
+    },
+    "font_family": "Hack Nerd Font Mono",
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+  "base_keymap": "VSCode",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "/Users/itsalexk/.toolbox/bin/claude",
+      },
+    },
+  },
+  "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark",
+  },
+}

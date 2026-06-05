@@ -1,0 +1,9 @@
+# cmux-kiro configuration
+# Background cookie refresh daemon (re-auths browser panels after mwinit)
+CMUX_COOKIE_REFRESH=true
+# Auto-update on session start (checks once per day)
+CMUX_AUTO_UPDATE=true
+# Show raw tool names instead of human-readable descriptions (e.g. "fs_read" vs "Reading config.ts")
+# CMUX_RAW_TOOL_NAMES=false
+# Auto-open markdown files as sidebar panels when Kiro writes .md files
+CMUX_AUTO_OPEN_MD=true
