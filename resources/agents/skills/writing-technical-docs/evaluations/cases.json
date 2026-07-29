@@ -1,0 +1,41 @@
+[
+  {
+    "skills": ["writing-technical-docs"],
+    "query": "Write a design doc on the tradeoffs between io_uring and epoll for a high-throughput proxy.",
+    "expected_behavior": [
+      "Reads reference/prose-profile.md before drafting",
+      "Gathers real figures (syscall counts, benchmark numbers, kernel versions) before writing prose",
+      "Produces zero em-dashes",
+      "Uses 'For example' and 'such as' followed by named instances, at least twice combined",
+      "Names at least two options, states which is chosen and why",
+      "Volunteers a cost in the same paragraph as each claimed benefit",
+      "Runs scripts/check_style.py and iterates until it exits 0",
+      "Contains no data-platform or financial vocabulary from the derivation corpus"
+    ]
+  },
+  {
+    "skills": ["writing-technical-docs"],
+    "query": "Here is a draft section I wrote. Check it against my style and fix what is off.",
+    "files": ["test-files/draft-with-violations.md"],
+    "expected_behavior": [
+      "Runs scripts/check_style.py on the draft first rather than eyeballing it",
+      "Reports the specific measured deviations, not a general impression",
+      "Fixes hard failures (em-dashes, banned tokens, second person, RFC uppercase modals)",
+      "Does not flatten sentence-length variance while fixing other issues",
+      "Re-runs the checker after editing to confirm it exits 0"
+    ]
+  },
+  {
+    "skills": ["writing-technical-docs"],
+    "query": "Draft a one-pager proposing we move our metrics pipeline from cron to an event-driven trigger.",
+    "expected_behavior": [
+      "Paragraph lengths vary, including at least one single-sentence paragraph",
+      "Does not produce uniformly 3-4 sentence paragraphs",
+      "Sentence lengths spread with sd >= 9 and at least one sentence over 40 words",
+      "Includes calibrated hedges for anything not under the author's control",
+      "Leaves at least one claim explicitly unresolved",
+      "Records reversibility of the decision",
+      "Ends on a technical fact rather than a summary paragraph"
+    ]
+  }
+]
