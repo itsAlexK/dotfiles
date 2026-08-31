@@ -239,6 +239,13 @@ run= [
   "move-node-to-workspace 3-notes"
 ]
 
+[[on-window-detected]]
+if.app-id = 'dev.warp.Warp-Stable'
+if.during-aerospace-startup = true
+run= [
+  "move-node-to-workspace 3-notes"
+]
+
 
 [[on-window-detected]]
 if.app-id = 'com.omnigroup.OmniFocus4'
@@ -318,17 +325,14 @@ if.app-id = 'com.spotify.client'
 run = "move-node-to-workspace 6-video"
 
 [workspace-to-monitor-force-assignment]
-1 = ['Built-in Retina Display']
+# Only list workspaces that should exist. A bare numeric duplicate of a named
+# workspace (e.g. '3' next to '3-notes') would show up as its own workspace in
+# `list-workspaces --all` and get its own sketchybar item.
 1-chat = ['Built-in Retina Display']
-2 = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'LF32TU87', 'Built-in Retina Display']
 2-dev = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'LF32TU87', 'Built-in Retina Display']
-3 = ['T27h-30 \(2\)', 'LEN P32p-20', 'V3L6W', 'DELL U3421WE', 'Built-in Retina Display']
 3-notes = ['T27h-30 \(2\)', 'LEN P32p-20', 'V3L6W', 'DELL U3421WE', 'Built-in Retina Display']
-4 = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 4-reading = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
-5 = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 5-alt = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
-6 = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 6-video = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 7 = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']
 8 = ['T27h-30 \(1\)', 'LEN P32p-20', 'DELL U3421WE', 'Built-in Retina Display']

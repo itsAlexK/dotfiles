@@ -57,17 +57,11 @@ end
 -- so we use this table as the authoritative source for sketchybar display placement.
 -- Sketchybar displays: 1=MacBook (main), 2=left (T27h-30(1)), 3=middle (T27h-30(2))
 local WORKSPACE_DISPLAY = {
-	["1"] = 1,
 	["1-chat"] = 1,
-	["2"] = 3,
 	["2-dev"] = 3,
-	["3"] = 2,
 	["3-notes"] = 2,
-	["4"] = 3,
 	["4-reading"] = 3,
-	["5"] = 3,
 	["5-alt"] = 3,
-	["6"] = 3,
 	["6-video"] = 3,
 	["7"] = 3,
 	["8"] = 3,
