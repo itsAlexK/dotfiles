@@ -144,6 +144,7 @@ alt-ctrl-cmd-8 = 'move-node-to-workspace 8'
 # alt-shift-enter = 'mode apps'
 
 # alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
+alt-ctrl-x = 'exec-and-forget open -a /Applications/OpenKnowledge.app'
 cmd-backtick = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitten quick-access-terminal'
 
 # 'service' binding mode declaration.
