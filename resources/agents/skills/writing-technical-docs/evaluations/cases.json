@@ -3,8 +3,12 @@
     "skills": ["writing-technical-docs"],
     "query": "Write a design doc on the tradeoffs between io_uring and epoll for a high-throughput proxy.",
     "expected_behavior": [
-      "Reads reference/prose-profile.md before drafting",
+      "Reads reference/document-reasoning.md, reference/amazon-writing.md, and reference/prose-profile.md before drafting",
+      "States the requested decision, audience, recommendation, and scope before selecting sections",
+      "Builds sections from reader questions and decision risks rather than copying a default template",
       "Gathers real figures (syscall counts, benchmark numbers, kernel versions) before writing prose",
+      "Defines unfamiliar terms before a heading, diagram, or claim depends on them",
+      "Derives evaluation criteria from requirements before comparing io_uring and epoll",
       "Produces zero em-dashes",
       "Uses 'For example' and 'such as' followed by named instances, at least twice combined",
       "Names at least two options, states which is chosen and why",
@@ -29,6 +33,11 @@
     "skills": ["writing-technical-docs"],
     "query": "Draft a one-pager proposing we move our metrics pipeline from cron to an event-driven trigger.",
     "expected_behavior": [
+      "Reads reference/document-types/one-pager.md and keeps implementation detail below HLD altitude",
+      "Uses only sections needed for the decision and may merge context, problem, or scope",
+      "Opens with the decision, recommendation, decisive reasons, principal downside, and reversibility",
+      "Separates scenario constraints, verified facts, and assumptions",
+      "Compares the proposal, status quo, and strongest credible alternative against common criteria",
       "Paragraph lengths vary, including at least one single-sentence paragraph",
       "Does not produce uniformly 3-4 sentence paragraphs",
       "Sentence lengths spread with sd >= 9 and at least one sentence over 40 words",
@@ -36,6 +45,46 @@
       "Leaves at least one claim explicitly unresolved",
       "Records reversibility of the decision",
       "Ends on a technical fact rather than a summary paragraph"
+    ]
+  },
+  {
+    "skills": ["writing-technical-docs"],
+    "query": "Write a PRFAQ for a service that creates an isolated preview environment for each code review. The customer is an application team currently sharing one integration environment.",
+    "expected_behavior": [
+      "Reads reference/document-types/prfaq.md and reference/document-types/prfaq-sections.md",
+      "Selects FAQ questions from customer and investment risks instead of reproducing every reference subsection",
+      "Keeps the press release focused on the customer problem and future experience rather than architecture",
+      "Separates the press release, external FAQ, and internal FAQ",
+      "Addresses cost allocation, secrets, data restrictions, quotas, operations, support, success metrics, and stop conditions",
+      "Labels hypothetical quotes and does not invent customer evidence",
+      "Includes difficult unanswered questions rather than writing around them"
+    ]
+  },
+  {
+    "skills": ["writing-technical-docs"],
+    "query": "Write an LLD for idempotency keys in a payment API. Concurrent requests with the same key and different payloads must not both succeed, and the downstream payment may commit before our response is stored.",
+    "expected_behavior": [
+      "Reads reference/document-types/lld.md, lld-contracts.md, and lld-delivery.md",
+      "Organizes around the component's unresolved implementation decisions rather than a fixed LLD outline",
+      "Links or states inherited HLD decisions without repeating a business case",
+      "Defines request contracts, payload validation, key scope, state transitions, concurrency, timeout, retry, and recovery behavior",
+      "Maps invariants and failure modes to tests and operational signals",
+      "Covers migration, mixed versions, launch, rollback, and cleanup where relevant",
+      "Avoids cataloging every class or method"
+    ]
+  },
+  {
+    "skills": ["writing-technical-docs"],
+    "query": "Run a rigorous writer and judge workflow on a random technical design topic. Keep revising until an independent panel accepts it.",
+    "expected_behavior": [
+      "Loads agent-sops/iterative-technical-doc-review.sop.md and reference/review-rubric.md",
+      "Selects a topic from evaluations/topic-bank.json and distinguishes scenario constraints from verified facts",
+      "Creates an evidence pack and two independent candidate drafts",
+      "Uses fresh isolated critics for revision rounds",
+      "Runs scripts/check_style.py before panel review",
+      "Dispatches independent argument, technical, and document judges",
+      "Uses scripts/aggregate_review_panel.py and accepts only on unanimous votes, threshold scores, no blockers, and a passing style check",
+      "Stops at finite limits and reports NOT_ACCEPTED when blockers remain"
     ]
   }
 ]

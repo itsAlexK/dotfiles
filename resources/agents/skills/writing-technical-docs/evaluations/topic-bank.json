@@ -1,0 +1,143 @@
+[
+  {
+    "id": "redis-compatible-multitenant-cache",
+    "title": "Redis-Compatible Multi-Tenant Cache",
+    "document_type": "hld",
+    "decision": "Choose the sharding, replication, failover, and tenant-isolation architecture for a regional Redis-compatible cache.",
+    "audience": "Platform engineers, service owners, security reviewers, and operations.",
+    "prompt": "Write an HLD for a regional Redis-compatible cache used by several internal services. Compare managed and self-operated approaches, then recommend an architecture that satisfies the scenario constraints.",
+    "constraints": [
+      "Treat 200000 GET operations per second and 30000 SET operations per second as scenario assumptions, not verified Redis benchmarks.",
+      "The target in-region p99 latency is 5 milliseconds.",
+      "The service target is 99.99 percent monthly availability across availability-zone loss.",
+      "Cached data may be reconstructed, but failover should lose no more than 60 seconds of acknowledged writes.",
+      "One tenant must not exhaust another tenant's memory, connections, or request capacity."
+    ]
+  },
+  {
+    "id": "collaborative-editor-architecture",
+    "title": "Collaborative Document Editing",
+    "document_type": "hld",
+    "decision": "Choose the consistency and synchronization model for a multi-user document editor.",
+    "audience": "Application engineers, storage engineers, product owners, and reliability reviewers.",
+    "prompt": "Write an HLD comparing operational transformation and conflict-free replicated data types for a collaborative editor with offline clients.",
+    "constraints": [
+      "A document may have 100 simultaneous editors.",
+      "Clients may remain offline for 24 hours.",
+      "The design must preserve an auditable edit history.",
+      "The first launch supports text and comments but not arbitrary embedded objects."
+    ]
+  },
+  {
+    "id": "object-metadata-service",
+    "title": "Object Storage Metadata Service",
+    "document_type": "hld",
+    "decision": "Choose the partitioning, consistency, and recovery architecture for an object metadata control plane.",
+    "audience": "Storage engineers, database specialists, and operations.",
+    "prompt": "Write an HLD for the metadata plane of an object storage service, including namespace operations, listing, versioning, and regional recovery.",
+    "constraints": [
+      "The namespace contains 10 billion objects as a scenario assumption.",
+      "Reads outnumber writes by 20 to 1.",
+      "Create-after-write must be strongly consistent within a region.",
+      "A regional disaster may require asynchronous recovery with an explicit recovery point objective."
+    ]
+  },
+  {
+    "id": "event-driven-metrics-trigger",
+    "title": "Event-Driven Metrics Pipeline Trigger",
+    "document_type": "one-pager",
+    "decision": "Decide whether to replace a cron trigger with event-driven execution and fund an HLD.",
+    "audience": "Data platform maintainers and the engineering manager who owns the migration.",
+    "prompt": "Write a technical one-pager proposing that a daily metrics pipeline move from cron scheduling to source-publication events.",
+    "constraints": [
+      "The current cron starts at 02:00 UTC.",
+      "Source publication varies by up to 90 minutes.",
+      "Duplicate events are possible.",
+      "The first decision is direction and prototype scope, not implementation approval."
+    ]
+  },
+  {
+    "id": "opentelemetry-log-correlation",
+    "title": "OpenTelemetry Log and Trace Correlation",
+    "document_type": "one-pager",
+    "decision": "Decide whether to standardize service correlation identifiers through OpenTelemetry.",
+    "audience": "Service owners, observability platform engineers, and on-call leads.",
+    "prompt": "Write a technical one-pager proposing a common OpenTelemetry-based convention for correlating logs, metrics, and traces.",
+    "constraints": [
+      "The organization operates services in three programming languages.",
+      "Existing log formats cannot all migrate in one release.",
+      "The proposal must retain compatibility during a staged adoption.",
+      "The next action should be a bounded pilot if the direction is accepted."
+    ]
+  },
+  {
+    "id": "payment-idempotency-component",
+    "title": "Payment Idempotency Component",
+    "document_type": "lld",
+    "decision": "Specify the request contract, state machine, concurrency behavior, and recovery process for payment idempotency keys.",
+    "audience": "Payment service implementers, code reviewers, and operations.",
+    "prompt": "Write an LLD for an idempotency-key component that prevents duplicate payment creation across retries and concurrent requests.",
+    "constraints": [
+      "Keys are scoped to merchant and operation.",
+      "A key remains authoritative for 24 hours.",
+      "Concurrent requests with the same key and different payloads must not both succeed.",
+      "The design must cover timeout after downstream payment creation but before the response is stored."
+    ]
+  },
+  {
+    "id": "distributed-rate-limiter",
+    "title": "Distributed API Rate Limiter",
+    "document_type": "lld",
+    "decision": "Specify the component contracts and consistency behavior for a shared token-bucket rate limiter.",
+    "audience": "Gateway implementers, service owners, and reliability engineers.",
+    "prompt": "Write an LLD for a distributed token-bucket limiter used by API gateways in three availability zones.",
+    "constraints": [
+      "Limits may be defined per customer and operation.",
+      "Gateways must continue with a documented degraded policy during a limiter outage.",
+      "Configuration changes should become effective within one minute.",
+      "The design must cover clock skew, duplicate requests, and hot customers."
+    ]
+  },
+  {
+    "id": "notification-deduplication",
+    "title": "Notification Deduplication",
+    "document_type": "lld",
+    "decision": "Specify the state, interfaces, and retry behavior that prevent duplicate customer notifications.",
+    "audience": "Notification platform implementers and on-call engineers.",
+    "prompt": "Write an LLD for deduplicating email and push notifications consumed from an at-least-once event stream.",
+    "constraints": [
+      "A logical notification may arrive through several producer retries.",
+      "Deduplication state is retained for seven days.",
+      "The system must not silently discard a notification when its state store is unavailable.",
+      "The design must support replay for incident recovery."
+    ]
+  },
+  {
+    "id": "preview-environments-prfaq",
+    "title": "Self-Service Preview Environments",
+    "document_type": "prfaq",
+    "decision": "Decide whether self-service ephemeral preview environments create enough developer value to fund.",
+    "audience": "Developer-experience leadership, finance, security, platform engineering, and support.",
+    "prompt": "Write a PRFAQ for a service that creates an isolated preview environment for each code review.",
+    "constraints": [
+      "The target customer is an application team that currently shares a long-lived integration environment.",
+      "The customer promise includes creation in under 15 minutes as a scenario target.",
+      "Environments expire automatically.",
+      "The FAQ must address cost allocation, secrets, production-data restrictions, quotas, and support."
+    ]
+  },
+  {
+    "id": "customer-data-export-prfaq",
+    "title": "Customer Data Export",
+    "document_type": "prfaq",
+    "decision": "Decide whether a self-service export experience should be built and what customer promise it makes.",
+    "audience": "Product, privacy, legal, security, operations, and engineering leadership.",
+    "prompt": "Write a PRFAQ for a customer-facing service that packages account data for download.",
+    "constraints": [
+      "The customer must verify identity before requesting an export.",
+      "Some source systems publish data asynchronously.",
+      "The download expires.",
+      "The FAQ must address completeness, timing, regional policy, support, and abuse."
+    ]
+  }
+]
