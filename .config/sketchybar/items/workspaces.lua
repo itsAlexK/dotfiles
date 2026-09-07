@@ -68,6 +68,30 @@ local WORKSPACE_DISPLAY = {
 	["9"] = 3,
 }
 
+-- WORKSPACE_DISPLAY describes the full 3-monitor setup. With the externals
+-- unplugged those displays don't exist, and sketchybar silently draws nothing
+-- for an item pointing at a missing display -- so collapse anything beyond the
+-- connected count onto display 1. AeroSpace does the same thing via the
+-- 'Built-in Retina Display' fallback in workspace-to-monitor-force-assignment.
+local display_count = 1
+
+local function refreshDisplayCount(callback)
+	sbar.exec("aerospace list-monitors --count", function(count)
+		display_count = math.max(tonumber(count:match("%d+")) or 1, 1)
+		if callback then
+			callback()
+		end
+	end)
+end
+
+local function displayFor(workspace_index)
+	local display = WORKSPACE_DISPLAY[workspace_index]
+	if display and display > display_count then
+		return 1
+	end
+	return display
+end
+
 local function updateWindow(workspace_index, args)
 	local open_windows = args.open_windows[workspace_index]
 	local focused_workspaces = args.focused_workspaces
@@ -94,7 +118,7 @@ local function updateWindow(workspace_index, args)
 				workspaces[workspace_index]:set({
 					drawing = true,
 					label = { string = icon_line },
-					display = WORKSPACE_DISPLAY[workspace_index],
+					display = displayFor(workspace_index),
 				})
 				return
 			end
@@ -134,7 +158,7 @@ end
 
 local function updateWorkspaceMonitor()
 	for workspace_index, _ in pairs(workspaces) do
-		local display = WORKSPACE_DISPLAY[workspace_index]
+		local display = displayFor(workspace_index)
 		if display then
 			workspaces[workspace_index]:set({ display = display })
 		end
@@ -194,9 +218,12 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 		end)
 	end
 
-	-- Initial setup
-	updateWindows()
-	updateWorkspaceMonitor()
+	-- Initial setup. The display count has to land before the first placement,
+	-- otherwise workspaces assigned to an external get hidden on a laptop-only run.
+	refreshDisplayCount(function()
+		updateWindows()
+		updateWorkspaceMonitor()
+	end)
 
 	-- Subscribe to window creation/destruction events
 	root:subscribe("aerospace_workspace_change", function()
@@ -209,8 +236,10 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 	end)
 
 	root:subscribe("display_change", function()
-		updateWorkspaceMonitor()
-		updateWindows()
+		refreshDisplayCount(function()
+			updateWorkspaceMonitor()
+			updateWindows()
+		end)
 	end)
 
 	sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
