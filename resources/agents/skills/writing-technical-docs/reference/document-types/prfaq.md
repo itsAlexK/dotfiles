@@ -62,24 +62,12 @@ The review should attack the hardest assumptions. A long FAQ that avoids pricing
 
 ## Example dissections
 
-### Scan My Card
+A strong press release connects a named customer problem to an observable future interaction: a compact narrative with an immediate benefit and a visualized customer experience. A strong FAQ shows iteration, audience segmentation, difficult questions answered directly, and experience mocks. The FAQ is where a plausible press release is tested against delivery and business reality.
 
-[Amazon Working Backwards examples](https://w.amazon.com/bin/view/WorkingBackwards/PRFAQExamples/)
-
-The annotated example demonstrates a compact press release with an immediate benefit and a visualized customer experience. Its value is the connection between a named customer problem and an observable future interaction.
-
-### Project Blowfish
-
-[Amazon Working Backwards examples](https://w.amazon.com/bin/view/WorkingBackwards/PRFAQExamples/)
-
-The example demonstrates iteration, audience segmentation, difficult FAQs, and experience mocks. It shows that the FAQ is where a plausible press release is tested against delivery and business reality.
-
-Authentic pre-launch Amazon PRFAQs are rarely public. Public practitioner templates should be labeled as guidance, not represented as original product documents.
+Authentic pre-launch PRFAQs are rarely public. Public practitioner templates should be labeled as guidance, not represented as original product documents.
 
 ## Sources
 
-- [Amazon Working Backwards: PRFAQs](https://w.amazon.com/bin/view/WorkingBackwards/PRFAQS/)
-- [Amazon Working Backwards examples](https://w.amazon.com/bin/view/WorkingBackwards/PRFAQExamples/)
 - [Werner Vogels: Working Backwards](https://www.allthingsdistributed.com/2006/11/working_backwards.html)
 - [About Amazon: An insider look at Amazon's culture and processes](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes)
 - [AWS Executive Insights: Product Management at Amazon](https://aws.amazon.com/executive-insights/content/product-management-at-amazon/)

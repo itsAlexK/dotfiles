@@ -156,6 +156,5 @@ Do not transcribe routine code that is clearer in the implementation.
 
 ## Primary sources
 
-- [Provided Amazon LLD template](https://quip-amazon.com/3ZyPACZWbg0y/Low-Level-Design-Template)
 - [arc42 Building Block View](https://docs.arc42.org/section-5/)
 - [arc42 Runtime View](https://docs.arc42.org/section-6/)

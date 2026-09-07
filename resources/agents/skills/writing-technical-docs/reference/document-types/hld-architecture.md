@@ -133,6 +133,4 @@ Prototype or benchmark when a disputed performance, compatibility, or operationa
 
 ## Primary sources
 
-- [Provided Amazon HLD template](https://quip-amazon.com/y0FuA0muip5z/High-Level-Design-Template)
-- [Amazon Principal Engineer Design Guidance Resources](https://w.amazon.com/bin/view/Principal/Principal_Engineer_Design_Guidance/Resources/)
 - [Design Docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/)

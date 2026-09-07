@@ -104,12 +104,6 @@ Name the most likely reason the proposal could fail, external dependencies, unre
 
 The document isolates one compatibility failure, proposes an exact protocol change, demonstrates the intended interaction, and rejects four alternatives by mechanism. Its narrow boundary makes the decision possible without a full implementation design.
 
-### PROPS IMR Cost Reduction Effort
-
-[Internal team example](https://quip-amazon.com/stcPAWncZRHf)
-
-The document uses a quantified baseline, separates independent proposals, phases the work, and presents an aggregate recommendation. Reuse the structure, not the team-specific content or prose.
-
 ### Basecamp Shape Up Pitch
 
 [Adjacent public guidance and examples](https://basecamp.com/shapeup/1.5-chapter-06)
@@ -119,6 +113,4 @@ The document uses a quantified baseline, separates independent proposals, phases
 ## Sources
 
 - [Crossplane design process](https://github.com/crossplane/crossplane/blob/main/design/README.md)
-- [Amazon Technical One-Pager template](https://w.amazon.com/bin/view/WWGST/GMT/GMTCatalog/TechnicalOnePagertemplate/)
-- [Amazon Writing Hub: Narratives](https://w.amazon.com/bin/view/WritingHub/Document_Repository/Narrative/)
 - [MADR: Markdown Architectural Decision Records](https://adr.github.io/madr/)

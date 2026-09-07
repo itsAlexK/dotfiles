@@ -61,12 +61,6 @@ Use stable requirement and decision identifiers when the design is large enough 
 
 ## Example dissections
 
-### GKI Phase 2 Orphan Cleanup LLD
-
-[Internal example](https://quip-amazon.com/mkVTAJ96Ynk6)
-
-The document carries HLD requirements into component workflows, state transitions, schemas, telemetry, alternatives, and review history. Raw configuration is useful evidence but should move to appendices when it interrupts the implementation argument.
-
 ### status.arc42.org
 
 [Building-block view](https://examples.arc42.org/systems/status.arc42.org/05-building-block-view/) and [runtime view](https://examples.arc42.org/systems/status.arc42.org/06-runtime-view/)
@@ -81,7 +75,6 @@ The guidance covers units, inputs and outputs, algorithms, data structures, cont
 
 ## Sources
 
-- [Provided Amazon LLD template](https://quip-amazon.com/3ZyPACZWbg0y/Low-Level-Design-Template)
 - [arc42 Building Block View](https://docs.arc42.org/section-5/)
 - [arc42 Runtime View](https://docs.arc42.org/section-6/)
 - [NASA SWE-058: Detailed Design](https://swehb.nasa.gov/spaces/7150/pages/16450603/SWE-058+-+Detailed+Design)

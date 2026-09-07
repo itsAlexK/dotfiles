@@ -199,6 +199,5 @@ Order questions from decision-critical premises to delivery depth.
 
 ## Primary sources
 
-- [Amazon Working Backwards: PRFAQs](https://w.amazon.com/bin/view/WorkingBackwards/PRFAQS/)
 - [Werner Vogels: Working Backwards](https://www.allthingsdistributed.com/2006/11/working_backwards.html)
 - [AWS Executive Insights: Product Management at Amazon](https://aws.amazon.com/executive-insights/content/product-management-at-amazon/)

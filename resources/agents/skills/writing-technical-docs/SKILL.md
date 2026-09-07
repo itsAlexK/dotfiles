@@ -20,7 +20,7 @@ Apply guidance in this order when two sources conflict:
 1. The user's requested destination template and explicit instructions
 2. Verified facts, requirements, and constraints for the design
 3. The relevant document-type reference in this skill
-4. [document-reasoning.md](reference/document-reasoning.md) and [amazon-writing.md](reference/amazon-writing.md)
+4. [document-reasoning.md](reference/document-reasoning.md) and [clear-writing.md](reference/clear-writing.md)
 5. [prose-profile.md](reference/prose-profile.md) for sentence-level voice
 6. External examples, which are evidence of useful patterns rather than templates to copy
 
@@ -32,8 +32,8 @@ Read only the references needed for the task.
 
 | Task | Required references |
 |---|---|
-| Draft, restructure, or substantive review | [document-reasoning.md](reference/document-reasoning.md), [amazon-writing.md](reference/amazon-writing.md), and [prose-profile.md](reference/prose-profile.md) |
-| Line edit or voice check only | [amazon-writing.md](reference/amazon-writing.md) and [prose-profile.md](reference/prose-profile.md) |
+| Draft, restructure, or substantive review | [document-reasoning.md](reference/document-reasoning.md), [clear-writing.md](reference/clear-writing.md), and [prose-profile.md](reference/prose-profile.md) |
+| Line edit or voice check only | [clear-writing.md](reference/clear-writing.md) and [prose-profile.md](reference/prose-profile.md) |
 | Decide whether, when, or how to review a design doc | [design-doc-philosophy.md](reference/design-doc-philosophy.md) |
 | Technical one-pager | [one-pager.md](reference/document-types/one-pager.md) |
 | High-level design | [hld.md](reference/document-types/hld.md), then only the HLD section guides it routes to |
@@ -104,7 +104,7 @@ If the user provides a template, retain its required headings. Omit optional sec
 
 ### 2. Read the routed references
 
-Do not load every document-type guide. Read the shared reasoning, Amazon writing, and prose references, then the selected type and only its relevant detail files.
+Do not load every document-type guide. Read the shared reasoning, clear writing, and prose references, then the selected type and only its relevant detail files.
 
 Each document-type section guide is a menu of possible reader questions, not a default outline. It provides a principle and a synthetic good example for sections that the document actually needs. Apply the principle to the decision and use the example to understand the reasoning move. Do not copy its nouns, numbers, or section merely because it exists.
 

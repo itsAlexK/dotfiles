@@ -136,6 +136,5 @@ The work breakdown should be derivable from the design. A missing task often ind
 
 ## Primary sources
 
-- [Provided Amazon LLD template](https://quip-amazon.com/3ZyPACZWbg0y/Low-Level-Design-Template)
 - [NASA SWE-058: Detailed Design](https://swehb.nasa.gov/spaces/7150/pages/16450603/SWE-058+-+Detailed+Design)
 - [NASA SWE-111: Software Design Description](https://swehb.nasa.gov/spaces/7150/pages/16450560/SWE-111+-+Software+Design+Description)

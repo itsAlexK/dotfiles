@@ -63,24 +63,6 @@ Include at least one system-context or component diagram and representative sequ
 
 ## Example dissections
 
-### Small Vaults Phase 2 HLD
-
-[Internal example](https://quip-amazon.com/bbNbAdMRlGyX)
-
-The document mirrors current and proposed workflows in the same phase order, then examines affected systems, alternatives, thresholds, and follow-ups. That parallel structure makes the delta reviewable. Its late glossary is a pattern to improve: define terms at first use even when a glossary also exists.
-
-### Phloem Design
-
-[Principal Engineer recommended example](https://quip-amazon.com/zvJTAJ7AxOjp)
-
-The document proves the intended customer capability with a concrete preview before descending into concepts, components, costs, and limits. This keeps the architecture tied to an observable outcome.
-
-### Search Baristas
-
-[Principal Engineer recommended example](https://w.amazon.com/bin/view/Search/Baiji/Projects/SearchBaristas/)
-
-The design uses comparable current and future diagrams, explicit requirements, cross-system impact analysis, migration, rollback, capacity, and developer experience. It demonstrates that delivery and operations are part of architecture rather than appendices added after selection.
-
 ### Kubernetes KEP-753: Sidecar Containers
 
 [Public proposal](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/753-sidecar-containers/README.md)
@@ -95,9 +77,5 @@ The page starts with a failure model, defines browser and renderer terminology, 
 
 ## Sources
 
-- [Provided Amazon HLD template](https://quip-amazon.com/y0FuA0muip5z/High-Level-Design-Template)
-- [Amazon Principal Engineer Design Guidance Resources](https://w.amazon.com/bin/view/Principal/Principal_Engineer_Design_Guidance/Resources/)
-- [Amazon Design Document Guide](https://w.amazon.com/bin/view/DesignProcessFramework/DesignDocumentGuide/)
-- [Amazon Glacier: Writing a High Level Design](https://w.amazon.com/bin/view/AWS/Glacier/Ops/Runbooks/WritingAHLD/)
 - [Design Docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/)
 - [Kubernetes KEP template](https://github.com/kubernetes/enhancements/blob/master/keps/NNNN-kep-template/README.md)

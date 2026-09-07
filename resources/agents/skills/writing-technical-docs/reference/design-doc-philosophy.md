@@ -51,8 +51,5 @@ An architecture decision record captures one consequential decision. It compleme
 - [Hacker News discussion: Writing a good design document](https://news.ycombinator.com/item?id=44779428) - anecdotal critique, not authoritative guidance
 - [Martin Fowler: Scaling Architecture Conversationally](https://martinfowler.com/articles/scaling-architecture-conversationally.html)
 - [MADR: Markdown Architectural Decision Records](https://adr.github.io/madr/)
-- [Amazon Principal Engineer Design Guidance Resources](https://w.amazon.com/bin/view/Principal/Principal_Engineer_Design_Guidance/Resources/)
-- [Amazon Effective Design Review Format](https://w.amazon.com/bin/view/Principal/Principal_Engineer_Design_Guidance/Resources/EffectiveReviewFormat/)
-- [Amazon Design Process Framework](https://w.amazon.com/bin/view/DesignProcessFramework/)
 
 The Hacker News discussion is useful for counterexamples and practitioner disagreement. Do not treat comments as policy.

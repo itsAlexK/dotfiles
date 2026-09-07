@@ -3,7 +3,7 @@
     "skills": ["writing-technical-docs"],
     "query": "Write a design doc on the tradeoffs between io_uring and epoll for a high-throughput proxy.",
     "expected_behavior": [
-      "Reads reference/document-reasoning.md, reference/amazon-writing.md, and reference/prose-profile.md before drafting",
+      "Reads reference/document-reasoning.md, reference/clear-writing.md, and reference/prose-profile.md before drafting",
       "States the requested decision, audience, recommendation, and scope before selecting sections",
       "Builds sections from reader questions and decision risks rather than copying a default template",
       "Gathers real figures (syscall counts, benchmark numbers, kernel versions) before writing prose",

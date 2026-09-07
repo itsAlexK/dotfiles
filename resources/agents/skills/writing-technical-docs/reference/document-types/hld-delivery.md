@@ -148,6 +148,4 @@ Use appendices for raw benchmark output, exhaustive schemas, configuration, deta
 
 ## Primary sources
 
-- [Provided Amazon HLD template](https://quip-amazon.com/y0FuA0muip5z/High-Level-Design-Template)
-- [Amazon Effective Design Review Format](https://w.amazon.com/bin/view/Principal/Principal_Engineer_Design_Guidance/Resources/EffectiveReviewFormat/)
 - [Martin Fowler: Scaling Architecture Conversationally](https://martinfowler.com/articles/scaling-architecture-conversationally.html)

@@ -157,5 +157,4 @@ Describe customer-visible flows, success behavior, errors, timeouts, and recover
 
 ## Primary sources
 
-- [Provided Amazon HLD template](https://quip-amazon.com/y0FuA0muip5z/High-Level-Design-Template)
 - [Design Docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/)

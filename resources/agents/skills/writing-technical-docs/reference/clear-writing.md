@@ -1,4 +1,4 @@
-# Amazon Writing Layer
+# Clear Writing Layer
 
 Use these principles for clarity and persuasion in addition to the measured [prose profile](prose-profile.md). The prose profile wins where generic guidance conflicts with the user's observed voice.
 
@@ -40,12 +40,8 @@ An appendix cannot repair an unsupported body claim. Summarize the decisive evid
 
 ## Source authority
 
-The public Medium article below describes personal research and is not official Amazon policy. Use it as a secondary synthesis. Amazon-internal Writing Hub and Working Backwards guidance is more authoritative for Amazon documents; the user's measured profile remains authoritative for personal voice.
+The Medium article below describes personal research, not official policy. Use it as a secondary synthesis. Where it conflicts with the user's measured profile, the profile wins.
 
 ## Sources
 
 - [Write Like an Amazonian: 14 Tips for Clear and Persuasive Communication](https://medium.com/@apappascs/write-like-an-amazonian-14-tips-for-clear-and-persuasive-communication-e2a11afc7362)
-- [Amazon Writing Hub: Document Repository](https://w.amazon.com/bin/view/WritingHub/Document_Repository/)
-- [Amazon Writing Hub: Narratives](https://w.amazon.com/bin/view/WritingHub/Document_Repository/Narrative/)
-- [Amazon Writing Handbook: Content](https://w.amazon.com/bin/view/WritingHub/Writing_Handbook/Content/)
-- [Amazon Working Backwards: PRFAQs](https://w.amazon.com/bin/view/WorkingBackwards/PRFAQS/)
