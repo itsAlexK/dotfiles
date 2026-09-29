@@ -56,21 +56,38 @@ def _remote_title(cmd):
     return None
 
 
+def _job_leader(child):
+    # The foreground job's group leader, i.e. what the shell actually launched.
+    # Helpers in the same group (starship/mise run from the prompt, herdr's
+    # background ssh probes) are ignored.
+    procs = child.foreground_processes
+    if not procs:
+        return None
+    try:
+        pgrp = os.tcgetpgrp(child.child_fd)
+    except Exception:
+        pgrp = None
+    for proc in procs:
+        if proc.get("pid") == pgrp:
+            return proc
+    return min(procs, key=lambda p: p.get("pid", 0))
+
+
 def _title(tab_id, fallback):
     tab = get_boss().tab_for_id(tab_id)
     window = tab.active_window if tab else None
     if window is None:
         return fallback
-    for proc in window.child.foreground_processes:
-        cmd = proc.get("cmdline") or []
-        if cmd:
-            t = _remote_title(cmd)
-            if t:
-                return t
+    leader = _job_leader(window.child)
+    cmd = (leader or {}).get("cmdline") or []
+    if cmd:
+        t = _remote_title(cmd)
+        if t:
+            return t
     acc = TabAccessor(tab_id)
-    wd = acc.active_wd
+    wd = (leader or {}).get("cwd") or acc.active_wd
     d = "~" if not wd or wd == HOME else os.path.basename(wd)
-    exe = acc.active_exe
+    exe = os.path.basename(cmd[0]) if cmd else acc.active_exe
     if not exe or exe.lstrip("-") in SHELLS:
         return d
     return exe if d == "~" else f"{exe} · {d}"
