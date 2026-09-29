@@ -64,3 +64,8 @@ resources/agents/skills/visual-recap/
 resources/agents/skills/wiki-edit/
 resources/agents/skills/.aim-core-skills.json
 resources/backups/
+.config/herdr/*.log
+.config/herdr/*.sock
+.config/herdr/.plugins.lock
+.config/herdr/session.json
+.config/herdr/release-notes.json
