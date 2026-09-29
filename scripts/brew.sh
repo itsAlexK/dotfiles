@@ -56,6 +56,7 @@ brew install helm
 brew install sketchybar
 brew install skills
 brew install defuddle
+brew install herdr
 
 # for sketchybar
 brew install lua
