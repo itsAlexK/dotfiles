@@ -32,3 +32,9 @@ goto = ["prefix+g", "alt+g"]
 workspace_picker = "prefix+w"
 close_pane = ["prefix+x", "alt+w"]
 close_tab = ["prefix+shift+x", "alt+shift+w"]
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[ui.sound]
+enabled = false
