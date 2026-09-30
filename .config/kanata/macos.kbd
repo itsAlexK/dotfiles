@@ -97,7 +97,9 @@
   ;; Hyper = all four modifiers (left side)
   hyper (multi lctl lalt (layer-while-held mods))
   
-  cap-hyper @hyper
+  ;; Double-tap caps emits F16 (single-key hotkey for Raycast);
+  ;; single tap / hold keeps the classic Hyper behavior.
+  cap-hyper (tap-dance 200 (@hyper f16))
 
   ;; H key with hyper activation on hold
   ;; Using tap-hold-release-keys with left-hand-keys to allow combining with right-hand home row mods
