@@ -117,5 +117,8 @@ export PATH="/Users/kingkai/.antigravity/antigravity/bin:$PATH"
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
 eval "$(starship init zsh)"
 
-# Added by AIM CLI
-export PATH="$HOME/.aim/mcp-servers:$PATH"
+# >>> open-knowledge cli >>>
+# ! Contents within this block are managed by OpenKnowledge. Do not edit.
+# ! Delete this whole block to opt out — OpenKnowledge will not re-add it.
+[ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
+# <<< open-knowledge cli <<<
