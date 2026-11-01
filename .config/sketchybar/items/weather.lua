@@ -269,7 +269,7 @@ local weather_desc = sbar.add("item", {
 weather:subscribe({"forced", "routine", "system_woke"}, function(env)
     -- https://open-meteo.com/en/docs#latitude=40.7282&longitude=-74.0776&current=temperature_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code&minutely_15=&hourly=&daily=&timezone=America%2FNew_York&models=
     local cmd =
-        ("curl -s curl -s 'https://api.open-meteo.com/v1/forecast?latitude=40.7282&longitude=-74.0776&current=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weather_code&timezone=America%2FNew_York'")
+        ("curl -s 'https://api.open-meteo.com/v1/forecast?latitude=40.7282&longitude=-74.0776&current=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weather_code&timezone=America%2FNew_York'")
 
     sbar.exec(cmd, function(wttr_json)
         if wttr_json ~= nil then

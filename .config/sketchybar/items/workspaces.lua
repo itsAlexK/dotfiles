@@ -14,9 +14,9 @@ local workspaces = {}
 local function withWindows(f)
 	local open_windows = {}
 	local get_windows = "aerospace list-windows --monitor all --format '%{workspace}%{app-name}' --json"
-	local query_visible_workspaces = --  "aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}%{monitor-id}' --json"
-		-- appkit screen id doesn't match sketchybar screen id ... using screen id works at work ..
-		"aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}%{monitor-id} --json"
+	-- appkit screen id doesn't match sketchybar screen id ... using screen id works at work ..
+	local query_visible_workspaces =
+		"aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}%{monitor-id}' --json"
 	local get_focus_workspaces = "aerospace list-workspaces --focused"
 	sbar.exec(get_windows, function(workspace_and_windows)
 		for _, entry in ipairs(workspace_and_windows) do
@@ -244,6 +244,9 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 
 	sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
 		local focused_workspace = focused_workspace:match("^%s*(.-)%s*$")
+		if not workspaces[focused_workspace] then
+			return -- items not created yet (startup race); workspace_change event will catch up
+		end
 		workspaces[focused_workspace]:set({
 			icon = {
 				highlight = true,
