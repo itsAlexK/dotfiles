@@ -51,7 +51,7 @@ dotfiles/
 | `atuin/` | Atuin shell history | Arrow key binding disabled in favour of fzf |
 | `helix/` | Helix editor | Secondary editor |
 | `raycast/` | Raycast | Extensions + configuration |
-| `herdr-app/` | Herdr desktop app | Tracks `keys.json`, `settings.json`, layout `main-summary` and mod `spaces-summary` (sidebar goal summaries + auto-naming via `claude`); the rest is app-written and ignored. New machine: stow **before** first launching Herdr (so `~/.config/herdr-app` becomes one symlink), then once: `herdr-app do layout.switch '{"name":"main-summary"}'` |
+| `herdr-app/` | Herdr desktop app | Tracks `keys.json`, `settings.json`, layout `main-summary`, mod `spaces-summary` (sidebar goal summaries + auto-naming via `claude`) and mod `picker-summary` (quick switcher with those summaries, on `cmd-p`/`alt-g`); the rest is app-written and ignored. New machine: stow **before** first launching Herdr (so `~/.config/herdr-app` becomes one symlink), then once: `herdr-app do layout.switch '{"name":"main-summary"}'` |
 
 ## Scripts
 

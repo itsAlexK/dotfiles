@@ -81,3 +81,6 @@ resources/backups/
 !.config/herdr-app/mods/spaces-summary/
 .config/herdr-app/mods/spaces-summary/jsconfig.json
 .config/herdr-app/mods/spaces-summary/*.d.ts
+!.config/herdr-app/mods/picker-summary/
+.config/herdr-app/mods/picker-summary/jsconfig.json
+.config/herdr-app/mods/picker-summary/*.d.ts
