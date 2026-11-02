@@ -69,7 +69,15 @@ resources/backups/
 .config/herdr/.plugins.lock
 .config/herdr/session.json
 .config/herdr/release-notes.json
-# herdr desktop app: track only personal keybindings and settings; the rest is app-written state
+# herdr desktop app: track only personal keybindings, settings, layouts and mods; the rest is app-written state
 .config/herdr-app/*
 !.config/herdr-app/keys.json
 !.config/herdr-app/settings.json
+!.config/herdr-app/layouts/
+.config/herdr-app/layouts/*
+!.config/herdr-app/layouts/main-summary.json
+!.config/herdr-app/mods/
+.config/herdr-app/mods/*
+!.config/herdr-app/mods/spaces-summary/
+.config/herdr-app/mods/spaces-summary/jsconfig.json
+.config/herdr-app/mods/spaces-summary/*.d.ts
