@@ -29,7 +29,7 @@ function place(s, ps) {
   const tabs = new Set((s.tabs ?? []).map((c) => c.id));
   return ps.find((p) => tabs.has(p.tab) && p.cwd)?.cwd || s.folder;
 }
-const rowHeight = ({ tree }) => (tree ? 28 : 30);
+const rowHeight = ({ tree }) => (tree ? 26 : 28);
 const where = (s, ps) => JSON.stringify([s.machine ?? null, place(s, ps)]);
 const base = (path) => path.replace(/\/+$/, "").split("/").pop();
 // Changes made outside Herdr (an editor's save, a commit in another app): looked
@@ -314,13 +314,13 @@ export default class Spaces extends View {
     for (const { tab, lead } of tabs) {
       const on = w.active && tab.active;
       const summary = d.tabs[tab.id]?.summary;
+      // Two lines: the status under the space's avatar, the name and goal under its name.
       out.push(v_flex()
         .id(`tab-${tab.id}`)
-        .ml(27)
         .px(8)
         .py(3)
         .flex_none()
-        .rounded(7)
+        .rounded(6)
         .cursor_pointer()
         .when(on, (el) => el.bg(t.hover))
         .hover((s) => s.bg(t.hover))
@@ -331,10 +331,10 @@ export default class Spaces extends View {
           openOverlay({ mod: "menu", kind: "popup", width: 200, props: { tab: "tab", target: { id: tab.id, space: w.id } } });
         })
         .when(Boolean(summary), (el) => el.tooltip(summary))
-        .child(h_flex().h(20).gap(7).items_center()
-          .child(h_flex().w(14).flex_none().justify_center().child(mark(t, tab.status)))
+        .child(h_flex().h(20).gap(9).items_center()
+          .child(h_flex().w(18).flex_none().justify_center().child(mark(t, tab.status)))
           .child(div().flex_1().min_w(0).truncate().text_size(12.5).text_color(on ? t.foreground : t.muted).child(tab.name)))
-        .when(Boolean(summary), (el) => el.child(div().pl(21).text_size(11.5).line_height("15px").max_h(30).overflow_hidden().text_color(t.dim).child(summary))));
+        .when(Boolean(summary), (el) => el.child(div().pl(27).text_size(11.5).line_height("15px").max_h(30).overflow_hidden().text_color(t.dim).child(summary))));
     }
     return out;
   }

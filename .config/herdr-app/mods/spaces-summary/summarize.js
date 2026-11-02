@@ -9,7 +9,7 @@
 import { exec, hc, spaces, panes, machines, run, shared, setShared, home } from "herdr";
 
 const MODEL = "claude-haiku-4-5";
-const VERSION = 2; // summaries made by an older prompt are made again
+const VERSION = 3; // summaries made by an older prompt are made again
 const LINES = 1500; // screen and history lines read from each agent
 const ASKS = 2500; // chars of each tab's requests and recaps sent
 const TAIL = 2500; // chars of the end of each tab's terminal sent
@@ -24,7 +24,7 @@ const SYSTEM = `You label a sidebar for a person running many coding agents at o
 Reply with JSON only, no prose, no code fence:
 {"space":{"name":"...","summary":"..."},"tabs":[{"tab":1,"name":"...","summary":"..."}]}
 
-- summary: the goal, at most 70 characters: what the person wants this work to achieve, like "Port the ontology loader to Rust so the app works offline". Not the latest step, command or file: the reason behind them. The requests say it best; if the goal moved on, say the current one. Only if room is left, a few words of where it stands ("; waiting on you" when it asks the person something).
+- summary: the goal, at most 45 characters (two short lines in the sidebar): what the person wants this work to achieve, like "Port ontology loader to Rust for offline use". Not the latest step, command or file: the reason behind them. The requests say it best; if the goal moved on, say the current one. Only if room is left, a few words of where it stands ("; waiting on you" when it asks the person something).
 - name: that goal in 1-4 words, lowercase-kebab-case, like "ontology-rust-port". Each tab's current name is given: if it still fits the goal, return it unchanged.
 - The space's name and summary give the aim shared by all of its tabs.
 - Use only what the text shows. Never include secrets, tokens or personal data.`;
