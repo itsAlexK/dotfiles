@@ -3,3 +3,4 @@ stow-command.txt
 vscode-settings-location.txt
 .DS_Store
 .config/karabiner/karabiner.json
+\.gitmodules
