@@ -1,13 +1,9 @@
 # Start AeroSpace at login
 start-at-login = false
 
-# Note: after-startup-command does not run in AeroSpace 0.20.3-Beta, so
-# sketchybar and borders are started by resources/aerospace-sketchybar-reload-configs.sh
-# instead. Keep these lines for when a future AeroSpace version fixes it.
-after-startup-command = [
-  'exec-and-forget sketchybar',
-  'exec-and-forget borders active_color=0xff188bc2 inactive_color=0xff494d64 width=10.0'
-]
+# Note: sketchybar and borders are started by resources/aerospace-sketchybar-reload-configs.sh,
+# which waits until the AeroSpace server responds before launching them. Don't add them to
+# after-startup-command: it fires before the server is fully ready and the queries can hang.
 
 exec-on-workspace-change = [
     '/bin/bash',
