@@ -84,3 +84,15 @@ resources/backups/
 !.config/herdr-app/mods/picker-summary/
 .config/herdr-app/mods/picker-summary/jsconfig.json
 .config/herdr-app/mods/picker-summary/*.d.ts
+!.config/herdr-app/mods/status-summary/
+.config/herdr-app/mods/status-summary/jsconfig.json
+.config/herdr-app/mods/status-summary/*.d.ts
+!.config/herdr-app/mods/chrome-summary/
+.config/herdr-app/mods/chrome-summary/jsconfig.json
+.config/herdr-app/mods/chrome-summary/*.d.ts
+!.config/herdr-app/mods/tabs-summary/
+.config/herdr-app/mods/tabs-summary/jsconfig.json
+.config/herdr-app/mods/tabs-summary/*.d.ts
+!.config/herdr-app/mods/pane-summary/
+.config/herdr-app/mods/pane-summary/jsconfig.json
+.config/herdr-app/mods/pane-summary/*.d.ts

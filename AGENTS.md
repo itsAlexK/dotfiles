@@ -51,7 +51,7 @@ dotfiles/
 | `atuin/` | Atuin shell history | Arrow key binding disabled in favour of fzf |
 | `helix/` | Helix editor | Secondary editor |
 | `raycast/` | Raycast | Extensions + configuration |
-| `herdr-app/` | Herdr desktop app | Tracks `keys.json`, `settings.json`, layout `main-summary`, mod `spaces-summary` (sidebar goal summaries + auto-naming via `claude`) and mod `picker-summary` (quick switcher with those summaries, on `cmd-p`/`alt-g`); the rest is app-written and ignored. New machine: stow **before** first launching Herdr (so `~/.config/herdr-app` becomes one symlink), then once: `herdr-app do layout.switch '{"name":"main-summary"}'` |
+| `herdr-app/` | Herdr desktop app | Tracks `keys.json`, `settings.json`, layout `main-summary`, mod `spaces-summary` (the sidebar: machine > space > tab with each agent's state and what it wants, goal summaries + auto-naming via `claude`, density levels; publishes `attention.counts`/`attention.tabs`), mods `status-summary`, `tabs-summary`, `pane-summary` (status bar, tab bar, pane header reading those same states), `chrome-summary` (top row with Settings) and `picker-summary` (quick switcher with those summaries, on `cmd-p`/`alt-g`); the rest is app-written and ignored. New machine: stow **before** first launching Herdr (so `~/.config/herdr-app` becomes one symlink), then once: `herdr-app do layout.switch '{"name":"main-summary"}'` |
 
 ## Scripts
 

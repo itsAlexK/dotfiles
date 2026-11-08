@@ -14,7 +14,7 @@
           "id": "brand",
           "type": "block",
           "content": {
-            "mod": "workspace-chrome"
+            "mod": "chrome-summary"
           },
           "size": {
             "px": 46
@@ -32,35 +32,11 @@
                 "mod": "spaces-summary"
               },
               "size": {
-                "weight": 2
-              },
-              "min": 90
-            },
-            {
-              "id": "agents",
-              "type": "block",
-              "content": {
-                "mod": "agents"
-              },
-              "size": {
                 "weight": 1
               },
               "min": 90
             }
           ]
-        },
-        {
-          "id": "sidebar-footer",
-          "type": "block",
-          "content": {
-            "mod": "workspace-chrome",
-            "props": {
-              "footer": true
-            }
-          },
-          "size": {
-            "px": 69
-          }
         }
       ],
       "size": {
@@ -79,7 +55,7 @@
           "id": "tabs",
           "type": "block",
           "content": {
-            "mod": "tabs"
+            "mod": "tabs-summary"
           },
           "size": {
             "px": 42
@@ -98,7 +74,7 @@
                 "pane": {
                   "header": {
                     "content": {
-                      "mod": "pane"
+                      "mod": "pane-summary"
                     },
                     "reveal": "always",
                     "height": 30,
@@ -160,7 +136,7 @@
           "id": "status",
           "type": "block",
           "content": {
-            "mod": "workspace-status"
+            "mod": "status-summary"
           },
           "size": {
             "px": 28
