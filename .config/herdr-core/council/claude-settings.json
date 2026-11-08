@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read", "Grep", "Glob",
+      "Write(~/council-runs/**)", "Edit(~/council-runs/**)",
+      "Bash(/Users/itsalexk/council-runs/*)", "Bash(~/council-runs/*)",
+      "Bash(herdr-app shot:*)", "Bash(herdr-app ls:*)", "Bash(herdr-app status:*)", "Bash(herdr-app commands:*)",
+      "Bash(hc send:*)", "Bash(hc read:*)", "Bash(hc ls:*)", "Bash(hc get:*)",
+      "Bash(git diff:*)", "Bash(git log:*)", "Bash(git show:*)", "Bash(git status:*)",
+      "Bash(ls:*)", "Bash(cat:*)", "Bash(head:*)", "Bash(tail:*)", "Bash(wc:*)", "Bash(rg:*)", "Bash(grep:*)", "Bash(find:*)", "Bash(sed -n:*)", "Bash(sips:*)"
+    ]
+  }
+}
