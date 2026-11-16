@@ -52,6 +52,7 @@ dotfiles/
 | `helix/` | Helix editor | Secondary editor |
 | `raycast/` | Raycast | Extensions + configuration |
 | `herdr-app/` | Herdr desktop app | Tracks `keys.json`, `settings.json`, layout `main-summary`, mod `spaces-summary` (the sidebar: machine > space > tab with each agent's state and what it wants, goal summaries + auto-naming via `claude`, density levels; publishes `attention.counts`/`attention.tabs`), mods `status-summary`, `tabs-summary`, `pane-summary` (status bar, tab bar, pane header reading those same states), `chrome-summary` (top row with Settings) and `picker-summary` (quick switcher with those summaries, on `cmd-p`/`alt-g`); the rest is app-written and ignored. New machine: stow **before** first launching Herdr (so `~/.config/herdr-app` becomes one symlink), then once: `herdr-app do layout.switch '{"name":"main-summary"}'` |
+| `agent-resume/` | herdr-core session resume | Brings Claude Code and Codex sessions back in terminals herdr-core recovers (core stop/crash, reboot), via the Toolbox `claude`/`codex` with their bypass/model flags. Hooks label each terminal with its session; `agent-resume.zsh` (sourced at the end of `.zshrc`) resumes at the recovered shell's first prompt. Set up a machine with `install.sh` (here) or `install.sh --on <machine>`; log in `~/.local/state/agent-resume.log` |
 
 ## Scripts
 

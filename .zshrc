@@ -122,3 +122,6 @@ eval "$(starship init zsh)"
 # ! Delete this whole block to opt out — OpenKnowledge will not re-add it.
 [ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
 # <<< open-knowledge cli <<<
+
+# Resume Claude Code / Codex sessions in recovered herdr-core terminals
+[[ -r ~/.config/agent-resume/agent-resume.zsh ]] && source ~/.config/agent-resume/agent-resume.zsh

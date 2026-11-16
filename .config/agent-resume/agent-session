@@ -1,0 +1,225 @@
+#!/usr/bin/env bash
+# agent-session: remembers which Claude Code or Codex session runs in a
+# herdr-core terminal, as labels on that terminal. After herdr-core recovers
+# the terminal (core restart, crash, reboot) it starts a lone shell with the
+# same labels, and agent-resume.zsh resumes the session from them.
+#
+#   agent-session record claude|codex   SessionStart hook (hook JSON on stdin)
+#   agent-session forget                Claude SessionEnd hook (hook JSON on stdin)
+#   agent-session adopt                 label Claude sessions already running
+#   agent-session plan <shell pid>      for agent-resume.zsh: the resume command
+#   agent-session clear [why] | log <msg>   for agent-resume.zsh
+#
+# Log: ~/.local/state/agent-resume.log
+#
+# Labels: agent.kind, agent.session, agent.cwd, agent.flags (a JSON array).
+# Design after joseaps' herdr-core labels tutorial (artifactory.amazon.dev/view/
+# resume-agent-sessions-after-a-reboot). Runs on macOS bash 3.2.
+set -u
+PATH="$HOME/.local/bin:$PATH" # hc lives here on every machine
+command -v hc >/dev/null && command -v jq >/dev/null || exit 0
+
+# The flags worth bringing back, with how many values each takes. Everything
+# else (--settings, --mcp-config, prompts, ...) is left to the wrapper or dropped.
+FLAGS='{
+  "claude": {"--dangerously-skip-permissions": 0, "--permission-mode": 1, "--model": 1},
+  "codex":  {"--dangerously-bypass-approvals-and-sandbox": 0, "--yolo": 0,
+             "-m": 1, "--model": 1, "-s": 1, "--sandbox": 1, "-a": 1, "--ask-for-approval": 1}
+}'
+# jq: keep only $kind's allowed flags (and their values) from an argv array.
+KEEP='def keep($k): ($flags[$k] // {}) as $f | . as $a
+  | reduce range(0; $a | length) as $i ({out: [], take: 0};
+      if .take > 0 then .out += [$a[$i]] | .take -= 1
+      elif $f[$a[$i]] != null then .out += [$a[$i]] | .take = $f[$a[$i]]
+      elif ($a[$i] | test("^--[a-z-]+=")) and $f[$a[$i] | sub("=.*"; "")] == 1 then .out += [$a[$i]]
+      else . end) | .out;'
+
+valid_id() { [[ $1 =~ ^[A-Za-z0-9-]{8,64}$ ]]; }
+
+LOG="${XDG_STATE_HOME:-$HOME/.local/state}/agent-resume.log"
+log() { mkdir -p "${LOG%/*}" && echo "$(date '+%F %T') ${HC_TERMINAL_ID:-?} $*" >>"$LOG"; }
+
+label() { # <terminal> <kind> <session> <cwd> <foreground argv JSON>
+  local flags
+  flags=$(jq -c --arg k "$2" --argjson flags "$FLAGS" "$KEEP .[1:] | keep(\$k)" <<<"$5") || flags='[]'
+  hc label "$1" "agent.kind=$2" "agent.session=$3" "agent.cwd=$4" "agent.flags=$flags" >/dev/null &&
+    log "record $1 $2 ${3:0:8} $flags"
+}
+
+# Claude: only the terminal's own foreground agent may label it. A nested
+# agent (claude -p from another agent's tool shell) inherits HC_TERMINAL_ID
+# too. Walking up from the hook, shells come first (the hook's own), then the
+# agent's processes (Toolbox shim, wrapper, AIM sandbox launcher, claude);
+# a shell after those means the hook belongs to a nested agent.
+record_claude() { # <session> <cwd>
+  local t=${HC_TERMINAL_ID-} term fg pid name seen=0
+  [[ -n $t ]] || return 0
+  term=$(hc get --json "$t" 2>/dev/null) || return 0
+  fg=$(jq -r '.foreground.pid // empty' <<<"$term")
+  [[ -n $fg ]] || return 0
+  pid=$PPID
+  while [[ $pid != "$fg" ]]; do
+    [[ ${pid:-0} -gt 1 ]] || return 0
+    name=$(ps -o comm= -p "$pid") || return 0
+    name=${name##*/}
+    name=${name#-}
+    case $name in
+      sh | bash | zsh | dash | fish | ksh) ((seen)) && return 0 ;;
+      *) seen=1 ;;
+    esac
+    pid=$(ps -o ppid= -p "$pid" | tr -d ' ')
+  done
+  label "$t" claude "$1" "$2" "$(jq -c '.foreground.argv' <<<"$term")"
+}
+
+# Codex runs hooks in a shared app-server, so HC_TERMINAL_ID may name another
+# terminal. Bind the session to the one local terminal whose foreground is
+# codex in the session's folder (or naming the session id, for resumed runs).
+record_codex() { # <session> <cwd>
+  if [[ -n ${CODEX_THREAD_ID-} && $CODEX_THREAD_ID != "$1" ]]; then
+    return 0 # a Codex nested in another Codex's tool shell
+  fi
+  local try ts t term match n
+  for try in 1 2 3 4 5; do
+    ts=$( (echo "${HC_TERMINAL_ID-}"; hc ls --json 2>/dev/null | jq -r '.terminals[].address') |
+      grep -v -e / -e '^$' | awk '!seen[$0]++')
+    match="" n=0
+    for t in $ts; do
+      term=$(hc get --json "$t" 2>/dev/null) || continue
+      if jq -e --arg id "$1" --arg cwd "$2" '.foreground as $f
+          | ($f.argv[0] // "" | sub(".*/"; "")) == "codex"
+          and ($f.cwd == $cwd or ($f.argv | index($id)) != null)' <<<"$term" >/dev/null; then
+        match=$t n=$((n + 1))
+        [[ $t == "${HC_TERMINAL_ID-}" ]] && n=1 && break
+      fi
+    done
+    if ((n == 1)); then
+      label "$match" codex "$1" "$2" "$(hc get --json "$match" | jq -c '.foreground.argv')"
+      return 0
+    fi
+    ((n > 1)) && return 0 # ambiguous: two Codex in one folder
+    sleep 0.5             # core refreshes foreground about twice a second
+  done
+}
+
+record() { # <kind>, hook JSON on stdin
+  local input id cwd
+  input=$(cat)
+  # A subagent's hook carries agent_id; only the main session counts.
+  [[ -z $(jq -r '.agent_id // empty' <<<"$input") ]] || return 0
+  id=$(jq -r '.session_id // empty' <<<"$input")
+  cwd=$(jq -r '.cwd // empty' <<<"$input")
+  valid_id "$id" && [[ $cwd == /* ]] || return 0
+  case $1 in
+    claude) record_claude "$id" "$cwd" ;;
+    codex) record_codex "$id" "$cwd" ;;
+  esac
+}
+
+# Claude SessionEnd: forget a session the user quit (not one a signal ended),
+# when this terminal's labels still name it. Covers shells started before
+# agent-resume.zsh existed, which never clear labels at their prompt.
+forget() { # hook JSON on stdin
+  local input id t=${HC_TERMINAL_ID-}
+  input=$(cat)
+  [[ -n $t ]] || return 0
+  log "session end: $(jq -r '.reason' <<<"$input")"
+  jq -e '.reason == "prompt_input_exit" or .reason == "logout"' <<<"$input" >/dev/null || return 0
+  id=$(jq -r '.session_id // empty' <<<"$input")
+  [[ -n $id && $(hc get --json "$t" 2>/dev/null | jq -r '.labels["agent.session"] // ""') == "$id" ]] &&
+    clear_labels "$t" "user quit"
+}
+
+transcript_exists() { # <kind> <session>
+  case $1 in
+    claude) compgen -G "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/projects/*/$2.jsonl" >/dev/null ;;
+    codex) [[ -n $(find "${CODEX_HOME:-$HOME/.codex}/sessions" -name "rollout-*$2.jsonl*" -print -quit 2>/dev/null) ]] ;;
+    *) return 1 ;;
+  esac
+}
+
+# Claude sessions started before the hook was installed: each running claude
+# writes ~/.claude/sessions/<pid>.json; find the one under each terminal's
+# foreground process. Codex has no such file: restart it once instead.
+adopt() {
+  local t term pids level p f id cwd n=0 procs
+  # pid and parent pid of every process (not pgrep: on macOS it skips its
+  # own ancestors, so the terminal running adopt would be missed).
+  procs=$(ps -A -o pid= -o ppid=)
+  for t in $(hc ls --json | jq -r '.terminals[].address' | grep -v /); do
+    term=$(hc get --json "$t" 2>/dev/null) || continue
+    jq -e '(.labels["agent.session"] // "") == ""
+      and (.foreground.argv[0] // "" | sub(".*/"; "")) == "claude"' <<<"$term" >/dev/null || continue
+    # The foreground process and its descendants, a few levels down.
+    level=$(jq -r '.foreground.pid' <<<"$term")
+    pids=$level
+    for _ in 1 2 3 4 5; do
+      level=$(awk -v l=" $level " 'index(l, " " $2 " ") { printf "%s ", $1 }' <<<"$procs")
+      pids="$pids $level"
+    done
+    for p in $pids; do
+      f="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/sessions/$p.json"
+      [[ -f $f ]] || continue
+      # Not jq: claude rewrites this file in place, so it can briefly be invalid.
+      id=$(grep -o '"sessionId":"[^"]*"' "$f" | head -1 | cut -d'"' -f4)
+      cwd=$(grep -o '"cwd":"[^"]*"' "$f" | head -1 | cut -d'"' -f4)
+      if valid_id "$id" && transcript_exists claude "$id"; then
+        label "$t" claude "$id" "$cwd" "$(jq -c '.foreground.argv' <<<"$term")"
+        echo "$t: claude ${id:0:8} in $cwd"
+        n=$((n + 1))
+      fi
+      break
+    done
+  done
+  echo "adopted $n running Claude session(s)"
+}
+
+# For agent-resume.zsh at a shell's first prompt. Prints the folder and then
+# the command (its first word is the kind), NUL-separated, when this shell is
+# the terminal's root shell started alone by a recovery and the labels name a
+# session that still exists.
+# A root shell started with a command (`zsh -ic ... claude`, a Herdr agent tab)
+# is back from an agent that exited: its labels are cleared instead.
+plan() { # <shell pid>
+  local t=${HC_TERMINAL_ID-} term kind id cwd
+  [[ -n $t ]] || return 0
+  term=$(hc get --json "$t" 2>/dev/null) || return 0
+  jq -e --arg pid "$1" '(.pid | tostring) == $pid and (.labels["agent.session"] // "") != ""' \
+    <<<"$term" >/dev/null || return 0
+  if ! jq -e '.argv | (.[0] | sub(".*/"; "") | test("^-?(zsh|bash|sh|fish)$"))
+      and all(.[1:][]; . == "-l" or . == "--login" or . == "-i")' <<<"$term" >/dev/null; then
+    clear_labels "$t" "agent exited in a tab started with a command"
+    return 0
+  fi
+  kind=$(jq -r '.labels["agent.kind"]' <<<"$term")
+  id=$(jq -r '.labels["agent.session"]' <<<"$term")
+  cwd=$(jq -r '.labels["agent.cwd"]' <<<"$term")
+  if ! valid_id "$id" || [[ ! -d $cwd ]] || ! transcript_exists "$kind" "$id"; then
+    clear_labels "$t" "session or folder gone"
+    return 0
+  fi
+  # The flags are filtered again: a label is not trusted to add any.
+  jq -j --arg k "$kind" --arg id "$id" --argjson flags "$FLAGS" "$KEEP"'
+    (.labels["agent.flags"] // "[]" | try fromjson catch []) as $fl
+    | [.labels["agent.cwd"], $k]
+      + (if $k == "codex" then ["resume"] else [] end)
+      + ($fl | keep($k))
+      + (if $k == "codex" then [$id] else ["--resume", $id] end)
+    | join("\u0000")' <<<"$term"
+}
+
+clear_labels() { # <terminal> [why]
+  hc label "$1" agent.kind= agent.session= agent.cwd= agent.flags= >/dev/null 2>&1
+  log "clear $1${2:+: $2}"
+}
+
+case ${1-} in
+  record) record "${2:?kind}" ;;
+  forget) forget ;;
+  adopt) adopt ;;
+  plan) plan "${2:?shell pid}" ;;
+  clear) [[ -n ${HC_TERMINAL_ID-} ]] && clear_labels "$HC_TERMINAL_ID" "${2-}" ;;
+  log) log "${2-}" ;;
+  *) echo "usage: agent-session record claude|codex | forget | adopt | plan <pid> | clear [why] | log <msg>" >&2 && exit 2 ;;
+esac
+exit 0
