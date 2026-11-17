@@ -21,9 +21,10 @@ const PROVIDERS = {
     env: { CLAUDE_CODE_USE_BEDROCK: "1" },
   },
   deepseek: {
-    model: "deepseek-flash", // the small model this machine's shell maps Haiku to
-    // Endpoint and token are the shell's own (ANTHROPIC_BASE_URL and
-    // ANTHROPIC_AUTH_TOKEN in ~/.zsh/work), read back below, never written here.
+    model: "deepseek-flash", // fallback; the shell's own Haiku model is used below
+    // Endpoint, token and Haiku model are the shell's own (ANTHROPIC_BASE_URL,
+    // ANTHROPIC_AUTH_TOKEN, ANTHROPIC_DEFAULT_HAIKU_MODEL in ~/.zsh/work), read
+    // back below, never written here.
     env: {},
   },
 };
@@ -100,16 +101,18 @@ async function claude() {
 let chosen = null;
 async function provider() {
   if (!chosen) {
-    const ask = '"${SHELL:-sh}" -ic \'printf "%s\\n%s\\n%s" "${HERDR_SUMMARY_PROVIDER:-}" "${ANTHROPIC_BASE_URL:-}" "${ANTHROPIC_AUTH_TOKEN:-}"\'';
+    const ask = '"${SHELL:-sh}" -ic \'printf "%s\\n%s\\n%s\\n%s" "${HERDR_SUMMARY_PROVIDER:-}" "${ANTHROPIC_BASE_URL:-}" "${ANTHROPIC_AUTH_TOKEN:-}" "${ANTHROPIC_DEFAULT_HAIKU_MODEL:-}"\'';
     const r = await exec("/bin/sh", ["-c", ask]);
-    const [name, base, token] = r.stdout.split("\n").map((l) => l.trim());
+    const [name, base, token, haiku] = r.stdout.split("\n").map((l) => l.trim());
     const p = PROVIDERS[name] ? name : DEFAULT_PROVIDER;
     const env = { ...PROVIDERS[p].env };
+    let model = PROVIDERS[p].model;
     if (p === "deepseek") {
       if (base) env.ANTHROPIC_BASE_URL = base;
       if (token) env.ANTHROPIC_AUTH_TOKEN = token;
+      if (haiku) model = haiku;
     }
-    chosen = { model: PROVIDERS[p].model, env };
+    chosen = { model, env };
   }
   return chosen;
 }
