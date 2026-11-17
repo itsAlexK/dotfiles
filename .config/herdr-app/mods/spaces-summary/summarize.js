@@ -10,7 +10,7 @@
 
 import { exec, hc, spaces, panes, terminals, machines, run, shared, setShared, home } from "herdr";
 
-const MODEL = "claude-haiku-4-5";
+const MODEL = "haiku"; // the alias: a pinned id breaks when Bedrock retires it
 const VERSION = 6; // summaries made by an older prompt are made again
 const LINES = 1500; // screen and history lines read from each agent
 const ASKS = 2500; // chars of each tab's requests and recaps sent
