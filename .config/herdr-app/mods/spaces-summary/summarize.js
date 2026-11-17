@@ -10,7 +10,24 @@
 
 import { exec, hc, spaces, panes, terminals, machines, run, shared, setShared, home } from "herdr";
 
-const MODEL = "haiku"; // the alias: a pinned id breaks when Bedrock retires it
+// Which LLM answers the summary. Bedrock is the default; a machine sets
+// HERDR_SUMMARY_PROVIDER=deepseek in its shell config (this laptop, ~/.zsh/work)
+// to use DeepSeek's Anthropic-compatible API instead. exec() runs `claude` with
+// the app's own environment, not the interactive shell's, so each provider lists
+// the variables its subprocess needs, and `model` is what --model sends.
+const PROVIDERS = {
+  bedrock: {
+    model: "haiku", // the alias: a pinned id breaks when Bedrock retires it
+    env: { CLAUDE_CODE_USE_BEDROCK: "1" },
+  },
+  deepseek: {
+    model: "deepseek-flash", // the small model this machine's shell maps Haiku to
+    // Endpoint and token are the shell's own (ANTHROPIC_BASE_URL and
+    // ANTHROPIC_AUTH_TOKEN in ~/.zsh/work), read back below, never written here.
+    env: {},
+  },
+};
+const DEFAULT_PROVIDER = "bedrock";
 const VERSION = 6; // summaries made by an older prompt are made again
 const LINES = 1500; // screen and history lines read from each agent
 const ASKS = 2500; // chars of each tab's requests and recaps sent
@@ -75,6 +92,26 @@ async function claude() {
     found = r.stdout.split("\n").map((l) => l.trim()).filter((l) => l.startsWith("/")).pop() ?? "claude";
   }
   return found;
+}
+
+// Which provider this machine wants (HERDR_SUMMARY_PROVIDER) and the shell
+// variables the deepseek provider needs. Asked through the interactive shell for
+// the same reason as `claude()` above.
+let chosen = null;
+async function provider() {
+  if (!chosen) {
+    const ask = '"${SHELL:-sh}" -ic \'printf "%s\\n%s\\n%s" "${HERDR_SUMMARY_PROVIDER:-}" "${ANTHROPIC_BASE_URL:-}" "${ANTHROPIC_AUTH_TOKEN:-}"\'';
+    const r = await exec("/bin/sh", ["-c", ask]);
+    const [name, base, token] = r.stdout.split("\n").map((l) => l.trim());
+    const p = PROVIDERS[name] ? name : DEFAULT_PROVIDER;
+    const env = { ...PROVIDERS[p].env };
+    if (p === "deepseek") {
+      if (base) env.ANTHROPIC_BASE_URL = base;
+      if (token) env.ANTHROPIC_AUTH_TOKEN = token;
+    }
+    chosen = { model: PROVIDERS[p].model, env };
+  }
+  return chosen;
 }
 
 export class Summarizer {
@@ -161,7 +198,9 @@ export class Summarizer {
     items.forEach(({ t, lead, text, bg }, n) => {
       prompt.push("", `=== Tab ${n + 1}, now called "${t.name}", ${lead.program?.name ?? "agent"}, ${t.status ?? "unknown"}${bg ? `, still running: ${bg}` : ""} ===`, text);
     });
-    const r = await exec(await claude(), ["-p", "--bare", "--model", MODEL, "--tools", "", "--strict-mcp-config", "--no-session-persistence", "--system-prompt", SYSTEM, prompt.join("\n")], { cwd: home() });
+    const { model, env } = await provider();
+    const argv = [...Object.entries(env).map(([k, v]) => `${k}=${v}`), await claude(), "-p", "--bare", "--model", model, "--tools", "", "--strict-mcp-config", "--no-session-persistence", "--system-prompt", SYSTEM, prompt.join("\n")];
+    const r = await exec("/usr/bin/env", argv, { cwd: home() });
     if (r.code !== 0) throw new Error(clip(r.stderr || r.stdout, 300) || `exit ${r.code}`);
     const out = JSON.parse(r.stdout.slice(r.stdout.indexOf("{"), r.stdout.lastIndexOf("}") + 1));
 
