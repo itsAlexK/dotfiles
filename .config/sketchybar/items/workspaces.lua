@@ -52,44 +52,30 @@ local function swapMonitorId(monitor_id)
 	end
 end
 
--- Static display assignments mirroring AeroSpace workspace-to-monitor-force-assignment.
--- AeroSpace reports MacBook for all empty workspaces regardless of force assignment,
--- so we use this table as the authoritative source for sketchybar display placement.
--- Sketchybar displays: 1=MacBook (main), 2=left (T27h-30(1)), 3=middle (T27h-30(2))
-local WORKSPACE_DISPLAY = {
-	["1-chat"] = 1,
-	["2-dev"] = 3,
-	["3-notes"] = 2,
-	["4-reading"] = 3,
-	["5-alt"] = 3,
-	["6-video"] = 3,
-	["7"] = 3,
-	["8"] = 3,
-	["9"] = 3,
-}
+-- Sketchybar display arrangement-ids don't follow physical position and get
+-- reshuffled whenever macOS re-enumerates displays, so a static table keeps
+-- going stale. AeroSpace numbers monitors left-to-right, and display_order.js
+-- lists sketchybar's arrangement-ids in that same order, so each workspace's
+-- AeroSpace monitor maps straight onto its sketchybar display. AeroSpace already
+-- applies workspace-to-monitor-force-assignment (including the laptop-only
+-- fallback), so this simply follows .aerospace.toml.
+local workspace_display = {}
 
--- WORKSPACE_DISPLAY describes the full 3-monitor setup. With the externals
--- unplugged those displays don't exist, and sketchybar silently draws nothing
--- for an item pointing at a missing display -- so collapse anything beyond the
--- connected count onto display 1. AeroSpace does the same thing via the
--- 'Built-in Retina Display' fallback in workspace-to-monitor-force-assignment.
-local display_count = 1
-
-local function refreshDisplayCount(callback)
-	sbar.exec("aerospace list-monitors --count", function(count)
-		display_count = math.max(tonumber(count:match("%d+")) or 1, 1)
-		if callback then
-			callback()
-		end
+local function refreshDisplays(callback)
+	sbar.exec("osascript -l JavaScript helpers/display_order.js", function(display_order)
+		sbar.exec("aerospace list-workspaces --all --format '%{workspace}%{monitor-id}' --json", function(entries)
+			for _, entry in ipairs(entries) do
+				workspace_display[entry.workspace] = display_order[entry["monitor-id"]] or 1
+			end
+			if callback then
+				callback()
+			end
+		end)
 	end)
 end
 
 local function displayFor(workspace_index)
-	local display = WORKSPACE_DISPLAY[workspace_index]
-	if display and display > display_count then
-		return 1
-	end
-	return display
+	return workspace_display[workspace_index]
 end
 
 local function updateWindow(workspace_index, args)
@@ -218,9 +204,8 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 		end)
 	end
 
-	-- Initial setup. The display count has to land before the first placement,
-	-- otherwise workspaces assigned to an external get hidden on a laptop-only run.
-	refreshDisplayCount(function()
+	-- Initial setup. The display mapping has to land before the first placement.
+	refreshDisplays(function()
 		updateWindows()
 		updateWorkspaceMonitor()
 	end)
@@ -236,7 +221,7 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 	end)
 
 	root:subscribe("display_change", function()
-		refreshDisplayCount(function()
+		refreshDisplays(function()
 			updateWorkspaceMonitor()
 			updateWindows()
 		end)
