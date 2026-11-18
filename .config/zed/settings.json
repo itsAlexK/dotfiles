@@ -65,6 +65,15 @@
   "buffer_font_family": "JetBrains Mono",
   "agent_servers": {
     "claude-acp": {
+      "favorite_config_option_values": {
+        "effort": [
+          "max"
+        ]
+      },
+      "default_config_options": {
+        "mode": "bypassPermissions",
+        "effort": "max"
+      },
       "type": "registry",
       "env": {
         "CLAUDE_CODE_EXECUTABLE": "/Users/itsalexk/.toolbox/bin/claude",
