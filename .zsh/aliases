@@ -11,14 +11,19 @@ alias ls="lsd"
 alias csvlook="csvlook -l -I"
 alias less='less -s -M -N -R -I -J'
 
-alias reload="exec ${SHELL} -l"
+# Warp injects its shell integration when it spawns the shell; `exec` replaces
+# that process and loses the wrapper. Inside Warp, re-source in place instead.
+if [[ "$TERM_PROGRAM" == "WarpTerminal" ]]; then
+    alias reload="source ${HOME}/.zshrc"
+else
+    alias reload="exec ${SHELL} -l"
+fi
 alias hg="history | grep"
 alias pbc="pbcopy"
 alias pbp="pbpaste"
 
 alias scalc="soffice --calc"
 
-alias ssh=colorssh
 
 alias notes="cd ~/Dropbox/notes/"
 alias books="cd ~/Box\ Sync/books/"

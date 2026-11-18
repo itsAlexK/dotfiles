@@ -30,7 +30,7 @@ dotfiles/
 
 | File | Purpose |
 |------|---------|
-| `aliases` | Aliases: `bat`, `rg` (with sane ignores), `ls` → lsd, `vim` → nvim, `g` → gemini, `ag` → antigravity, `ssh` → colorssh |
+| `aliases` | Aliases: `bat`, `rg` (with sane ignores), `ls` → lsd, `vim` → nvim, `g` → gemini, `ag` → antigravity, `reload` (re-sources in place inside Warp) |
 | `functions` | `twm` (yabai/skhd control), `km` (hidutil key remapping), `colorssh` (kitty bg color by env), `tabc`/`tab-reset`, `wttr` |
 | `fzf` | FZF helpers: `hf` (history search), `gli` (git log browser), `fif` (find-in-file), `fzfjson` |
 | `python` | pyenv init, pipenv venv-in-project, UTF-8 I/O |

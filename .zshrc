@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+# Added by Kiro CLI
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="${PATH:+$PATH:}$HOME/.local/bin" ;; esac
 
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
@@ -33,7 +33,6 @@ plugins=(
     git
     aws
     brew
-    docker
     extract
     macos
     python
@@ -116,8 +115,6 @@ eval "$(atuin init zsh --disable-up-arrow)"
 export PATH="/Users/kingkai/.antigravity/antigravity/bin:$PATH"
 
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
 eval "$(starship init zsh)"
 
 # >>> open-knowledge cli >>>
