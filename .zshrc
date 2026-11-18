@@ -60,12 +60,9 @@ more=(
     obsidian
     # powerlevel9kconfig
     functions
+    tmux
     work
 )
-
-for m in $more; do
-    source ${HOME}/.zsh/$m
-done
 
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
@@ -73,6 +70,12 @@ if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
 else
     compinit -C
 fi
+
+# Source modules after compinit so their `compdef` calls survive
+# (a later compinit rebuilds _comps and drops earlier registrations).
+for m in $more; do
+    source ${HOME}/.zsh/$m
+done
 
 export MANPAGER='less -s -M -N -R -I -J'
 

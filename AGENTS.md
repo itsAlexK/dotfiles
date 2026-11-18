@@ -35,6 +35,7 @@ dotfiles/
 | `fzf` | FZF helpers: `hf` (history search), `gli` (git log browser), `fif` (find-in-file), `fzfjson` |
 | `python` | pyenv init, pipenv venv-in-project, UTF-8 I/O |
 | `obsidian` | `obs` command — open Obsidian vaults from CLI with fzf |
+| `tmux` | `ts` / `ta` / `tk` — list, attach and kill tmux sessions locally and on remote hosts (`TMUX_REMOTE_HOSTS`, set per machine in `.zsh/work`) |
 
 ## Key configs — .config/
 

@@ -1,0 +1,157 @@
+#!/bin/zsh
+
+# Unified local + remote tmux session management.
+#   ts        list sessions everywhere (local + remote)
+#   ta [name] attach/reconnect (or create); no arg -> fzf picker
+#   tk [name] kill a session; no arg -> fzf multi-select
+#
+# Remote sessions are shown as host:session, local ones as plain names.
+# SSH connections are multiplexed and kept alive behind the scenes so
+# repeat calls are fast.
+#
+# Allowlist of remote hosts to scan, as ssh-config host aliases. Empty `()`
+# auto-discovers from ~/.ssh/config instead (slower: scans every Host entry).
+# Set your own list in ~/.zsh/work, which is sourced after this file.
+TMUX_REMOTE_HOSTS=()
+
+# multiplexing + fast-fail so unreachable hosts don't hang
+TMUX_SSH_OPTS=(
+    -o ControlMaster=auto
+    -o ControlPersist=10m
+    -o ControlPath="$HOME/.ssh/cm-%C"
+    -o ConnectTimeout=3
+    -o BatchMode=yes
+)
+
+# Discover connectable hosts from ssh config, dropping wildcards and git hosts.
+_tmux_remote_hosts() {
+    if (( ${#TMUX_REMOTE_HOSTS} )); then
+        print -l -- "${TMUX_REMOTE_HOSTS[@]}"
+        return
+    fi
+
+    local -a files=("$HOME/.ssh/config")
+    # follow Include directives (e.g. ~/.ssh/devspaces-config)
+    local inc
+    for inc in ${(f)"$(grep -hiE '^[[:space:]]*Include[[:space:]]' $HOME/.ssh/config 2>/dev/null)"}; do
+        inc=${inc#*[Ii]nclude}
+        files+=(${~${(z)inc}})   # word-split + glob/~ expand
+    done
+
+    grep -hiE '^[[:space:]]*Host[[:space:]]' $files 2>/dev/null \
+        | sed -E 's/^[[:space:]]*[Hh]ost[[:space:]]+//' \
+        | tr ' \t' '\n\n' \
+        | grep -vE '[*?]|git' \
+        | grep -vE '^[[:space:]]*$' \
+        | awk '!seen[$0]++'
+}
+
+_tmux_local_sessions() {
+    tmux list-sessions -F '#{session_name}' 2>/dev/null
+}
+
+# host:session for every reachable remote host, queried in parallel
+_tmux_remote_sessions() {
+    local -a hosts=(${(f)"$(_tmux_remote_hosts)"})
+    (( ${#hosts} )) || return
+
+    local tmpdir=$(mktemp -d)
+    local h
+    for h in $hosts; do
+        (
+            ssh "${TMUX_SSH_OPTS[@]}" "$h" 'tmux list-sessions -F "#{session_name}" 2>/dev/null' 2>/dev/null \
+                | sed "s/^/${h}:/" > "$tmpdir/$h"
+        ) &
+    done
+    wait
+    cat "$tmpdir"/* 2>/dev/null
+    rm -rf "$tmpdir"
+}
+
+_tmux_all_sessions() {
+    _tmux_local_sessions
+    _tmux_remote_sessions
+}
+
+# Split a selection into (host session) for remote, or ("" name) for local.
+# Sets reply=(host session); host empty means local.
+_tmux_route() {
+    local sel=$1
+    local maybe_host=${sel%%:*}
+    if [[ "$sel" == *:* ]] && _tmux_remote_hosts | grep -qxF "$maybe_host"; then
+        reply=("$maybe_host" "${sel#*:}")
+    else
+        reply=("" "$sel")
+    fi
+}
+
+ts() {
+    local locals="$(_tmux_local_sessions)"
+    print -P "%F{cyan}local%f"
+    if [[ -n "$locals" ]]; then
+        tmux list-sessions 2>/dev/null | sed 's/^/  /'
+    else
+        echo "  (none)"
+    fi
+
+    local h
+    for h in ${(f)"$(_tmux_remote_hosts)"}; do
+        print -P "%F{cyan}${h}%f"
+        local out="$(ssh "${TMUX_SSH_OPTS[@]}" "$h" 'tmux list-sessions 2>/dev/null' 2>/dev/null)"
+        if [[ -n "$out" ]]; then
+            echo "$out" | sed 's/^/  /'
+        else
+            echo "  (none or unreachable)"
+        fi
+    done
+}
+
+ta() {
+    local sel=$1
+    if [[ -z "$sel" ]]; then
+        sel=$(_tmux_all_sessions | fzf --prompt='attach> ' --height 40%) || return
+    fi
+    [[ -z "$sel" ]] && return
+
+    local reply
+    _tmux_route "$sel"
+    local host=$reply[1] session=$reply[2]
+
+    if [[ -n "$host" ]]; then
+        ssh -t "${TMUX_SSH_OPTS[@]}" "$host" "tmux new -A -s ${(q)session}"
+    elif [[ -n "$TMUX" ]]; then
+        tmux switch-client -t "$session" 2>/dev/null \
+            || tmux new-session -d -s "$session" \; switch-client -t "$session"
+    else
+        tmux new -A -s "$session"
+    fi
+}
+
+tk() {
+    local -a sels
+    if (( $# )); then
+        sels=("$@")
+    else
+        sels=(${(f)"$(_tmux_all_sessions | fzf --multi --prompt='kill> ' --height 40%)"}) || return
+    fi
+    (( ${#sels} )) || return
+
+    local sel reply host session
+    for sel in $sels; do
+        _tmux_route "$sel"
+        host=$reply[1]; session=$reply[2]
+        if [[ -n "$host" ]]; then
+            ssh "${TMUX_SSH_OPTS[@]}" "$host" "tmux kill-session -t ${(q)session}" \
+                && echo "killed ${host}:${session}"
+        else
+            tmux kill-session -t "$session" && echo "killed $session"
+        fi
+    done
+}
+
+# fzf-tab completion for ta/tk (rendered through fzf via the fzf-tab plugin)
+_tmux_session_complete() {
+    local -a sessions=(${(f)"$(_tmux_all_sessions)"})
+    compadd -a sessions
+}
+compdef _tmux_session_complete ta tk
